@@ -10,19 +10,20 @@ public class camera : MonoBehaviour
     public Transform player;
 
     private Transform cameraTransform;
-
+    private Transform cam;
 
     void Start()
     {
         cameraTransform = GetComponent<Transform>();
-            
+
     }
 
     void LateUpdate()
     {
         if (mode == Define.CameraMode.QuaterView)
         {
-            cameraTransform.position = new Vector3(player.position.x - 0.52f, cameraTransform.position.y, player.position.z - 6.56f);
+            
+            cameraTransform.position = new Vector3(player.position.x, player.position.y+1f, player.position.z-20f);
             //transform.position = player.transform.position + delta;
             transform.LookAt(player.transform);
         }
