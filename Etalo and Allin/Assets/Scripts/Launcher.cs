@@ -18,6 +18,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     [SerializeField] GameObject roomListItemPrefab;
     [SerializeField] Transform playerListContent;
     [SerializeField] GameObject PlayerListItemPrefab;
+    [SerializeField] GameObject startGameButton;
 
     void Awake()
     {
@@ -34,6 +35,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     {
         Debug.Log("Connected to Master");
         PhotonNetwork.JoinLobby();
+        PhotonNetwork.AutomaticallySyncScene = true;
     }
 
     public override void OnJoinedLobby()
@@ -71,13 +73,23 @@ public class Launcher : MonoBehaviourPunCallbacks
             Instantiate(PlayerListItemPrefab, playerListContent).GetComponent<PlayerListItem>().SetUp(players[i]);
         }
 
-     //   startGameButton.SetActive(PhotonNetwork.IsMasterClient);
+        startGameButton.SetActive(PhotonNetwork.IsMasterClient);
+    }
+
+    public override void OnMasterClientSwitched(Player newMasterClient)
+    {
+        startGameButton.SetActive(PhotonNetwork.IsMasterClient);
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
         errorText.text = "Room Creation Failed: " + message;
         MenuManager.Instance.OpenMenu("error");
+    }
+
+    public void StartGame()
+    {
+        PhotonNetwork.LoadLevel(1);
     }
 
     public void LeaveRoom()
