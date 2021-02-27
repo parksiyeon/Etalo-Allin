@@ -57,7 +57,9 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && grounded)
         {
             rb.AddForce(transform.up * jumpForce);
+            Debug.Log("Jump");
         }
+        
     }
 
     public void SetGroundedState(bool _grounded)
