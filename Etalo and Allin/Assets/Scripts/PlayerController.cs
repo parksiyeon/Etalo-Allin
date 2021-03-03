@@ -17,16 +17,29 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody rb;
 
+    PhotonView PV;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        //    PV = GetComponent<PhotonView>();
+        PV = GetComponent<PhotonView>();
 
         //    playerManager = PhotonView.Find((int)PV.InstantiationData[0]).GetComponent<PlayerManager>();
     }
 
+    void Start()
+    {
+        if (PV.IsMine)
+        {
+            Destroy(GetComponentInChildren<Camera>().gameObject);
+          
+        }
+    }
+
     void Update()
     {
+        if (!PV.IsMine)
+            return;
 
         Look();
 
