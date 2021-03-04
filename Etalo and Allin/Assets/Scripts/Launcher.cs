@@ -14,6 +14,7 @@ public class Launcher : MonoBehaviourPunCallbacks //포톤 pun 감지
     [SerializeField] TMP_InputField roomNameInputField;
     [SerializeField] TMP_Text errorText;
     [SerializeField] TMP_Text roomNameText;
+    [SerializeField] TMP_Text playerCountText;
     [SerializeField] Transform roomListContent;
     [SerializeField] GameObject roomListItemPrefab;
     [SerializeField] Transform playerListContent;
@@ -52,7 +53,7 @@ public class Launcher : MonoBehaviourPunCallbacks //포톤 pun 감지
         {
             return;
         }
-        PhotonNetwork.CreateRoom(roomNameInputField.text);
+        PhotonNetwork.CreateRoom(roomNameInputField.text, new RoomOptions{ MaxPlayers = 2});
         MenuManager.Instance.OpenMenu("loading");
     }
 
@@ -60,7 +61,9 @@ public class Launcher : MonoBehaviourPunCallbacks //포톤 pun 감지
     {
         MenuManager.Instance.OpenMenu("room");
         roomNameText.text = PhotonNetwork.CurrentRoom.Name;
-       
+        playerCountText.text = (PhotonNetwork.CurrentRoom.PlayerCount) + "/" + (PhotonNetwork.CurrentRoom.MaxPlayers);
+
+
         Player[] players = PhotonNetwork.PlayerList;
 
       
@@ -78,6 +81,11 @@ public class Launcher : MonoBehaviourPunCallbacks //포톤 pun 감지
         startGameButton.SetActive(PhotonNetwork.IsMasterClient);
     }
 
+    public override void OnJoinRandomFailed(short returnCode, string message)
+    {
+        print("방참가실패");
+        
+    }
     public override void OnMasterClientSwitched(Player newMasterClient)
     {
         startGameButton.SetActive(PhotonNetwork.IsMasterClient);
@@ -107,6 +115,7 @@ public class Launcher : MonoBehaviourPunCallbacks //포톤 pun 감지
 
     }
 
+    
     public override void OnLeftRoom()
     {
         MenuManager.Instance.OpenMenu("title");
