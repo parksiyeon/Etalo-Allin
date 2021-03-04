@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
         if (!PV.IsMine)
         {
             Destroy(GetComponentInChildren<Camera>().gameObject);
-          
+            Destroy(rb);
         }
     }
 
@@ -82,8 +82,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-      //  if (!PV.IsMine)
-      //      return;
+        if (!PV.IsMine)
+            return;
 
         rb.MovePosition(rb.position + transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);
     }

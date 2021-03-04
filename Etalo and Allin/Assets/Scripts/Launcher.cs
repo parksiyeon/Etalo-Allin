@@ -6,7 +6,7 @@ using TMPro;
 using Photon.Realtime;
 using System.Linq;
 
-public class Launcher : MonoBehaviourPunCallbacks
+public class Launcher : MonoBehaviourPunCallbacks //포톤 pun 감지
 {
 
     public static Launcher Instance;
@@ -28,7 +28,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     void Start()
     {
         Debug.Log("Connecting to Master");
-        PhotonNetwork.ConnectUsingSettings();
+        PhotonNetwork.ConnectUsingSettings();   //master서버 접속 시도
     }
 
     public override void OnConnectedToMaster()
@@ -60,10 +60,10 @@ public class Launcher : MonoBehaviourPunCallbacks
     {
         MenuManager.Instance.OpenMenu("room");
         roomNameText.text = PhotonNetwork.CurrentRoom.Name;
-
+       
         Player[] players = PhotonNetwork.PlayerList;
 
-
+      
 
         foreach (Transform child in playerListContent)
         {
@@ -91,7 +91,7 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public void StartGame()
     {
-        PhotonNetwork.LoadLevel(1);
+        PhotonNetwork.LoadLevel(1); // 모든 플레이어가 같은 씬
     }
 
     public void LeaveRoom()
