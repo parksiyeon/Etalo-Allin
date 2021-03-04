@@ -27,7 +27,7 @@ public class PlayerManager : MonoBehaviour
 	{
 		
 		PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Etalo_body"), Vector3.zero, Quaternion.identity);
-		PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Allin_body"), Vector3.zero, Quaternion.identity);
+		
 
 	}
 
