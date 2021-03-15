@@ -81,7 +81,7 @@ public class Launcher : MonoBehaviourPunCallbacks //포톤 pun 감지
         startGameButton.SetActive(PhotonNetwork.IsMasterClient);
     }
 
-    public override void OnJoinRandomFailed(short returnCode, string message)
+    public override void OnJoinRoomFailed(short returnCode, string message)
     {
         print("방참가실패");
         
@@ -110,11 +110,13 @@ public class Launcher : MonoBehaviourPunCallbacks //포톤 pun 감지
 
     public void JoinRoom(RoomInfo info)
     {
+        
         PhotonNetwork.JoinRoom(info.Name);
         MenuManager.Instance.OpenMenu("loading");
 
     }
 
+ 
     
     public override void OnLeftRoom()
     {
