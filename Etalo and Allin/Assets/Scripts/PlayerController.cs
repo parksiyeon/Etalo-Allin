@@ -12,34 +12,40 @@ public class PlayerController : MonoBehaviour
     float verticalLookRotation;
     bool grounded;
 
+
     Vector3 smoothMoveVelocity;
     Vector3 moveAmount;
 
     Rigidbody rb;
 
-    PhotonView PV;
+    //PhotonView PV;
+
+    public Animator animator;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        PV = GetComponent<PhotonView>();
+        //PV = GetComponent<PhotonView>();
+        animator = GetComponent<Animator>();
 
         //    playerManager = PhotonView.Find((int)PV.InstantiationData[0]).GetComponent<PlayerManager>();
     }
 
     void Start()
     {
-        if (!PV.IsMine)
-        {
-            Destroy(GetComponentInChildren<Camera>().gameObject);
-            Destroy(rb);
-        }
+        //if (!PV.IsMine)
+        //{
+        //    Destroy(GetComponentInChildren<Camera>().gameObject);
+        //    Destroy(rb);
+        //}
+        //Destroy(GetComponentInChildren<Camera>().gameObject);
+        //Destroy(rb);
     }
 
     void Update()
     {
-        if (!PV.IsMine)
-            return;
+        //if (!PV.IsMine)
+        //    return;
 
         Look();
 
@@ -53,13 +59,25 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(Vector3.up * Input.GetAxisRaw("Mouse X") * mouseSensitivity);
 
         verticalLookRotation += Input.GetAxisRaw("Mouse Y") * mouseSensitivity;
-        verticalLookRotation = Mathf.Clamp(verticalLookRotation, -80f, 80f);
+        verticalLookRotation = Mathf.Clamp(verticalLookRotation, -90f, 90f);
 
         cameraHolder.transform.localEulerAngles = Vector3.left * verticalLookRotation;
     }
 
     void Move()
     {
+
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            Debug.Log("in walkFlow!");
+            
+            animator.SetTrigger("walk");
+        }
+        if (Input.GetKeyDown(KeyCode.None)) 
+        {
+            animator.ResetTrigger("walk");
+            animator.SetTrigger("idle");
+        }
         Vector3 moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
 
         moveAmount = Vector3.SmoothDamp(moveAmount, moveDir * (Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : walkSpeed), ref smoothMoveVelocity, smoothTime);
@@ -82,8 +100,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!PV.IsMine)
-            return;
+        //if (!PV.IsMine)
+        //    return;
 
         rb.MovePosition(rb.position + transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);
     }
