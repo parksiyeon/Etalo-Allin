@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
 
     public Animator animator;
 
+    PlayerManager playerManager;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -35,11 +37,11 @@ public class PlayerController : MonoBehaviour
     {
         if (!PV.IsMine)
         {
+          
             Destroy(GetComponentInChildren<Camera>().gameObject);
             Destroy(rb);
         }
-        Destroy(GetComponentInChildren<Camera>().gameObject);
-        Destroy(rb);
+        
     }
 
     void Update()
@@ -78,6 +80,7 @@ public class PlayerController : MonoBehaviour
         //    animator.ResetTrigger("walk");
         //    animator.SetTrigger("idle");
         //}
+
         Vector3 moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
 
         moveAmount = Vector3.SmoothDamp(moveAmount, moveDir * (Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : walkSpeed), ref smoothMoveVelocity, smoothTime);

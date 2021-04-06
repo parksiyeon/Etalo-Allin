@@ -35,7 +35,7 @@ public class PlayerManager : MonoBehaviour
 		//GameObject allin = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Allin_2"), Vector3.zero, Quaternion.identity);
 	//	PhotonNetwork.Instantiate(AllinPrfab.name,Vector3.zero, Quaternion.identity);
 
-		PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Etalo_2"), Vector3.zero, Quaternion.identity);
+		PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Etalo_body_AllMerge 1"), Vector3.zero, Quaternion.identity);
 
 	}
 
