@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour
     float verticalLookRotation;
     bool grounded;
 
+    float h;
+    float v;
+
 
     Vector3 smoothMoveVelocity;
     Vector3 moveAmount;
@@ -20,7 +23,7 @@ public class PlayerController : MonoBehaviour
 
     PhotonView PV;
 
-    public Animator animator;
+    Animator animator;
 
     PlayerManager playerManager;
 
@@ -30,28 +33,28 @@ public class PlayerController : MonoBehaviour
         PV = GetComponent<PhotonView>();
         animator = GetComponent<Animator>();
 
-        playerManager = PhotonView.Find((int)PV.InstantiationData[0]).GetComponent<PlayerManager>();
+        //playerManager = PhotonView.Find((int)PV.InstantiationData[0]).GetComponent<PlayerManager>();
     }
 
     void Start()
     {
-        if (!PV.IsMine)
-        {
+        //if (!PV.IsMine)
+        //{
           
-            Destroy(GetComponentInChildren<Camera>().gameObject);
-            Destroy(rb);
-        }
+        //    Destroy(GetComponentInChildren<Camera>().gameObject);
+        //    Destroy(rb);
+        //}
         
     }
 
     void Update()
     {
-        if (!PV.IsMine)
-            return;
+        //if (!PV.IsMine)
+        //    return;
 
         Look();
 
-        Move();
+        
 
         Jump();
     }
@@ -68,18 +71,98 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
+        h = Input.GetAxis("Horizontal");
+        v = Input.GetAxis("Vertical");
 
-        //if (Input.GetKeyDown(KeyCode.W))
-        //{
-        //    Debug.Log("in walkFlow!");
-            
-        //    animator.SetTrigger("walk");
+        if (h != 0)
+        {
+            if( h > 0 )
+            {
+                Debug.Log("in MoveR Flow!");
+                animator.SetTrigger("moveR");
+            }
+            else if (h < 0) {
+                Debug.Log("in MoveL Flow!");
+                animator.SetTrigger("moveL");
+            }
+        }
+
+        if (v != 0)
+        {
+            if (v > 0)
+            {
+                Debug.Log("in run Flow!");
+                animator.SetTrigger("run");
+            }
+            else if (v < 0)
+            {
+                Debug.Log("in runBack Flow!");
+                animator.SetTrigger("runBack");
+            }
+        }
+
+        if (h == 0 && v == 0 )
+        {
+            animator.ResetTrigger("run");
+            animator.ResetTrigger("runBack");
+            animator.ResetTrigger("moveL");
+            animator.ResetTrigger("moveR");
+            animator.SetTrigger("idle");
+        }
+
+        //if (Input.GetKey(KeyCode.W)){
+        //    Debug.Log("in run Flow!");
+        //    animator.SetTrigger("run");
+
         //}
-        //if (Input.GetKeyDown(KeyCode.None)) 
+        //if (Input.GetKeyUp(KeyCode.W))
         //{
-        //    animator.ResetTrigger("walk");
+        //    animator.ResetTrigger("run");
+        //    Debug.Log("in idle!!!!");
         //    animator.SetTrigger("idle");
+
         //}
+
+        //if (Input.GetKey(KeyCode.S)) {
+        //    Debug.Log("in moveB Flow!");
+        //    animator.SetTrigger("runBack");
+
+        //}
+        //if (Input.GetKeyUp(KeyCode.S))
+        //{
+        //    animator.ResetTrigger("runBack");
+        //    Debug.Log("in idle!!!!");
+        //    animator.SetTrigger("idle");
+
+        //}
+
+        //if (Input.GetKey(KeyCode.A)) {
+        //    Debug.Log("in moveL Flow!");
+        //    animator.SetTrigger("moveL");
+
+        //}
+        //if (Input.GetKeyUp(KeyCode.A))
+        //{
+        //    animator.ResetTrigger("moveL");
+        //    Debug.Log("in idle!!!!");
+        //    animator.SetTrigger("idle");
+
+        //}
+
+        //if (Input.GetKey(KeyCode.D)) {
+        //    Debug.Log("in moveR Flow!");
+        //    animator.SetTrigger("moveR");
+
+        //}
+        //if (Input.GetKeyUp(KeyCode.D))
+        //{
+        //    animator.ResetTrigger("moveR");
+        //    Debug.Log("in idle!!!!");
+        //    animator.SetTrigger("idle");
+
+        //}
+
+
 
         Vector3 moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
 
@@ -103,8 +186,9 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!PV.IsMine)
-            return;
+        //if (!PV.IsMine)
+        //    return;
+        Move();
 
         rb.MovePosition(rb.position + transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);
     }

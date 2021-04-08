@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: -4526930165042612029}
   - component: {fileID: 474613713922064379}
   - component: {fileID: 286898587408867399}
+  - component: {fileID: 1120487123207419861}
   m_Layer: 0
   m_Name: Etalo_body
   m_TagString: Untagged
@@ -236,6 +237,25 @@ MonoBehaviour:
   walkSpeed: 3
   jumpForce: 250
   smoothTime: 0.15
+--- !u!95 &1120487123207419861
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4336995676112497567}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 1ce6d976c272d5e4f8581765ffa374d2, type: 3}
+  m_Controller: {fileID: 9100000, guid: d18d88b8ca752514292a0d2087687062, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6359207454386870591
 GameObject:
   m_ObjectHideFlags: 0

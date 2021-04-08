@@ -103,7 +103,7 @@ namespace Photon.Pun
                 OnOwnershipTransferedEv += punOwnershipCallback.OnOwnershipTransfered;
             }
 
-            NetworkingClient.AddCallbackTarget(target);
+            //NetworkingClient.AddCallbackTarget(target);
         }
 
 

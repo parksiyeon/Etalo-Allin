@@ -357,7 +357,6 @@ MonoBehaviour:
   walkSpeed: 3
   jumpForce: 250
   smoothTime: 0.15
-  animator: {fileID: 0}
 --- !u!114 &8068405025999273575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -435,7 +434,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8692063580417970172}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 1ce6d976c272d5e4f8581765ffa374d2, type: 3}
   m_Controller: {fileID: 9100000, guid: d18d88b8ca752514292a0d2087687062, type: 2}
   m_CullingMode: 0
