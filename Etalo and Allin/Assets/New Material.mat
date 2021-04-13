@@ -62,7 +62,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _AlphaClip: 0
-    - _AtmosphereThickness: 0.48
+    - _AtmosphereThickness: 1.33
     - _Blend: 0
     - _BumpScale: 1
     - _Cull: 2
@@ -82,8 +82,8 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SunDisk: 2
-    - _SunSize: 0.06
-    - _SunSizeConvergence: 7.6
+    - _SunSize: 0.04
+    - _SunSizeConvergence: 4.7
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
@@ -91,6 +91,6 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _GroundColor: {r: 0.6792453, g: 0.46741143, b: 0.2787469, a: 1}
-    - _SkyTint: {r: 0.4117647, g: 0.5980683, b: 0.83137256, a: 1}
+    - _GroundColor: {r: 0.8301887, g: 0.6747011, b: 0.53648984, a: 1}
+    - _SkyTint: {r: 0.39044145, g: 0.7735849, b: 0.64394474, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
