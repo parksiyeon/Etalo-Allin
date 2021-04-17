@@ -195,13 +195,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5913220766834465588}
-  m_LocalRotation: {x: 0.07515377, y: -0, z: -0, w: 0.99717194}
-  m_LocalPosition: {x: 0, y: 1.21, z: -1.87}
+  m_LocalRotation: {x: 0.09549018, y: -0, z: -0, w: 0.9954304}
+  m_LocalPosition: {x: 0, y: 1.97, z: -2.69}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3845259339911918600}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 8.620001, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 10.959001, y: 0, z: 0}
 --- !u!20 &7223278435496747222
 Camera:
   m_ObjectHideFlags: 0
@@ -299,6 +299,7 @@ GameObject:
   - component: {fileID: 4847127072520202877}
   - component: {fileID: 8115218960591230909}
   - component: {fileID: 1377375222031024060}
+  - component: {fileID: 8138277881213457750}
   m_Layer: 0
   m_Name: Etalo_body_AllMerge 1
   m_TagString: Untagged
@@ -445,3 +446,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8138277881213457750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8692063580417970172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8c5200463946d14daa3d3a05fb69dfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraHolder: {fileID: 7223278435496747222}
