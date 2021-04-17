@@ -20,7 +20,8 @@ public class InteractionManager : MonoBehaviour
         
         if (Physics.Raycast(transform.position, transform.forward, out hit))
         {
-            CheckObject();        }
+            CheckObject();        
+        }
     }
 
 
