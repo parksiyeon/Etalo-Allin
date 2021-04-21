@@ -35,82 +35,91 @@ public class PlayerController : MonoBehaviour
         PV = GetComponent<PhotonView>();
         animator = GetComponent<Animator>();
 
-        //playerManager = PhotonView.Find((int)PV.InstantiationData[0]).GetComponent<PlayerManager>();
+       // playerManager = PhotonView.Find((int)PV.InstantiationData[0]).GetComponent<PlayerManager>();
     }
 
     void Start()
     {
-        //if (!PV.IsMine)
-        //{
-          
-        //    Destroy(GetComponentInChildren<Camera>().gameObject);
-        //    Destroy(rb);
-        //}
-        
+        if(PV.IsMine)
+
+        {
+           // EquipItem(0);
+        }
+
+        else
+        {
+            Destroy(GetComponentInChildren<Camera>().gameObject);
+            Destroy(rb);
+        }
+
     }
 
     void Update()
     {
-        //if (!PV.IsMine)
-        //    return;
+        if (!PV.IsMine)
+            return;
 
         Look();
 
-        
+
+        Move();
+
 
         Jump();
     }
 
     void Look()
     {
+    
         transform.Rotate(Vector3.up * Input.GetAxisRaw("Mouse X") * mouseSensitivity);
 
         verticalLookRotation += Input.GetAxisRaw("Mouse Y") * mouseSensitivity;
         verticalLookRotation = Mathf.Clamp(verticalLookRotation, -90f, 90f);
 
-     //   cameraHolder.transform.localEulerAngles = Vector3.left * verticalLookRotation;
+       // cameraHolder.transform.localEulerAngles = Vector3.left * verticalLookRotation;
     }
 
     void Move()
     {
-        h = Input.GetAxis("Horizontal");
-        v = Input.GetAxis("Vertical");
+        //h = Input.GetAxis("Horizontal");
+        //v = Input.GetAxis("Vertical");
 
-        if (h != 0)
-        {
-            if( h > 0 )
-            {
-                Debug.Log("in MoveR Flow!");
-                animator.SetTrigger("moveR");
-            }
-            else if (h < 0) {
-                Debug.Log("in MoveL Flow!");
-                animator.SetTrigger("moveL");
-            }
-        }
+        //if (h != 0)
+        //{
+        //    if (h > 0)
+        //    {
+        //        Debug.Log("in MoveR Flow!");
+        //        animator.SetTrigger("moveR");
+        //    }
+        //    else if (h < 0)
+        //    {
+        //        Debug.Log("in MoveL Flow!");
+        //        animator.SetTrigger("moveL");
+        //    }
+        //}
 
-        if (v != 0)
-        {
-            if (v > 0)
-            {
-                Debug.Log("in run Flow!");
-                animator.SetTrigger("run");
-            }
-            else if (v < 0)
-            {
-                Debug.Log("in runBack Flow!");
-                animator.SetTrigger("runBack");
-            }
-        }
+        //if (v != 0)
+        //{
+        //    if (v > 0)
+        //    {
+        //        Debug.Log("in run Flow!");
+        //        animator.SetTrigger("run");
+        //    }
+        //    else if (v < 0)
+        //    {
+        //        Debug.Log("in runBack Flow!");
+        //        animator.SetTrigger("runBack");
+        //    }
+        //}
 
-        if (h == 0 && v == 0 )
-        {
-            animator.ResetTrigger("run");
-            animator.ResetTrigger("runBack");
-            animator.ResetTrigger("moveL");
-            animator.ResetTrigger("moveR");
-            animator.SetTrigger("idle");
-        }
+        //if (h == 0 && v == 0)
+        //{
+        //    animator.ResetTrigger("run");
+        //    animator.ResetTrigger("runBack");
+        //    animator.ResetTrigger("moveL");
+        //    animator.ResetTrigger("moveR");
+        //    animator.SetTrigger("idle");
+        //}
 
         //if (Input.GetKey(KeyCode.W)){
         //    Debug.Log("in run Flow!");
@@ -171,15 +180,19 @@ public class PlayerController : MonoBehaviour
         moveAmount = Vector3.SmoothDamp(moveAmount, moveDir * (Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : walkSpeed), ref smoothMoveVelocity, smoothTime);
     }
 
+
     void Jump()
     {
+
+        
         if (Input.GetKeyDown(KeyCode.Space) && grounded)
         {
             rb.AddForce(transform.up * jumpForce);
             Debug.Log("Jump");
         }
-        
+      
     }
+
 
     public void SetGroundedState(bool _grounded)
     {
@@ -188,10 +201,10 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        //if (!PV.IsMine)
-        //    return;
-        Move();
 
+        if (!PV.IsMine)
+            return;
+      
         rb.MovePosition(rb.position + transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);
     }
 }

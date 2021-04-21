@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class PlayerGroundCheck : MonoBehaviour
 {
-    PlayerController playerController;
+	PlayerController playerController;
 
-    void Awake()
-    {
-        playerController = GetComponentInParent<PlayerController>();
-		Debug.Log(playerController.gameObject);
-    }
+	void Awake()
+	{
+		playerController = GetComponentInParent<PlayerController>();
+		Debug.Log(playerController);
+	}
 
 	void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject == playerController.gameObject)
 			return;
-
+		Debug.Log(playerController.gameObject);
 		playerController.SetGroundedState(true);
 	}
 
@@ -35,35 +35,4 @@ public class PlayerGroundCheck : MonoBehaviour
 
 		playerController.SetGroundedState(true);
 	}
-
-
-
- //   void OnCollisionEnter(Collision collision)	//충돌 시 한번
- //   {
-
-	//	if (collision.gameObject == playerController.gameObject)
-	//			Debug.Log("enter");
-	//	return;
-
- //       playerController.SetGroundedState(true);
-	//}
-
-	//void OnCollisionStay(Collision collision)   //충돌하는 동안 계속
-	//{
-	//	if (collision.gameObject == playerController.gameObject)
-	//		Debug.Log("stay");
-	//	return;
-
-	//	playerController.SetGroundedState(true);
-	//}
-	//void OnCollisionExit(Collision collision)	//충돌이 끝나면
- //   {
-	//	if (collision.gameObject == playerController.gameObject)
-	//		Debug.Log("exit");
-	//	return;
-
-	//	playerController.SetGroundedState(false);
-	//}
-
-
 }

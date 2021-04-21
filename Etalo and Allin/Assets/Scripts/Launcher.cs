@@ -24,6 +24,7 @@ public class Launcher : MonoBehaviourPunCallbacks //포톤 pun 감지
     void Awake()
     {
         Instance = this;
+        Debug.Log(Instance);
     }
 
     void Start()

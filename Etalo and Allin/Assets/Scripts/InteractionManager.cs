@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InteractionManager : MonoBehaviour
 {
@@ -8,7 +9,11 @@ public class InteractionManager : MonoBehaviour
     [SerializeField] Camera cameraHolder;
     RaycastHit hit;
 
-   // publuc string InteractText = "Press key"
+    PlayerController playerController;
+
+    public Text Txt;
+
+    // publuc string InteractText = "Press key"
     bool isContect = false;
     // Update is called once per frame
 
@@ -16,7 +21,6 @@ public class InteractionManager : MonoBehaviour
     void Update()
     {
         
-
         
         if (Physics.Raycast(transform.position, transform.forward, out hit))
         {
@@ -29,7 +33,7 @@ public class InteractionManager : MonoBehaviour
     {
         Vector3 MousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
 
-        if(Physics.Raycast(cameraHolder.ScreenPointToRay(MousePos), out hit, 100))
+        if(Physics.Raycast(cameraHolder.ScreenPointToRay(MousePos), out hit, 5))
         {
             if(hit.transform.CompareTag("Cactus"))
             {
@@ -37,6 +41,7 @@ public class InteractionManager : MonoBehaviour
                 {
                     isContect = true;
                     Debug.Log(hit.collider.name);
+                    //k,jnnnn Txt.text = "Connect to "+hit.collider.name;
                 }
                 
             }

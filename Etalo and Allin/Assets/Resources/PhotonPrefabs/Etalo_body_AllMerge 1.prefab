@@ -276,7 +276,7 @@ MonoBehaviour:
     m_Bits: 55
   m_VolumeTrigger: {fileID: 0}
   m_RenderPostProcessing: 1
-  m_Antialiasing: 0
+  m_Antialiasing: 1
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 4847127072520202877}
   - component: {fileID: 8115218960591230909}
   - component: {fileID: 1377375222031024060}
-  - component: {fileID: 8138277881213457750}
+  - component: {fileID: -8698347006137925535}
   m_Layer: 0
   m_Name: Etalo_body_AllMerge 1
   m_TagString: Untagged
@@ -355,7 +355,7 @@ MonoBehaviour:
   cameraHolder: {fileID: 2247706877042617846}
   mouseSensitivity: 3
   sprintSpeed: 6
-  walkSpeed: 10
+  walkSpeed: 15
   jumpForce: 250
   smoothTime: 0.15
 --- !u!114 &8068405025999273575
@@ -435,7 +435,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8692063580417970172}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: 1ce6d976c272d5e4f8581765ffa374d2, type: 3}
   m_Controller: {fileID: 9100000, guid: d18d88b8ca752514292a0d2087687062, type: 2}
   m_CullingMode: 0
@@ -446,7 +446,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8138277881213457750
+--- !u!114 &-8698347006137925535
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -459,3 +459,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraHolder: {fileID: 7223278435496747222}
+  Txt: {fileID: 0}
