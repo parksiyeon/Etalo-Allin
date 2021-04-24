@@ -12,8 +12,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float mouseSensitivity, sprintSpeed, walkSpeed, jumpForce, smoothTime;
 
     float verticalLookRotation;
-    bool grounded;
 
+    bool grounded;
     float h;
     float v;
 
@@ -61,9 +61,7 @@ public class PlayerController : MonoBehaviour
 
         Look();
 
-
         Move();
-
 
         Jump();
     }
@@ -181,10 +179,10 @@ public class PlayerController : MonoBehaviour
     }
 
 
+
     void Jump()
     {
 
-        
         if (Input.GetKeyDown(KeyCode.Space) && grounded)
         {
             rb.AddForce(transform.up * jumpForce);
@@ -193,18 +191,20 @@ public class PlayerController : MonoBehaviour
       
     }
 
-
     public void SetGroundedState(bool _grounded)
     {
+    
         grounded = _grounded;
     }
+
 
     void FixedUpdate()
     {
 
-        if (!PV.IsMine)
-            return;
-      
+        //if (!PV.IsMine)
+        //   return;
+
+    
         rb.MovePosition(rb.position + transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);
     }
 }
