@@ -9,57 +9,57 @@ public class PlayerGroundCheck : MonoBehaviour
 	void Awake()
 	{
 		playerController = GetComponentInParent<PlayerController>();
-		
-	}
-
-	void OnCollisionEnter(Collision collision)
-	{
 		Debug.Log(playerController.gameObject);
-		if (collision.gameObject == playerController.gameObject)
-			return;
-
-		playerController.SetGroundedState(true);
 	}
 
-	void OnCollisioExit(Collision collision)
-	{
-		Debug.Log(playerController.gameObject);
-		if (collision.gameObject == playerController.gameObject)
-			return;
+    void OnCollisionEnter(Collision collision)
+    {
 
-		playerController.SetGroundedState(false);
-	}
+        if (collision.gameObject == playerController.gameObject)
+        	return;
 
-	void OnCollisioStay(Collision collision)
-	{
-		Debug.Log(playerController.gameObject);
-		if (collision.gameObject == playerController.gameObject)
-			return;
+        playerController.SetGroundedState(true);
+    }
 
-		playerController.SetGroundedState(true);
-	}
+    void OnCollisionExit(Collision collision)
+    {
+        
+        if (collision.gameObject == playerController.gameObject)
+        	return;
 
-	void OnTriggerEnter(Collider collision)
-	{
-		if (collision.gameObject == playerController.gameObject)
-			return;
+        playerController.SetGroundedState(false);
+    }
 
-		playerController.SetGroundedState(true);
-	}
+    void OnCollisionStay(Collision collision)
+    {
+        
+        if (collision.gameObject == playerController.gameObject)
+        	return;
 
-	void OnTriggerExit(Collider other)
-	{
-		if (other.gameObject == playerController.gameObject)
-			return;
+        playerController.SetGroundedState(true);
+    }
 
-		playerController.SetGroundedState(false);
-	}
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject == playerController.gameObject)
+            return;
 
-	void OnTriggerStay(Collider other)
-	{
-		if (other.gameObject == playerController.gameObject)
-			return;
+        playerController.SetGroundedState(true);
+    }
 
-		playerController.SetGroundedState(true);
-	}
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject == playerController.gameObject)
+            return;
+
+        playerController.SetGroundedState(false);
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject == playerController.gameObject)
+            return;
+
+        playerController.SetGroundedState(true);
+    }
 }

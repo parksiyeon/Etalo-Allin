@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 2957233419662688705}
   - component: {fileID: 305174559580033482}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,7 +152,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5403518045396626395}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -299,7 +299,6 @@ GameObject:
   - component: {fileID: 4847127072520202877}
   - component: {fileID: 8115218960591230909}
   - component: {fileID: 1377375222031024060}
-  - component: {fileID: -8698347006137925535}
   m_Layer: 0
   m_Name: Etalo_body_AllMerge 1
   m_TagString: Untagged
@@ -338,7 +337,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 80
   m_CollisionDetection: 1
 --- !u!114 &4948503066578179651
 MonoBehaviour:
@@ -446,17 +445,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &-8698347006137925535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8692063580417970172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8c5200463946d14daa3d3a05fb69dfc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraHolder: {fileID: 7223278435496747222}
-  Txt: {fileID: 0}

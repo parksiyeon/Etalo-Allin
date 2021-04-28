@@ -3,17 +3,20 @@ using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
 
-
+ 
     [SerializeField] GameObject cameraHolder;
     [SerializeField] float mouseSensitivity, sprintSpeed, walkSpeed, jumpForce, smoothTime;
 
     float verticalLookRotation;
 
     bool grounded;
+    bool isContect = false;
+    bool isInteract = false;
     float h;
     float v;
 
@@ -28,6 +31,8 @@ public class PlayerController : MonoBehaviour
     Animator animator;
 
     PlayerManager playerManager;
+    
+
 
     void Awake()
     {
@@ -50,8 +55,10 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(GetComponentInChildren<Camera>().gameObject);
             Destroy(rb);
+           // Destroy(ui);
         }
 
+      
     }
 
     void Update()
@@ -64,6 +71,11 @@ public class PlayerController : MonoBehaviour
         Move();
 
         Jump();
+
+        CheckObject();
+
+
+
     }
 
     void Look()
@@ -201,10 +213,65 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
 
-        //if (!PV.IsMine)
-        //   return;
-
+        if (!PV.IsMine)
+           return;
+       
     
         rb.MovePosition(rb.position + transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);
+
+       
+    }
+
+    void CheckObject()
+    {
+        RaycastHit hit;
+
+        Vector3 MousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
+
+
+        if (Physics.Raycast(GetComponentInChildren<Camera>().ScreenPointToRay(MousePos), out hit, 10))
+        {
+
+            // if (hit.transform.CompareTag("Cactus"))
+            // {
+            if (!isContect)
+            {             
+                if (Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0))
+                {
+                    Debug.Log(hit.transform.name);
+                    //Debug.Log("Click");
+                }
+                isContect = true;
+            }
+
+            //ClickObj();
+
+            //  }
+
+
+            else
+            {
+                if (isContect)
+                {
+                    isContect = false;
+                }
+            }
+
+        }
+    }
+   
+    void ClickObj()
+    {
+        
+ 
+            Interact();
+
+        
+
+    }
+
+    void Interact()
+    {
+        isInteract = true;
     }
 }
