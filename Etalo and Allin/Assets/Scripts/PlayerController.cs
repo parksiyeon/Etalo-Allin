@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
 
         Look();
 
-        Move();
+       // Move();
 
         Jump();
 
@@ -91,45 +91,42 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
-        //h = Input.GetAxis("Horizontal");
-        //v = Input.GetAxis("Vertical");
+        h = Input.GetAxis("Horizontal");
+        v = Input.GetAxis("Vertical");
 
-        //if (h != 0)
-        //{
-        //    if (h > 0)
-        //    {
-        //        Debug.Log("in MoveR Flow!");
-        //        animator.SetTrigger("moveR");
-        //    }
-        //    else if (h < 0)
-        //    {
-        //        Debug.Log("in MoveL Flow!");
-        //        animator.SetTrigger("moveL");
-        //    }
-        //}
+        if (h != 0)
+        {
+            if (h > 0)
+            {
+                Debug.Log("in MoveR Flow!");
+                animator.SetTrigger("run");
+            }
+            else if (h < 0)
+            {
+                Debug.Log("in MoveL Flow!");
+                animator.SetTrigger("run");
+            }
+        }
 
-        //if (v != 0)
-        //{
-        //    if (v > 0)
-        //    {
-        //        Debug.Log("in run Flow!");
-        //        animator.SetTrigger("run");
-        //    }
-        //    else if (v < 0)
-        //    {
-        //        Debug.Log("in runBack Flow!");
-        //        animator.SetTrigger("runBack");
-        //    }
-        //}
+        if (v != 0)
+        {
+            if (v > 0)
+            {
+                Debug.Log("in run Flow!");
+                animator.SetTrigger("run");
+            }
+            else if (v < 0)
+            {
+                Debug.Log("in runBack Flow!");
+                animator.SetTrigger("run");
+            }
+        }
 
-        //if (h == 0 && v == 0)
-        //{
-        //    animator.ResetTrigger("run");
-        //    animator.ResetTrigger("runBack");
-        //    animator.ResetTrigger("moveL");
-        //    animator.ResetTrigger("moveR");
-        //    animator.SetTrigger("idle");
-        //}
+        if (h == 0 && v == 0)
+        {
+            animator.ResetTrigger("run");
+            animator.SetTrigger("idle");
+        }
 
         //if (Input.GetKey(KeyCode.W)){
         //    Debug.Log("in run Flow!");
@@ -219,6 +216,7 @@ public class PlayerController : MonoBehaviour
     
         rb.MovePosition(rb.position + transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);
 
+        Move();
        
     }
 
