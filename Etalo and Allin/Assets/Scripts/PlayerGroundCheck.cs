@@ -21,7 +21,7 @@ public class PlayerGroundCheck : MonoBehaviour
 		playerController.SetGroundedState(true);
 	}
 
-	void OnCollisioExit(Collision collision)
+	void OnCollisionExit(Collision collision)
 	{
 		Debug.Log(playerController.gameObject);
 		if (collision.gameObject == playerController.gameObject)
@@ -30,7 +30,7 @@ public class PlayerGroundCheck : MonoBehaviour
 		playerController.SetGroundedState(false);
 	}
 
-	void OnCollisioStay(Collision collision)
+	void OnCollisionStay(Collision collision)
 	{
 		Debug.Log(playerController.gameObject);
 		if (collision.gameObject == playerController.gameObject)
