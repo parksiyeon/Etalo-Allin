@@ -34,7 +34,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
 	void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
 	{
-		Vector3 pos= new Vector3(0, 1, -7);
+		Vector3 pos= new Vector3(-6, 1, -7);
 		if (scene.buildIndex == 1) // 게임씬
 		{
 			PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Etalo_body_AllMerge 1"), pos, Quaternion.identity);

@@ -7,9 +7,8 @@ using System.IO;
 public class PlayerManager : MonoBehaviour
 {
 	PhotonView PV;
-	GameObject AllinPrfab;
-	GameObject EtaloPrefab;
 
+	public GameObject inventory_UI;
 
 
 	void Awake()
@@ -36,7 +35,7 @@ public class PlayerManager : MonoBehaviour
 	//	PhotonNetwork.Instantiate(AllinPrfab.name,Vector3.zero, Quaternion.identity);
 
 		PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Etalo_body_AllMerge 1"), Vector3.zero, Quaternion.identity);
-
+		//Instantiate(찍어낼 오브젝트, 찍어낼 위치, 찍을때 회전값)
 	}
 
 	/*	public void Die()

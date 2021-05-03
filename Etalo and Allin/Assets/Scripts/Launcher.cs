@@ -144,11 +144,5 @@ public class Launcher : MonoBehaviourPunCallbacks //포톤 pun 감지
         Instantiate(PlayerListItemPrefab, playerListContent).GetComponent<PlayerListItem>().SetUp(newPlayer);
     }
 
-    public void SelectCharacter(int character)
-    {
-        if (PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("Character"))
-            PhotonNetwork.LocalPlayer.CustomProperties["Character"] = character;
-     
 
-    }
 }
