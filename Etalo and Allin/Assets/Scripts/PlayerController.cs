@@ -45,30 +45,30 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        //if(PV.IsMine)
+        if (PV.IsMine)
 
-        //{
-        //   // EquipItem(0);
-        //}
+        {
+            // EquipItem(0);
+        }
 
-        //else
-        //{
-        //    Destroy(GetComponentInChildren<Camera>().gameObject);
-        //    Destroy(rb);
-        //   // Destroy(ui);
-        //}
+        else
+        {
+            Destroy(GetComponentInChildren<Camera>().gameObject);
+            Destroy(rb);
+            // Destroy(ui);
+        }
 
-      
+
     }
 
     void Update()
     {
-        //if (!PV.IsMine)
-        //    return;
+        if (!PV.IsMine)
+            return;
 
         Look();
 
-       // Move();
+        Move();
 
         Jump();
 
@@ -210,13 +210,13 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
 
-        //if (!PV.IsMine)
-        //   return;
-       
-    
+        if (!PV.IsMine)
+            return;
+
+
         rb.MovePosition(rb.position + transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);
 
-        Move();
+       
        
     }
 

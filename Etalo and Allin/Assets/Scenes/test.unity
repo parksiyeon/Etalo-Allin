@@ -2082,7 +2082,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 933013725}
   m_LocalRotation: {x: -0, y: -0.09127601, z: -0, w: 0.99582565}
-  m_LocalPosition: {x: -2.59, y: 1.74, z: -12.27}
+  m_LocalPosition: {x: -0.1, y: 1.74, z: -11.76}
   m_LocalScale: {x: 1.3537, y: 1.3537, z: 1.3537}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4720,7 +4720,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 3b00a63a04b159f4f833511dcad630f8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -14.47
+      value: -11.88
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b00a63a04b159f4f833511dcad630f8,
         type: 3}
@@ -5275,11 +5275,11 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4698203188557052098}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
+  m_Convex: 0
+  m_CookingOptions: -1
   m_Mesh: {fileID: -2432090755550338912, guid: 7d4a9a8dff7563f4ab6c9ec54624a4ac, type: 3}
 --- !u!54 &4698203188557052100
 Rigidbody:
