@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     bool isInteract = false;
     float h;
     float v;
-
+ 
 
     Vector3 smoothMoveVelocity;
     Vector3 moveAmount;
@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
             // Destroy(ui);
         }
 
-
+      
     }
 
     void Update()
@@ -98,12 +98,12 @@ public class PlayerController : MonoBehaviour
         {
             if (h > 0)
             {
-                Debug.Log("in MoveR Flow!");
+                //Debug.Log("in MoveR Flow!");
                 animator.SetTrigger("run");
             }
             else if (h < 0)
             {
-                Debug.Log("in MoveL Flow!");
+                //Debug.Log("in MoveL Flow!");
                 animator.SetTrigger("run");
             }
         }
@@ -112,12 +112,12 @@ public class PlayerController : MonoBehaviour
         {
             if (v > 0)
             {
-                Debug.Log("in run Flow!");
+                //Debug.Log("in run Flow!");
                 animator.SetTrigger("run");
             }
             else if (v < 0)
             {
-                Debug.Log("in runBack Flow!");
+                //Debug.Log("in runBack Flow!");
                 animator.SetTrigger("run");
             }
         }
@@ -223,54 +223,64 @@ public class PlayerController : MonoBehaviour
 
     void CheckObject()
     {
-        RaycastHit hit;
+        
 
         Vector3 MousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
 
-
-        if (Physics.Raycast(GetComponentInChildren<Camera>().ScreenPointToRay(MousePos), out hit, 10))
+        if(Input.GetMouseButtonDown(0))
         {
+            Ray ray = GetComponentInChildren<Camera>().ScreenPointToRay(MousePos);
+            RaycastHit hit;
 
-            // if (hit.transform.CompareTag("Cactus"))
-            // {
-            if (!isContect)
-            {             
-                if (Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0))
-                {
-                    Debug.Log(hit.transform.name);
-                    //Debug.Log("Click");
-                }
-                isContect = true;
+            if(Physics.Raycast(ray, out hit, 100))
+            {
+                Debug.Log(hit.collider.name);
             }
+        }
+        //if (Physics.Raycast(GetComponentInChildren<Camera>().ScreenPointToRay(MousePos), out hit, 10))
+        //{
+
+        //    // if (hit.transform.CompareTag("Cactus"))
+        //    // {
+        //    if (!isContect)
+        //    {             
+        //        if (Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0))
+        //        {
+        //            Debug.Log(hit.transform.name);
+        //            //Debug.Log("Click");
+        //        }
+        //        isContect = true;
+        //    }
 
             //ClickObj();
 
             //  }
 
 
-            else
-            {
-                if (isContect)
-                {
-                    isContect = false;
-                }
-            }
+            //else
+            //{
+            //    if (isContect)
+            //    {
+            //        isContect = false;
+            //    }
+            //}
 
-        }
+        //}
     }
    
-    void ClickObj()
-    {
+    //void ClickObj()
+    //{
         
  
-            Interact();
+    //        Interact();
 
         
 
-    }
+    //}
 
-    void Interact()
-    {
-        isInteract = true;
-    }
+    //void Interact()
+    //{
+    //    isInteract = true;
+    //}
+   
 }

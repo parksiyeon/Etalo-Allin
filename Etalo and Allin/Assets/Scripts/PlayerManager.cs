@@ -32,7 +32,7 @@ public class PlayerManager : MonoBehaviour
     void CreateController()
 	{
 		Debug.Log("Create");
-        Vector3 pos = new Vector3(-10, 2, -10);
+        Vector3 pos = new Vector3(-10, 1, -10);
 		
 		//GameObject etalo = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Etalo_2"), Vector3.zero, Quaternion.identity);
 		//GameObject allin = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Allin_2"), Vector3.zero, Quaternion.identity);

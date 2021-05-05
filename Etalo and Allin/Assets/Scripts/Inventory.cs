@@ -9,16 +9,10 @@ public class Inventory : MonoBehaviour
 
     bool active = false;
 
-    private void Start()
+
+    void OpenInven()
     {
+        active = !active;
         inventoryPanel.SetActive(active);
-    }
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.I))
-        {
-            active = !active;
-            inventoryPanel.SetActive(active);
-        }
     }
 }
