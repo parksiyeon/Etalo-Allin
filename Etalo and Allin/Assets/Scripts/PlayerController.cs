@@ -195,6 +195,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && grounded)
         {
             rb.AddForce(transform.up * jumpForce);
+            animator.SetTrigger("jump");
             Debug.Log("Jump");
         }
       
