@@ -1195,7 +1195,11 @@ GameObject:
   - component: {fileID: 8698988862828711349}
   - component: {fileID: 4698945402592193270}
   - component: {fileID: 1434818095125556661}
+<<<<<<< HEAD
   - component: {fileID: -2349708838013757321}
+=======
+  - component: {fileID: -6476464494128514381}
+>>>>>>> d5b04c61cb4e7e0405ebf4d9d4cc2474a7dab1ae
   m_Layer: 0
   m_Name: New_Etalo
   m_TagString: Player
@@ -1233,7 +1237,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 9e2e1e494bd8f124b9d0e1db301ddd58, type: 3}
   m_Controller: {fileID: 9100000, guid: d18d88b8ca752514292a0d2087687062, type: 2}
-  m_CullingMode: 1
+  m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -1289,8 +1293,13 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
+  - {fileID: 8698988862828711349}
   - {fileID: 4698945402592193270}
+<<<<<<< HEAD
   - {fileID: -2349708838013757321}
+=======
+  - {fileID: -6476464494128514381}
+>>>>>>> d5b04c61cb4e7e0405ebf4d9d4cc2474a7dab1ae
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -1342,7 +1351,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HandTransform: {fileID: 2633288453335263134}
   ps: {fileID: 0}
+<<<<<<< HEAD
 --- !u!114 &-2349708838013757321
+=======
+--- !u!114 &-6476464494128514381
+>>>>>>> d5b04c61cb4e7e0405ebf4d9d4cc2474a7dab1ae
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1358,6 +1371,7 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 9
+<<<<<<< HEAD
     SynchronizeType: 0
     Name: run
   - Type: 9
@@ -1365,6 +1379,15 @@ MonoBehaviour:
     Name: jump
   - Type: 9
     SynchronizeType: 0
+=======
+    SynchronizeType: 1
+    Name: run
+  - Type: 9
+    SynchronizeType: 1
+    Name: jump
+  - Type: 9
+    SynchronizeType: 1
+>>>>>>> d5b04c61cb4e7e0405ebf4d9d4cc2474a7dab1ae
     Name: idle
   m_SynchronizeLayers:
   - SynchronizeType: 0

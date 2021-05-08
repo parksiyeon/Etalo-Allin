@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         {
             Destroy(GetComponentInChildren<Camera>().gameObject);
             Destroy(rb);
+            //Destroy(animator);
             // Destroy(ui);
            // Destroy(animator);
         }
@@ -201,6 +202,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
             
         }
 
+<<<<<<< HEAD
         //if (Input.GetKeyUp(KeyCode.Space) && grounded)
         //{
         //    animator.ResetTrigger("jump");
@@ -211,6 +213,10 @@ public class PlayerController : MonoBehaviourPunCallbacks
         //    else
         //        animator.SetTrigger("run");
         //}
+=======
+     
+      
+>>>>>>> d5b04c61cb4e7e0405ebf4d9d4cc2474a7dab1ae
     }
 
     public void SetGroundedState(bool _grounded)
@@ -278,15 +284,20 @@ public class PlayerController : MonoBehaviourPunCallbacks
             //}
 
         //}
-    }
-   
+    
+
+
+}
+
+
+
     //void ClickObj()
     //{
-        
- 
+
+
     //        Interact();
 
-        
+
 
     //}
 
@@ -294,5 +305,5 @@ public class PlayerController : MonoBehaviourPunCallbacks
     //{
     //    isInteract = true;
     //}
-   
+
 }
