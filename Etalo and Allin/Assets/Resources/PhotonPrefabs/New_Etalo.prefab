@@ -1196,6 +1196,7 @@ GameObject:
   - component: {fileID: 4698945402592193270}
   - component: {fileID: 1434818095125556661}
   - component: {fileID: -6476464494128514381}
+  - component: {fileID: -7712911139133174532}
   m_Layer: 0
   m_Name: New_Etalo
   m_TagString: Player
@@ -1289,7 +1290,6 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 8698988862828711349}
   - {fileID: 4698945402592193270}
   - {fileID: -6476464494128514381}
   viewIdField: 0
@@ -1370,6 +1370,19 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
+--- !u!135 &-7712911139133174532
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9044563518970086556}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &8461533491967810132
 PrefabInstance:
   m_ObjectHideFlags: 0
