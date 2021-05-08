@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviourPunCallbacks
 {
 
  
@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(GetComponentInChildren<Camera>().gameObject);
             Destroy(rb);
+            //Destroy(animator);
             // Destroy(ui);
         }
 
@@ -198,6 +199,8 @@ public class PlayerController : MonoBehaviour
             animator.SetTrigger("jump");
             Debug.Log("Jump");
         }
+
+     
       
     }
 
@@ -266,15 +269,20 @@ public class PlayerController : MonoBehaviour
             //}
 
         //}
-    }
-   
+    
+
+
+}
+
+
+
     //void ClickObj()
     //{
-        
- 
+
+
     //        Interact();
 
-        
+
 
     //}
 
@@ -282,5 +290,5 @@ public class PlayerController : MonoBehaviour
     //{
     //    isInteract = true;
     //}
-   
+
 }
