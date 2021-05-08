@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviourPunCallbacks
 {
 
  
@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour
             Destroy(GetComponentInChildren<Camera>().gameObject);
             Destroy(rb);
             // Destroy(ui);
+           // Destroy(animator);
         }
 
       
@@ -197,8 +198,19 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(transform.up * jumpForce);
             animator.SetTrigger("jump");
             Debug.Log("Jump");
+            
         }
-      
+
+        //if (Input.GetKeyUp(KeyCode.Space) && grounded)
+        //{
+        //    animator.ResetTrigger("jump");
+        //    if (h == 0 && v == 0)
+        //    {
+        //        animator.SetTrigger("idle");
+        //    }
+        //    else
+        //        animator.SetTrigger("run");
+        //}
     }
 
     public void SetGroundedState(bool _grounded)
