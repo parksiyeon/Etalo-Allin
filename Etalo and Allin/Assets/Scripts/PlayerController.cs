@@ -202,21 +202,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
             
         }
 
-<<<<<<< HEAD
-        //if (Input.GetKeyUp(KeyCode.Space) && grounded)
-        //{
-        //    animator.ResetTrigger("jump");
-        //    if (h == 0 && v == 0)
-        //    {
-        //        animator.SetTrigger("idle");
-        //    }
-        //    else
-        //        animator.SetTrigger("run");
-        //}
-=======
-     
-      
->>>>>>> d5b04c61cb4e7e0405ebf4d9d4cc2474a7dab1ae
+
     }
 
     public void SetGroundedState(bool _grounded)
