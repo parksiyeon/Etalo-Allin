@@ -2,21 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+[CreateAssetMenu(fileName = "New Item", menuName = "New Item/item")]
+public class Item : ScriptableObject  // 게임 오브젝트에 붙일 필요 X 
 {
-
-    public ItemInfo itemInfo;
-    public GameObject itemGameObject;
-
-    // Start is called before the first frame update
-    void Start()
+    public enum ItemType 
     {
-        
+        Equipment,
+        Used,
+        Ingredient,
+        ETC,
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public string itemName; // 이름
+    public ItemType itemType; // 유형
+    public Sprite itemImage; // 이미지(인벤 토리 안에서 띄울)
+    
+
+   
 }

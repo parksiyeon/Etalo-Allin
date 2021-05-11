@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     Animator animator;
 
-    PlayerManager playerManager;
+    //PlayerManager playerManager;
     
 
 

@@ -29,7 +29,7 @@ public class Launcher : MonoBehaviourPunCallbacks //포톤 pun 감지
 
     void Start()
     {
-        Debug.Log("Connecting to Master");
+       
         PhotonNetwork.ConnectUsingSettings();   //master서버 접속 시도
     }
 

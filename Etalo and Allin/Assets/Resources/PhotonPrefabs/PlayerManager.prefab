@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3451522720871757276}
   - component: {fileID: 2439504534042814412}
-  - component: {fileID: 9009561038499354232}
+  - component: {fileID: 3592404908244213307}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -54,7 +54,7 @@ MonoBehaviour:
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &9009561038499354232
+--- !u!114 &3592404908244213307
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -66,3 +66,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff2d6d3bfaad066448d4d09491653a6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterValue: 0
+  myCharacter: {fileID: 0}
