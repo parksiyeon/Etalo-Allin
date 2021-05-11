@@ -673,6 +673,7 @@ GameObject:
   - component: {fileID: 2329676031936629288}
   - component: {fileID: 4641134113109279324}
   - component: {fileID: 4820951700380324281}
+  - component: {fileID: 3431492034566643147}
   m_Layer: 0
   m_Name: New_Allin
   m_TagString: Untagged
@@ -783,8 +784,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowLayerWeightsInspector: 1
   ShowParameterInspector: 1
-  m_SynchronizeParameters: []
-  m_SynchronizeLayers: []
+  m_SynchronizeParameters:
+  - Type: 9
+    SynchronizeType: 0
+    Name: run
+  - Type: 9
+    SynchronizeType: 0
+    Name: jump
+  - Type: 9
+    SynchronizeType: 0
+    Name: idle
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
 --- !u!114 &4641134113109279324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -815,6 +827,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 1
+--- !u!95 &3431492034566643147
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3501494958347935134}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 727e174529b0b2d42901be137497aecf, type: 3}
+  m_Controller: {fileID: 9100000, guid: d18d88b8ca752514292a0d2087687062, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3553644096068523195
 GameObject:
   m_ObjectHideFlags: 0
