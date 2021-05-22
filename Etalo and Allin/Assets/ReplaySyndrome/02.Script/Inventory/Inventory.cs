@@ -18,15 +18,15 @@ public struct InventoryBox
     {
         
         count += 1;
-        Debug.Log("증가" + count.ToString());
+
     }
 }
 
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField]
-    private List<InventoryBox> itemList;
+    
+    public List<InventoryBox> itemList;
     public Image inventoryBoxPrefab;
     public GameObject ContentScreen;
     [SerializeField]
@@ -42,19 +42,29 @@ public class Inventory : MonoBehaviour
     void Start()
     {
         AddItem(itemCollection.water);
+        AddItem(itemCollection.wood);
         AddItem(itemCollection.water);
+        AddItem(itemCollection.wood);
         AddItem(itemCollection.water);
+        AddItem(itemCollection.wood);
+        AddItem(itemCollection.stone);
+        AddItem(itemCollection.stone);
         AddItem(itemCollection.water);
+        AddItem(itemCollection.wood);
         AddItem(itemCollection.water);
+        AddItem(itemCollection.stone);
+
+
+        foreach(var i in itemList)
+        {
+            Debug.Log(i.item.name + " , " + i.Count.ToString());
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        foreach (var i in itemList)
-        {
-            Debug.Log(i.Count);
-        }
+        
     }
 
     public void AddItem(Item item)
@@ -66,13 +76,11 @@ public class Inventory : MonoBehaviour
         {
             InventoryBox temp = itemList[findedindex];
             temp.AddCount();
-            print(temp.Count);
             itemList[findedindex] = temp;
         }
         else
         {
             InventoryBox temp = new InventoryBox(item, 1);
-
             itemList.Add(temp);
         }
     }

@@ -8,16 +8,36 @@ using UnityEngine.UI;
 public class MousePointerOnImage : MonoBehaviour
 {
     private EventTrigger eventTrigger;
+    public Image itemImage;
     public Image detailImagePrefab;
+    public Text itemCountText;
+    public Image detailImage;
+
     private bool isShowDetailImage = false;
     private Image instantinatedObject = null;
+    private bool isAssigned = false;
+    
 
+    public bool IsAssigned
+    {
+        get { return isAssigned; }
+        set { isAssigned = value; }
+    }
+
+    
+    
+
+    private void Awake()
+    {
+        itemCountText = GetComponentInChildren<Text>();
+        itemImage = GetComponent<Image>();
+        detailImage = transform.Find("DetailImage").GetComponent<Image>();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         eventTrigger = gameObject.AddComponent<EventTrigger>();
-
 
         EventTrigger.Entry mousePointerEnter = new EventTrigger.Entry();
         mousePointerEnter.eventID = EventTriggerType.PointerEnter;
@@ -28,11 +48,6 @@ public class MousePointerOnImage : MonoBehaviour
         mousePointerExit.eventID = EventTriggerType.PointerExit;
         mousePointerExit.callback.AddListener((data) => MousePointerExit((PointerEventData)data, gameObject));
         eventTrigger.triggers.Add(mousePointerExit);
-
-
-    
-
-
     }
 
     // Update is called once per frame
@@ -45,25 +60,28 @@ public class MousePointerOnImage : MonoBehaviour
 
     private void MousePointerEnter(PointerEventData data,GameObject g)
     {
-        Debug.Log(gameObject.name + "입장");
-       
-        instantinatedObject = Instantiate(detailImagePrefab, transform.parent.parent);
-        instantinatedObject.GetComponent<RectTransform>().position = gameObject.transform.position;
 
-       
-
-        isShowDetailImage = true;
+        if (isAssigned)
+        {
+            instantinatedObject = Instantiate(detailImagePrefab, transform.parent.parent);
+            instantinatedObject.GetComponent<RectTransform>().position = gameObject.transform.position;
+            instantinatedObject.GetComponent<Image>().sprite = detailImage.sprite;
+            isShowDetailImage = true;
+        }
+        else
+        {
+            print("ISAssigned False");
+        }
        
     }
 
     private void MousePointerExit(PointerEventData data, GameObject g)
     {
-        Debug.Log(gameObject.name + "퇴장");
-        
-        Destroy(instantinatedObject.gameObject);
-        isShowDetailImage = false;
-        
-
+        if (isAssigned)
+        {
+            Destroy(instantinatedObject.gameObject);
+            isShowDetailImage = false;
+        }
     }
 
 

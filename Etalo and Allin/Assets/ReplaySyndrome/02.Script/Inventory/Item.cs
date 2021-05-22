@@ -7,7 +7,7 @@ public class Item : MonoBehaviour
 {
     public Sprite originalImage;
     public Sprite detailImage;
-    private string itemName;
+    public string itemName;
 
     public string ItemName
     {
@@ -39,9 +39,7 @@ public class Item : MonoBehaviour
         switch (itemName)
         {
             case "Water":
-                Debug.Log("물마시자");
                 break;
-
         }
 
     }
