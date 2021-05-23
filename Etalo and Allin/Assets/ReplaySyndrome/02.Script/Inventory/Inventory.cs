@@ -55,10 +55,7 @@ public class Inventory : MonoBehaviour
         AddItem(itemCollection.stone);
 
 
-        foreach(var i in itemList)
-        {
-            Debug.Log(i.item.name + " , " + i.Count.ToString());
-        }
+       
     }
 
     // Update is called once per frame
