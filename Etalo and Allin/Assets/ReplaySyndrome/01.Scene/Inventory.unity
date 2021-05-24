@@ -5169,7 +5169,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -190, y: 287.4749}
+  m_AnchoredPosition: {x: -174.4, y: 262.4747}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &576487023
@@ -5192,10 +5192,10 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 63, y: 63}
-  m_Spacing: {x: 10, y: 10}
+  m_CellSize: {x: 71, y: 71}
+  m_Spacing: {x: 14, y: 16}
   m_Constraint: 1
-  m_ConstraintCount: 5
+  m_ConstraintCount: 4
 --- !u!114 &576487024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7014,6 +7014,7 @@ GameObject:
   - component: {fileID: 775166982}
   - component: {fileID: 775166981}
   - component: {fileID: 775166980}
+  - component: {fileID: 775166983}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -7080,12 +7081,43 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 775166979}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 1, z: 107}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &775166983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775166979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1001 &780050534
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14501,8 +14533,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 55085218}
   m_HandleRect: {fileID: 55085217}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.23
+  m_Value: 1.0000002
+  m_Size: 0.334363
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -15046,7 +15078,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 187, y: 0}
-  m_SizeDelta: {x: 409, y: 600}
+  m_SizeDelta: {x: 400, y: 550}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1647654002
 MonoBehaviour:
@@ -15067,7 +15099,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b5e07dfc8afdc6d44a68612b097b7b01, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5ba4f5ea59199f441ae0ecba8c9c6c48, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
