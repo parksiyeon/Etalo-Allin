@@ -55,7 +55,6 @@ public class Inventory : MonoBehaviour
         AddItem(itemCollection.stone);
 
 
-       
     }
 
     // Update is called once per frame
