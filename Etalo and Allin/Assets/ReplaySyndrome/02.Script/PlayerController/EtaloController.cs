@@ -33,6 +33,9 @@ public class EtaloController : AstronautController
     private float ZAxis = 0;
     #endregion
 
+    //Highlight Object
+    GameObject highlightObject = null;
+
 
 
     EtaloController()
@@ -87,13 +90,45 @@ public class EtaloController : AstronautController
     void InterAction()
     {
 
-        if (Input.GetKeyDown(KeyCode.F))
+        //if (Input.GetKeyDown(KeyCode.F))
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 0));
             if (Physics.Raycast(ray, out hit))
             {
-                Debug.Log(hit.collider.gameObject.name);
+                if (hit.collider.gameObject.layer == 10)
+                {
+                    if (hit.collider.gameObject != highlightObject && highlightObject != null)
+                    {
+                        //highlightObject.GetComponent<Renderer>().material.color = Color.gray;
+                        highlightObject.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
+                    }
+
+                    Debug.Log("충돌했음");
+                    //hit.collider.gameObject.GetComponent<Renderer>().material.color = Color.yellow;
+                    hit.collider.gameObject.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
+                    highlightObject = hit.collider.gameObject;
+
+
+                }
+                else
+                {
+                    if (highlightObject != null)
+                    {
+                        Debug.Log("충돌안했음");
+                        //highlightObject.GetComponent<Renderer>().material.color = Color.gray;
+                        highlightObject.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
+                    }
+                }
+            }
+            else
+            {
+                if(highlightObject != null)
+                {
+                    Debug.Log("충돌안했음");
+                    //highlightObject.GetComponent<Renderer>().material.color = Color.gray;
+                    highlightObject.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
+                }
             }
         }
     }
