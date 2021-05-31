@@ -53,7 +53,14 @@ public class MousePointerOnImage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(!IsAssigned)
+        {
+            itemCountText.gameObject.SetActive(false);
+        }
+        else
+        {
+            itemCountText.gameObject.SetActive(true);
+        }
     }
 
 

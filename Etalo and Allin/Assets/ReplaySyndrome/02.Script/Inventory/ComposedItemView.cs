@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ComposedItemView : MonoBehaviour
 {
@@ -25,6 +26,28 @@ public class ComposedItemView : MonoBehaviour
 
     private void OnDisable()
     {
+        if(item!=null)
+        {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>().AddItem(item);
+        }
+
+
         item = null;
+        GetComponent<Image>().sprite = originalImage;
+    }
+
+    public void ReturnItem()
+    {
+
+
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>().AddItem(item);
+       
+        
+
+        item = null;
+        GetComponent<Image>().sprite = originalImage;
+
+
+        GetComponentInParent<ItemComposeUI>().RecalculateItemCount();
     }
 }

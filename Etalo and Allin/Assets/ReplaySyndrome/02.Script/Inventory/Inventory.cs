@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public struct InventoryBox
 {
     public Item item;
-    int count;
-    public int Count { get { return count; } }
+    public int count;
+    public int Count { get { return count; } set { count = value; } }
     public InventoryBox(Item i,int c)
     {
         item = i;
@@ -19,6 +19,11 @@ public struct InventoryBox
         
         count += 1;
 
+    }
+
+    public void MiusCount()
+    {
+        count -= 1;
     }
 }
 
@@ -81,5 +86,33 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    
+    public void MiusItem(Item item)
+    {
+
+        int findedindex = itemList.FindIndex(x => x.item.ItemName == item.ItemName);
+
+        if (findedindex != -1) // 찾기 성공 --- 찾기 실패시 -1을 리턴합니다. 근데왜이렇게해야값이증가하지
+        {
+            if(itemList[findedindex].Count == 0)
+            {
+                return;
+            }
+
+
+            InventoryBox temp = itemList[findedindex];
+            temp.MiusCount();
+            itemList[findedindex] = temp;
+        }
+        else
+        {
+            print("잘못된 아이템 정보입니다.");
+        }
+
+       
+        
+    }
+
+
+
+
 }

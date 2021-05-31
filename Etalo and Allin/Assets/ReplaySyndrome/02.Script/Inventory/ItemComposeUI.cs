@@ -23,12 +23,12 @@ public class ItemComposeUI : MonoBehaviour
     {
         composedItemView = composedView.GetComponentsInChildren<ComposedItemView>();
         inventoryItemList = inventoryView.GetComponentsInChildren<Button>();
+        gameObject.SetActive(false);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
         
 
     }
@@ -44,18 +44,11 @@ public class ItemComposeUI : MonoBehaviour
         var p = GameObject.FindGameObjectWithTag("Player");
         var items = p.GetComponent<Inventory>().itemList;
 
-        if (inventoryItemList == null)
-        {
-            Debug.Log("버튼아직도못구함");
-        }
-
         for (int i = 0; i < items.Count; ++i) // 아이템보이기
         {
             inventoryItemList[i].GetComponent<Image>().sprite = items[i].item.originalImage;
             inventoryItemList[i].GetComponentInChildren<Text>().text = items[i].Count.ToString();
             inventoryItemList[i].GetComponent<CallAddComposedItemFunc>().item = items[i].item;
-
-
         }
 
         for(int i=inventoryItemList.Length -1 ;i>items.Count -1 ;--i)
@@ -67,15 +60,25 @@ public class ItemComposeUI : MonoBehaviour
 
     public void AddItemInComposedItemView(Item item)
     {
-        for(int i=0;i<composedItemView.Length;++i)
+
+        var p = GameObject.FindGameObjectWithTag("Player");
+
+        
+        p.GetComponent<Inventory>().MiusItem(item);
+        RecalculateItemCount();
+        for (int i=0;i<composedItemView.Length;++i)
         {
             if(composedItemView[i].item == null)
             {
                 composedItemView[i].item = item;               
                 composedItemView[i].GetComponent<Image>().sprite = item.originalImage;
-                break;
+                return;
             }
         }
+
+        print("꽉찼습니다.");
+
+        
     }
 
     public void ItemCompose()
@@ -98,10 +101,23 @@ public class ItemComposeUI : MonoBehaviour
         if(a != null)
         {
             resultView.GetComponent<Image>().sprite = a.originalImage;
-        }
-        
+        }      
     }
    
+
+    public void RecalculateItemCount()
+    {
+        var p = GameObject.FindGameObjectWithTag("Player");
+        var items = p.GetComponent<Inventory>().itemList;
+
+        for (int i = 0; i < items.Count; ++i) // 아이템보이기
+        {
+
+            inventoryItemList[i].GetComponent<Image>().sprite = items[i].item.originalImage;
+            inventoryItemList[i].GetComponentInChildren<Text>().text = items[i].Count.ToString();
+            inventoryItemList[i].GetComponent<CallAddComposedItemFunc>().item = items[i].item;
+        }
+    }
 
    
 

@@ -26,9 +26,31 @@ public class CallAddComposedItemFunc : MonoBehaviour
 
     public void CallAddComposedItemInParent()
     {
+        var p = GameObject.FindGameObjectWithTag("Player");
+
+
+        var itemlist = p.GetComponent<Inventory>().itemList;
+
         if (item != null)
         {
-            GetComponentInParent<ItemComposeUI>().AddItemInComposedItemView(item);
+            for(int i=0;i<itemlist.Count;++i)
+            {
+                if (itemlist[i].item == item)
+                {
+                    if (itemlist[i].count > 0)
+                    {
+                        GetComponentInParent<ItemComposeUI>().AddItemInComposedItemView(item);
+                    }
+                    else
+                    {
+                        print("아이템 수량이 0입니다.");
+                    }
+                }
+               
+            }
+
+
+           
         }
     }
 }
