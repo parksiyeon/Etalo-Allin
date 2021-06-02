@@ -170,9 +170,10 @@ public class EtaloController : AstronautController
             }
             else
             {
-                Cursor.lockState = CursorLockMode.None;
+               
                 composeUI.SetActive(true);
                 aimUI.SetActive(false);
+                Cursor.lockState = CursorLockMode.None;
                 composeUIIsActive = true;
             }
         }

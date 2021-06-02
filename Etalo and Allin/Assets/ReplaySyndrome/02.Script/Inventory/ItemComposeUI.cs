@@ -23,7 +23,7 @@ public class ItemComposeUI : MonoBehaviour
     {
         composedItemView = composedView.GetComponentsInChildren<ComposedItemView>();
         inventoryItemList = inventoryView.GetComponentsInChildren<Button>();
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
     // Start is called before the first frame update
