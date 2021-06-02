@@ -7,6 +7,7 @@ TagManager:
   - Cactus
   - Monster
   - Ground
+  - Canvas
   layers:
   - Default
   - TransparentFX
