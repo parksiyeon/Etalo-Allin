@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public struct InventoryBox
 {
     public Item item;
-    int count;
-    public int Count { get { return count; } }
+    public int count;
+    public int Count { get { return count; } set { count = value; } }
     public InventoryBox(Item i,int c)
     {
         item = i;
@@ -19,6 +19,11 @@ public struct InventoryBox
         
         count += 1;
 
+    }
+
+    public void MiusCount()
+    {
+        count -= 1;
     }
 }
 
@@ -41,21 +46,40 @@ public class Inventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AddItem(itemCollection.water);
-        AddItem(itemCollection.wood);
-        AddItem(itemCollection.water);
-        AddItem(itemCollection.wood);
-        AddItem(itemCollection.water);
-        AddItem(itemCollection.wood);
-        AddItem(itemCollection.stone);
-        AddItem(itemCollection.stone);
-        AddItem(itemCollection.water);
-        AddItem(itemCollection.wood);
-        AddItem(itemCollection.water);
-        AddItem(itemCollection.stone);
+        if(itemCollection == null)
+        {
+            print("얼");
+        }
 
+        AddItem(itemCollection.bone);
+        AddItem(itemCollection.bonfire);
+        AddItem(itemCollection.branch);
+        AddItem(itemCollection.cactus);
+        AddItem(itemCollection.cactusfruit);
+        AddItem(itemCollection.candy);
+        AddItem(itemCollection.fruit);
+        AddItem(itemCollection.grilledmeat);
+        AddItem(itemCollection.hatchet);
+        AddItem(itemCollection.log);
+        AddItem(itemCollection.meat);
+        AddItem(itemCollection.pebble);
+        AddItem(itemCollection.petal);
+        AddItem(itemCollection.pickax);
+        AddItem(itemCollection.poionjelly);
+        AddItem(itemCollection.poisonsac);
+        AddItem(itemCollection.rock);
+        AddItem(itemCollection.rope);
+        AddItem(itemCollection.sand);
+        AddItem(itemCollection.shovel);
+        AddItem(itemCollection.skin);
+        AddItem(itemCollection.slime);
+        AddItem(itemCollection.slingshot);
+        AddItem(itemCollection.soup);
+        AddItem(itemCollection.tent);
+        AddItem(itemCollection.thread);
+        AddItem(itemCollection.water);
+        AddItem(itemCollection.waterbag);
 
-       
     }
 
     // Update is called once per frame
@@ -82,5 +106,33 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    
+    public void MiusItem(Item item)
+    {
+
+        int findedindex = itemList.FindIndex(x => x.item.ItemName == item.ItemName);
+
+        if (findedindex != -1) // 찾기 성공 --- 찾기 실패시 -1을 리턴합니다. 근데왜이렇게해야값이증가하지
+        {
+            if(itemList[findedindex].Count == 0)
+            {
+                return;
+            }
+
+
+            InventoryBox temp = itemList[findedindex];
+            temp.MiusCount();
+            itemList[findedindex] = temp;
+        }
+        else
+        {
+            print("잘못된 아이템 정보입니다.");
+        }
+
+       
+        
+    }
+
+
+
+
 }

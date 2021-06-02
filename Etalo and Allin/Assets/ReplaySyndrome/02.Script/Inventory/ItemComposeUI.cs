@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor.EventSystems;
+using System.Linq;
 
 public class ItemComposeUI : MonoBehaviour
 {
     public GameObject composedView;
     public ItemCollection itemCollection;
     public GameObject inventoryView;
+    public GameObject resultView;
   
     private GameObject player;
     private bool[] composedArayyIsEquiped;
@@ -19,18 +22,8 @@ public class ItemComposeUI : MonoBehaviour
     private void Awake()
     {
         composedItemView = composedView.GetComponentsInChildren<ComposedItemView>();
-
-
         inventoryItemList = inventoryView.GetComponentsInChildren<Button>();
-        if (inventoryItemList == null)
-        {
-            Debug.Log("버튼못구함");
-        }
-        else
-        {
-            Debug.Log("버튼구함");
-            Debug.Log(inventoryItemList[0].gameObject.name);
-        }
+        gameObject.SetActive(false);
     }
 
     // Start is called before the first frame update
@@ -51,21 +44,81 @@ public class ItemComposeUI : MonoBehaviour
         var p = GameObject.FindGameObjectWithTag("Player");
         var items = p.GetComponent<Inventory>().itemList;
 
-        if (inventoryItemList == null)
-        {
-            Debug.Log("버튼아직도못구함");
-        }
-        for (int i=0;i<items.Count;++i) // 아이템보이기
+        for (int i = 0; i < items.Count; ++i) // 아이템보이기
         {
             inventoryItemList[i].GetComponent<Image>().sprite = items[i].item.originalImage;
             inventoryItemList[i].GetComponentInChildren<Text>().text = items[i].Count.ToString();
+            inventoryItemList[i].GetComponent<CallAddComposedItemFunc>().item = items[i].item;
         }
+
         for(int i=inventoryItemList.Length -1 ;i>items.Count -1 ;--i)
         {
             inventoryItemList[i].GetComponentInChildren<Text>().text = string.Empty;
-        }
-
+        }  
     }
 
+
+    public void AddItemInComposedItemView(Item item)
+    {
+
+        var p = GameObject.FindGameObjectWithTag("Player");
+
+        
+        p.GetComponent<Inventory>().MiusItem(item);
+        RecalculateItemCount();
+        for (int i=0;i<composedItemView.Length;++i)
+        {
+            if(composedItemView[i].item == null)
+            {
+                composedItemView[i].item = item;               
+                composedItemView[i].GetComponent<Image>().sprite = item.originalImage;
+                return;
+            }
+        }
+
+        print("꽉찼습니다.");
+
+        
+    }
+
+    public void ItemCompose()
+    {
+
+        List<string> itemComposeFomulaList = new List<string>();
+        for (int i = 0; i < composedItemView.Length; ++i)
+        {
+            if (composedItemView[i].item != null)
+            {
+                itemComposeFomulaList.Add(composedItemView[i].item.itemName);
+            }
+        }
+
+        itemComposeFomulaList.Sort();
+        string finalResult = string.Join(string.Empty, itemComposeFomulaList.ToArray());
+        print(finalResult);
+
+        var a = itemCollection.ReturnComposedItem(finalResult);
+        if(a != null)
+        {
+            resultView.GetComponent<Image>().sprite = a.originalImage;
+        }      
+    }
+   
+
+    public void RecalculateItemCount()
+    {
+        var p = GameObject.FindGameObjectWithTag("Player");
+        var items = p.GetComponent<Inventory>().itemList;
+
+        for (int i = 0; i < items.Count; ++i) // 아이템보이기
+        {
+
+            inventoryItemList[i].GetComponent<Image>().sprite = items[i].item.originalImage;
+            inventoryItemList[i].GetComponentInChildren<Text>().text = items[i].Count.ToString();
+            inventoryItemList[i].GetComponent<CallAddComposedItemFunc>().item = items[i].item;
+        }
+    }
+
+   
 
 }
