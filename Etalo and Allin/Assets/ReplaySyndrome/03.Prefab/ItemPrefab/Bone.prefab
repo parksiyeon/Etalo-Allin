@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7205784946488105609}
   - component: {fileID: 3230755897709633253}
   m_Layer: 0
-  m_Name: Wood
+  m_Name: Bone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,6 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc0eb64fdbfae924bbcad00c57ca2079, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalImage: {fileID: 21300000, guid: 2c515502e486a5144b737191aa6bfbc7, type: 3}
+  originalImage: {fileID: 21300000, guid: 51166fecc906c3d4995ee2c5ec386e7e, type: 3}
   detailImage: {fileID: 21300000, guid: 4a307d6d1038b5e4eb4821cc69cbc01d, type: 3}
-  itemName: wood
+  itemName: bone

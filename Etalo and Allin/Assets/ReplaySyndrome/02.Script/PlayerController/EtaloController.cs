@@ -16,8 +16,17 @@ public class EtaloController : AstronautController
 
     // GameObjects
     #region
+    public GameObject inventoryUI;
+    public GameObject composeUI;
+    public GameObject aimUI;
     public GameObject cameraArm;
+    #endregion
 
+    //GameObject IsActive
+    #region
+    private bool inventoryUIIsActive = false;
+    private bool composeUIIsActive = false;
+    private bool aimUIIsActive = false;
     #endregion
 
 
@@ -46,13 +55,12 @@ public class EtaloController : AstronautController
     protected override void Awake()
     {
         cc = GetComponent<CharacterController>();
-        animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();  
     }
 
     // Start is called before the first frame update
     protected override void Start()
     {
-
         Cursor.lockState = CursorLockMode.Locked;
 
 
@@ -77,7 +85,7 @@ public class EtaloController : AstronautController
         float mouseX = Input.GetAxis("Mouse X");
         transform.Rotate(Vector3.up * rotSpeed * mouseX);
 
-        cc.Move(transform.TransformDirection(new Vector3(XAxis, 0, ZAxis) * Time.deltaTime * speed));
+        cc.Move(transform.TransformDirection(new Vector3(XAxis, 0, ZAxis).normalized * Time.deltaTime * speed));
     }
 
     void SetAnimatorParameter()
@@ -123,12 +131,49 @@ public class EtaloController : AstronautController
             }
             else
             {
-                if(highlightObject != null)
+                if (highlightObject != null)
                 {
                     Debug.Log("충돌안했음");
                     //highlightObject.GetComponent<Renderer>().material.color = Color.gray;
                     highlightObject.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
                 }
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            if (inventoryUIIsActive)
+            {
+                inventoryUI.SetActive(false);
+                aimUI.SetActive(true);
+                Cursor.lockState = CursorLockMode.Locked;
+                inventoryUIIsActive = false;
+            }
+            else
+            {
+                inventoryUI.SetActive(true);
+                aimUI.SetActive(false);
+                Cursor.lockState = CursorLockMode.None;
+                inventoryUIIsActive = true;
+            }
+        }       
+    
+
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            if (composeUIIsActive)
+            {
+                composeUI.SetActive(false);
+                aimUI.SetActive(true);
+                Cursor.lockState = CursorLockMode.Locked;
+                composeUIIsActive = false;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.None;
+                composeUI.SetActive(true);
+                aimUI.SetActive(false);
+                composeUIIsActive = true;
             }
         }
     }

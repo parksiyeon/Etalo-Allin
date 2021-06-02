@@ -63,6 +63,15 @@ public class MousePointerOnImage : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        if (instantinatedObject != null)
+        {
+            Destroy(instantinatedObject.gameObject);
+            isShowDetailImage = false;
+        }
+    }
+
 
 
     private void MousePointerEnter(PointerEventData data,GameObject g)

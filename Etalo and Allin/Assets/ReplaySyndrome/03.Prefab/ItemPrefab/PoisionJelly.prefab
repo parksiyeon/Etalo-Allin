@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7205784946488105609}
   - component: {fileID: 3230755897709633253}
   m_Layer: 0
-  m_Name: Stone
+  m_Name: PoisionJelly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,6 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc0eb64fdbfae924bbcad00c57ca2079, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalImage: {fileID: 21300000, guid: 8eee207d65006fd4f90acabe8609fd01, type: 3}
-  detailImage: {fileID: 21300000, guid: 6fc387b025705f343ac68184335f6843, type: 3}
-  itemName: stone
+  originalImage: {fileID: 21300000, guid: 0dc998b7718a211428056b67905a6787, type: 3}
+  detailImage: {fileID: 21300000, guid: 4a307d6d1038b5e4eb4821cc69cbc01d, type: 3}
+  itemName: poisonjelly

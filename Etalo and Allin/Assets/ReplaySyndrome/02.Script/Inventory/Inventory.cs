@@ -46,19 +46,39 @@ public class Inventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AddItem(itemCollection.water);
-        AddItem(itemCollection.wood);
-        AddItem(itemCollection.water);
-        AddItem(itemCollection.wood);
-        AddItem(itemCollection.water);
-        AddItem(itemCollection.wood);
-        AddItem(itemCollection.stone);
-        AddItem(itemCollection.stone);
-        AddItem(itemCollection.water);
-        AddItem(itemCollection.wood);
-        AddItem(itemCollection.water);
-        AddItem(itemCollection.stone);
+        if(itemCollection == null)
+        {
+            print("얼");
+        }
 
+        AddItem(itemCollection.bone);
+        AddItem(itemCollection.bonfire);
+        AddItem(itemCollection.branch);
+        AddItem(itemCollection.cactus);
+        AddItem(itemCollection.cactusfruit);
+        AddItem(itemCollection.candy);
+        AddItem(itemCollection.fruit);
+        AddItem(itemCollection.grilledmeat);
+        AddItem(itemCollection.hatchet);
+        AddItem(itemCollection.log);
+        AddItem(itemCollection.meat);
+        AddItem(itemCollection.pebble);
+        AddItem(itemCollection.petal);
+        AddItem(itemCollection.pickax);
+        AddItem(itemCollection.poionjelly);
+        AddItem(itemCollection.poisonsac);
+        AddItem(itemCollection.rock);
+        AddItem(itemCollection.rope);
+        AddItem(itemCollection.sand);
+        AddItem(itemCollection.shovel);
+        AddItem(itemCollection.skin);
+        AddItem(itemCollection.slime);
+        AddItem(itemCollection.slingshot);
+        AddItem(itemCollection.soup);
+        AddItem(itemCollection.tent);
+        AddItem(itemCollection.thread);
+        AddItem(itemCollection.water);
+        AddItem(itemCollection.waterbag);
 
     }
 
