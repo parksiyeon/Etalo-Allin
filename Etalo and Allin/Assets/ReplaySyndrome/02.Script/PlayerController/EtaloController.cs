@@ -34,6 +34,9 @@ public class EtaloController : AstronautController
     #region
     private float speed = 10f;
     private float rotSpeed = 5f;
+    private float ySpeed = 0f;
+    private float gravity = 9.8f;
+    private float isgrondedDistance = 0.1f;
     #endregion
 
     //InputValus
@@ -45,7 +48,7 @@ public class EtaloController : AstronautController
     //Highlight Object
     GameObject highlightObject = null;
 
-
+    
 
     EtaloController()
     {
@@ -74,6 +77,8 @@ public class EtaloController : AstronautController
         SetAnimatorParameter();
         InterAction();
         CameraSetting();
+
+       // print(cc.isGrounded);
     }
 
     void CharacterMove()
@@ -81,11 +86,38 @@ public class EtaloController : AstronautController
         XAxis = Input.GetAxis("Horizontal");
         ZAxis = Input.GetAxis("Vertical");
 
+        
+        
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position, Vector3.down, 0.1f, 11))
+        {
+
+            ySpeed = 0;
+            if (Input.GetButtonDown("Jump"))
+            {
+                print("점프");
+                animator.SetTrigger("Jump");
+                ySpeed = 10;
+            }
+
+            animator.SetBool("IsGrounded", true);
+        }
+        else
+        {
+            animator.SetBool("IsGrounded", false);
+        }
+        
+
 
         float mouseX = Input.GetAxis("Mouse X");
         transform.Rotate(Vector3.up * rotSpeed * mouseX);
 
         cc.Move(transform.TransformDirection(new Vector3(XAxis, 0, ZAxis).normalized * Time.deltaTime * speed));
+        cc.Move(transform.TransformDirection(new Vector3(0, 1, 0).normalized * ySpeed * Time.deltaTime));
+
+
+        ySpeed -= Time.deltaTime * gravity;
     }
 
     void SetAnimatorParameter()
@@ -98,44 +130,22 @@ public class EtaloController : AstronautController
     void InterAction()
     {
 
-        //if (Input.GetKeyDown(KeyCode.F))
+
+        InteractableObjectIdentifier();
+        if (Input.GetKeyDown(KeyCode.F))
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 0));
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.collider.gameObject.layer == 10)
+                var groundItem = hit.collider.gameObject.GetComponent<OnGroundItem>();
+                if(groundItem)
                 {
-                    if (hit.collider.gameObject != highlightObject && highlightObject != null)
-                    {
-                        //highlightObject.GetComponent<Renderer>().material.color = Color.gray;
-                        highlightObject.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
-                    }
+                    animator.SetTrigger(groundItem.animatorTrigger);
+                    GetComponent<Inventory>().AddItem(groundItem.item);
 
-                    Debug.Log("충돌했음");
-                    //hit.collider.gameObject.GetComponent<Renderer>().material.color = Color.yellow;
-                    hit.collider.gameObject.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
-                    highlightObject = hit.collider.gameObject;
-
-
-                }
-                else
-                {
-                    if (highlightObject != null)
-                    {
-                        Debug.Log("충돌안했음");
-                        //highlightObject.GetComponent<Renderer>().material.color = Color.gray;
-                        highlightObject.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
-                    }
-                }
-            }
-            else
-            {
-                if (highlightObject != null)
-                {
-                    Debug.Log("충돌안했음");
-                    //highlightObject.GetComponent<Renderer>().material.color = Color.gray;
-                    highlightObject.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
+                    print(groundItem.item.itemName);
+                    Destroy(hit.collider.gameObject);
                 }
             }
         }
@@ -149,7 +159,7 @@ public class EtaloController : AstronautController
                 Cursor.lockState = CursorLockMode.Locked;
                 inventoryUIIsActive = false;
             }
-            else
+            else if(!composeUIIsActive)
             {
                 inventoryUI.SetActive(true);
                 aimUI.SetActive(false);
@@ -168,13 +178,57 @@ public class EtaloController : AstronautController
                 Cursor.lockState = CursorLockMode.Locked;
                 composeUIIsActive = false;
             }
-            else
+            else if(!inventoryUIIsActive)
             {
                
                 composeUI.SetActive(true);
                 aimUI.SetActive(false);
                 Cursor.lockState = CursorLockMode.None;
                 composeUIIsActive = true;
+            }
+        }
+    }
+
+    void InteractableObjectIdentifier()
+    {
+        {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 0));
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider.gameObject.layer == 10)
+                {
+                    if (hit.collider.gameObject != highlightObject && highlightObject != null)
+                    {
+                        //highlightObject.GetComponent<Renderer>().material.color = Color.gray;
+                        highlightObject.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
+                    }
+
+                    //Debug.Log("충돌했음");
+                    //hit.collider.gameObject.GetComponent<Renderer>().material.color = Color.yellow;
+                    hit.collider.gameObject.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
+                    highlightObject = hit.collider.gameObject;
+
+
+                }
+                else
+                {
+                    if (highlightObject != null)
+                    {
+                        //Debug.Log("충돌안했음");
+                        //highlightObject.GetComponent<Renderer>().material.color = Color.gray;
+                        highlightObject.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
+                    }
+                }
+            }
+            else
+            {
+                if (highlightObject != null)
+                {
+                    //Debug.Log("충돌안했음");
+                    //highlightObject.GetComponent<Renderer>().material.color = Color.gray;
+                    highlightObject.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
+                }
             }
         }
     }
@@ -195,5 +249,11 @@ public class EtaloController : AstronautController
         }
         cameraArm.transform.rotation = Quaternion.Euler(resultCamYAngle, camAngle.y, camAngle.z);
 
+    }
+
+
+    public void SetMouseCorsorLock()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }
