@@ -101,7 +101,11 @@ public class ItemComposeUI : MonoBehaviour
         if(a != null)
         {
             resultView.GetComponent<Image>().sprite = a.originalImage;
-        }      
+        }
+        else
+        {
+            print("없습니다.");
+        }
     }
    
 
