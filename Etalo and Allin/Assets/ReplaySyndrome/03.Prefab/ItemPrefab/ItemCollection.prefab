@@ -69,7 +69,7 @@ MonoBehaviour:
   sand: {fileID: 3230755897709633253, guid: c3b7e56cb6a5a8c4d8d0b2652406af56, type: 3}
   shovel: {fileID: 3230755897709633253, guid: a3dbf8a81d810d141a66b44d9e17ad33, type: 3}
   skin: {fileID: 3230755897709633253, guid: b21d29960a119fd429bd5b4869261f76, type: 3}
-  slime: {fileID: 3230755897709633253, guid: b21d29960a119fd429bd5b4869261f76, type: 3}
+  slime: {fileID: 3230755897709633253, guid: a469c8a933ebc1041b009cc597a519a6, type: 3}
   slingshot: {fileID: 3230755897709633253, guid: 7cd44feec7949674fb3ec9fb9935271e,
     type: 3}
   soup: {fileID: 3230755897709633253, guid: f023eeaa7e29f23449eac2be38d28e61, type: 3}

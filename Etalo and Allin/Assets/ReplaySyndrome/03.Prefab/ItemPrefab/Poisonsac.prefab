@@ -45,4 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originalImage: {fileID: 21300000, guid: c780de1c0c292b344b64b75dda46714e, type: 3}
   detailImage: {fileID: 21300000, guid: 4a307d6d1038b5e4eb4821cc69cbc01d, type: 3}
-  itemName: pickax
+  itemName: picksac

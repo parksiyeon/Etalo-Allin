@@ -256,4 +256,14 @@ public class EtaloController : AstronautController
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
+
+    public void SetInventoryDisable()
+    {
+        inventoryUIIsActive = false;
+    }
+
+    public void SetComposeItemViewDisable()
+    {
+        composeUIIsActive = false;
+    }
 }

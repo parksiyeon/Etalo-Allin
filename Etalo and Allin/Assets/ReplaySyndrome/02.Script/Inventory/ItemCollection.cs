@@ -42,10 +42,16 @@ public class ItemCollection : MonoBehaviour
 
         composedItemDict.Add(branch.itemName + branch.itemName + branch.itemName + branch.itemName + branch.itemName + branch.itemName + branch.itemName +
             rock.itemName + rock.itemName + rock.itemName + rock.itemName + rock.itemName, bonfire); // 1.	모닥불 – 나뭇가지(7) + 돌(5)
+        composedItemDict.Add(skin.itemName + skin.itemName +
+            water.itemName + water.itemName + water.itemName + water.itemName + water.itemName +
+            water.itemName + water.itemName + water.itemName + water.itemName + water.itemName,waterbag); // 3. 물가방 - 가죽(2) + 물(10)
 
+        composedItemDict.Add(petal.itemName + petal.itemName + slime.itemName, candy); //캔디 - 꽃잎(2) + 점액(1)
+
+        composedItemDict.Add(branch.itemName + meat.itemName + meat.itemName, grilledmeat); // 고기구이 - 나뭇가지(1) + 고기(2)
 
         
-
+        composedItemDict.Add(meat.itemName + slime.itemName + slime.itemName, soup); // 수프 - 고기(1) + 점액(2)
     }
 
 

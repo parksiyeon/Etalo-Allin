@@ -72,13 +72,14 @@ public class ItemComposeUI : MonoBehaviour
             {
                 composedItemView[i].item = item;               
                 composedItemView[i].GetComponent<Image>().sprite = item.originalImage;
-                return;
+                break ;
             }
         }
 
-        print("꽉찼습니다.");
+        CalculateComposeItem();
 
-        
+
+
     }
 
     public void ItemCompose()
@@ -97,14 +98,49 @@ public class ItemComposeUI : MonoBehaviour
         string finalResult = string.Join(string.Empty, itemComposeFomulaList.ToArray());
         print(finalResult);
 
-        var a = itemCollection.ReturnComposedItem(finalResult);
-        if(a != null)
+        var resultItem = itemCollection.ReturnComposedItem(finalResult);
+
+        if (resultItem != null)
         {
-            resultView.GetComponent<Image>().sprite = a.originalImage;
+            var inven = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+            inven.AddItem(resultItem);
+
+            for(int i=0;i<composedItemView.Length;++i)
+            {
+                composedItemView[i].item = null;
+                composedItemView[i].GetComponent<Image>().sprite = composedItemView[i].originalImage;
+            }
+
+            resultView.GetComponent<Image>().sprite = composedItemView[0].originalImage;
+        }
+
+        RecalculateItemCount();
+    }
+
+    public void CalculateComposeItem()
+    {
+        List<string> itemComposeFomulaList = new List<string>();
+        for (int i = 0; i < composedItemView.Length; ++i)
+        {
+            if (composedItemView[i].item != null)
+            {
+                itemComposeFomulaList.Add(composedItemView[i].item.itemName);
+            }
+        }
+
+        itemComposeFomulaList.Sort();
+        string finalResult = string.Join(string.Empty, itemComposeFomulaList.ToArray());
+        print(finalResult);
+
+        var resultItem = itemCollection.ReturnComposedItem(finalResult);
+
+        if (resultItem != null)
+        {
+            resultView.GetComponent<Image>().sprite = resultItem.originalImage;
         }
         else
         {
-            print("없습니다.");
+            resultView.GetComponent<Image>().sprite = composedItemView[0].originalImage;
         }
     }
    
@@ -121,8 +157,13 @@ public class ItemComposeUI : MonoBehaviour
             inventoryItemList[i].GetComponentInChildren<Text>().text = items[i].Count.ToString();
             inventoryItemList[i].GetComponent<CallAddComposedItemFunc>().item = items[i].item;
         }
+
+        CalculateComposeItem();
     }
 
-   
+    void OnDisable()
+    {
+        resultView.GetComponent<Image>().sprite = composedItemView[0].originalImage;
+    }
 
 }
