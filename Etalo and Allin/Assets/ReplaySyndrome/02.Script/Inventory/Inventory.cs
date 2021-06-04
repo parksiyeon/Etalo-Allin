@@ -32,7 +32,7 @@ public class Inventory : MonoBehaviour
 {
     
     public List<InventoryBox> itemList;
-    public Image inventoryBoxPrefab;
+   // public Image inventoryBoxPrefab;
     public GameObject ContentScreen;
     [SerializeField]
     private ItemCollection itemCollection;
