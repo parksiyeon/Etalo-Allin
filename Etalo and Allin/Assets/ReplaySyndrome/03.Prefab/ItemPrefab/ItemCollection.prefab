@@ -57,12 +57,16 @@ MonoBehaviour:
   hatchet: {fileID: 3230755897709633253, guid: 5932cbe40528b3d439a9e813ebd10acf, type: 3}
   log: {fileID: 3230755897709633253, guid: 88afe15e8f49ba54eb37ae73381a3a56, type: 3}
   meat: {fileID: 3230755897709633253, guid: 4568f03d13d27f34b8d2fc07761b19e1, type: 3}
+  palmleaf: {fileID: 3230755897709633253, guid: 134cb77811d0b4a4ea7f354a783ccd8f,
+    type: 3}
   pebble: {fileID: 3230755897709633253, guid: c34cbacbb95fb1b4aa01b6ba9f9b831a, type: 3}
   petal: {fileID: 3230755897709633253, guid: 4657c88b723d9ef4f82ec69eefe8c740, type: 3}
   pickax: {fileID: 3230755897709633253, guid: d02399c0e6d902445afbdf07fda8fc92, type: 3}
   poionjelly: {fileID: 3230755897709633253, guid: 090a4e4644f306549994a769558dc271,
     type: 3}
   poisonsac: {fileID: 3230755897709633253, guid: e5d068951c6e7fb47973ea03a3b87a48,
+    type: 3}
+  roastedcactusfruit: {fileID: 3230755897709633253, guid: c553b8536015b4d469b7cfff14803f53,
     type: 3}
   rock: {fileID: 3230755897709633253, guid: 593b173c41c29c8478bd1b8033682145, type: 3}
   rope: {fileID: 3230755897709633253, guid: 67e48302c76052d469433e8da04c8fcb, type: 3}

@@ -16,11 +16,13 @@ public class ItemCollection : MonoBehaviour
     public Item hatchet;
     public Item log;
     public Item meat;
+    public Item palmleaf;
     public Item pebble;
     public Item petal;
     public Item pickax;
     public Item poionjelly;
     public Item poisonsac;
+    public Item roastedcactusfruit;
     public Item rock;
     public Item rope;
     public Item sand;
@@ -41,10 +43,17 @@ public class ItemCollection : MonoBehaviour
         composedItemDict = new Dictionary<string, Item>();
 
         composedItemDict.Add(branch.itemName + branch.itemName + branch.itemName + branch.itemName + branch.itemName + branch.itemName + branch.itemName +
-            rock.itemName + rock.itemName + rock.itemName + rock.itemName + rock.itemName, bonfire); // 1.	모닥불 – 나뭇가지(7) + 돌(5)
+            rock.itemName + rock.itemName + rock.itemName + rock.itemName + rock.itemName, bonfire); // 모닥불 – 나뭇가지(7) + 돌(5)
         composedItemDict.Add(skin.itemName + skin.itemName +
             water.itemName + water.itemName + water.itemName + water.itemName + water.itemName +
-            water.itemName + water.itemName + water.itemName + water.itemName + water.itemName,waterbag); // 3. 물가방 - 가죽(2) + 물(10)
+            water.itemName + water.itemName + water.itemName + water.itemName + water.itemName,waterbag); // 물가방 - 가죽(2) + 물(10)
+
+        composedItemDict.Add(log.itemName + log.itemName + palmleaf.itemName + palmleaf.itemName
+            + rock.itemName + rock.itemName, tent); // 텐트 - 통나무(2) + 야자잎(2) + 돌(2)
+
+        composedItemDict.Add(cactusfruit.itemName + poisonsac.itemName + poisonsac.itemName, poionjelly); // 독젤리 - 선인장과육(1) + 독주머니(2)
+
+
 
         composedItemDict.Add(petal.itemName + petal.itemName + slime.itemName, candy); //캔디 - 꽃잎(2) + 점액(1)
 

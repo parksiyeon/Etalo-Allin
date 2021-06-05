@@ -80,6 +80,8 @@ public class Inventory : MonoBehaviour
             AddItem(itemCollection.thread);
             AddItem(itemCollection.water);
             AddItem(itemCollection.waterbag);
+            AddItem(itemCollection.roastedcactusfruit);
+            AddItem(itemCollection.palmleaf);
         }
 
     }

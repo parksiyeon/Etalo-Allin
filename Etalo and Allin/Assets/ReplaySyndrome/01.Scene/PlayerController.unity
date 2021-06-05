@@ -980,6 +980,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3230755897709633253, guid: a469c8a933ebc1041b009cc597a519a6,
         type: 3}
+    - target: {fileID: 5944730059473915509, guid: 15473d649572167449b1cbb3c0d6e759,
+        type: 3}
+      propertyPath: palmleaf
+      value: 
+      objectReference: {fileID: 3230755897709633253, guid: 134cb77811d0b4a4ea7f354a783ccd8f,
+        type: 3}
+    - target: {fileID: 5944730059473915509, guid: 15473d649572167449b1cbb3c0d6e759,
+        type: 3}
+      propertyPath: roastedcactusfruit
+      value: 
+      objectReference: {fileID: 3230755897709633253, guid: c553b8536015b4d469b7cfff14803f53,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15473d649572167449b1cbb3c0d6e759, type: 3}
 --- !u!114 &1369822127 stripped
