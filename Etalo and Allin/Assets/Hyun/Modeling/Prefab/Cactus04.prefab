@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6230492415622675183}
   - component: {fileID: 9124302239015781285}
   - component: {fileID: 5730182544741459761}
+  - component: {fileID: -4071544483951566564}
   m_Layer: 0
   m_Name: Cactus04
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &-4071544483951566564
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2936637954185652692}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2432090755550338912, guid: d89a6ff08779b004a982b5a7e9e98e4f, type: 3}
