@@ -73,7 +73,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 1303299601406483602, guid: 3033400fe517d234b840b596f537229b,
       type: 3}
-    m_Threshold: 0.625
+    m_Threshold: 0.5625
     m_Position: {x: 0, y: 1}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -82,7 +82,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 1303299601406483602, guid: 3033400fe517d234b840b596f537229b,
       type: 3}
-    m_Threshold: 0.75
+    m_Threshold: 0.625
     m_Position: {x: 0, y: -1}
     m_TimeScale: -1
     m_CycleOffset: 0
@@ -91,7 +91,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 2141213530559677686, guid: 5448361367a1ce1478cd48bfdcb495d8,
       type: 3}
-    m_Threshold: 0.875
+    m_Threshold: 0.6875
     m_Position: {x: -1, y: 0}
     m_TimeScale: -1
     m_CycleOffset: 0
@@ -100,11 +100,47 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: -946479834578814339, guid: 49089a40f0ba7a54b93525bd5fd7ea19,
       type: 3}
-    m_Threshold: 1
+    m_Threshold: 0.75
     m_Position: {x: 1, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: -8265986560716403488, guid: 3660b7a646c4ea7449e17fe01730e189,
+      type: 3}
+    m_Threshold: 0.8125
+    m_Position: {x: 1, y: 1}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: XAxis
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: -8265986560716403488, guid: 3660b7a646c4ea7449e17fe01730e189,
+      type: 3}
+    m_Threshold: 0.875
+    m_Position: {x: -1, y: -1}
+    m_TimeScale: -1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: XAxis
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: 6329727904848103020, guid: b35491bc22837364589f63463dc5a0ab,
+      type: 3}
+    m_Threshold: 0.9375
+    m_Position: {x: -1, y: 1}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: XAxis
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: 6329727904848103020, guid: b35491bc22837364589f63463dc5a0ab,
+      type: 3}
+    m_Threshold: 1
+    m_Position: {x: 1, y: -1}
+    m_TimeScale: -1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: XAxis
     m_Mirror: 0
   m_BlendParameter: XAxis
   m_BlendParameterY: ZAxis
@@ -209,7 +245,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 3226531072086576900, guid: 269c60bad12859f44a5ab009c0a7ef72,
+  m_Motion: {fileID: 3226531072086576900, guid: 3660b7a646c4ea7449e17fe01730e189,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -230,31 +266,31 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: ZAxis
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: IsGrounded
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Jump
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: PickUp
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -339,7 +375,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -396617409858497044, guid: 269c60bad12859f44a5ab009c0a7ef72,
+  m_Motion: {fileID: -396617409858497044, guid: 3660b7a646c4ea7449e17fe01730e189,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -404,7 +440,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 8822652850450279017, guid: 269c60bad12859f44a5ab009c0a7ef72,
+  m_Motion: {fileID: 8822652850450279017, guid: 3660b7a646c4ea7449e17fe01730e189,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 

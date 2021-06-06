@@ -99,13 +99,14 @@ public class EtaloController : AstronautController
         
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, Vector3.down, 0.1f, 11))
+        Debug.DrawRay(transform.position, Vector3.down,Color.red);
+        if (Physics.Raycast(transform.position, Vector3.down, 0.3f))
         {
-
+            print("땅에붙어있음");
             ySpeed = 0;
             if (Input.GetButtonDown("Jump"))
             {
-                print("점프");
+                
                 animator.SetTrigger("Jump");
                 ySpeed = 10;
             }
@@ -114,6 +115,7 @@ public class EtaloController : AstronautController
         }
         else
         {
+            print("땅에안붙음");
             animator.SetBool("IsGrounded", false);
         }
         
@@ -144,6 +146,7 @@ public class EtaloController : AstronautController
                 Instantiate(placeObjectGizmo);
                 itemAssembleState = false;
                 aimUI.SetActive(true);
+                Cursor.lockState = CursorLockMode.Locked;
             }
         }
     }
@@ -246,6 +249,13 @@ public class EtaloController : AstronautController
 
                     placeObjectGizmo.transform.rotation = Quaternion.LookRotation(angle);
                     placeObjectGizmo.transform.Rotate(90, 0, 0);
+                }
+
+                if (highlightObject != null)
+                {
+                    //Debug.Log("충돌안했음");
+                    //highlightObject.GetComponent<Renderer>().material.color = Color.gray;
+                    highlightObject.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
                 }
             }
             else
