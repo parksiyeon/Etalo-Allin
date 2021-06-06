@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 729047520}
   - component: {fileID: 729047519}
   - component: {fileID: 729047518}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Plane
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -415,13 +415,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 729047517}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.15372942, y: -0.016960947, z: 0.10834485, w: 0.98200864}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 1, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -17.353, y: -4.0020003, z: 13.203001}
 --- !u!1 &756753613
 GameObject:
   m_ObjectHideFlags: 0
@@ -11805,6 +11805,8 @@ MonoBehaviour:
   composeUI: {fileID: 1297142519}
   aimUI: {fileID: 1007745051}
   cameraArm: {fileID: 1323167156}
+  placeObject: {fileID: 9109771053817946905, guid: 5e4ff4ae97744064aa2a34204645f5a2,
+    type: 3}
 --- !u!4 &1701250549 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3033400fe517d234b840b596f537229b,

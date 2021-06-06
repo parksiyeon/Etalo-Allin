@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
-public class MousePointerOnImage : MonoBehaviour
+public class MousePointerOnImage : MonoBehaviour , IPointerClickHandler
 {
     private EventTrigger eventTrigger;
     public Image itemImage;
@@ -100,6 +100,8 @@ public class MousePointerOnImage : MonoBehaviour
         }
     }
 
-
-
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        print("눌림");
+    }
 }

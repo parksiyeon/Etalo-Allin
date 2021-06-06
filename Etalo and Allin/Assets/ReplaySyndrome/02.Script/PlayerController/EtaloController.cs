@@ -20,6 +20,9 @@ public class EtaloController : AstronautController
     public GameObject composeUI;
     public GameObject aimUI;
     public GameObject cameraArm;
+
+    public GameObject placeObject;
+    private GameObject placeObjectGizmo;
     #endregion
 
     //GameObject IsActive
@@ -48,6 +51,8 @@ public class EtaloController : AstronautController
     //Highlight Object
     GameObject highlightObject = null;
 
+
+
     
 
     EtaloController()
@@ -75,6 +80,7 @@ public class EtaloController : AstronautController
     {
         CharacterMove();
         SetAnimatorParameter();
+        MouseInput();
         InterAction();
         CameraSetting();
 
@@ -126,7 +132,16 @@ public class EtaloController : AstronautController
         animator.SetFloat(animatorParameterZAxis, ZAxis);
     }
 
-
+    void MouseInput()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (placeObjectGizmo != null)
+            {
+                Instantiate(placeObjectGizmo);
+            }
+        }
+    }
     void InterAction()
     {
 
@@ -211,8 +226,28 @@ public class EtaloController : AstronautController
 
 
                 }
+                else if(hit.collider.gameObject.layer == 11)
+                {
+                    if(placeObjectGizmo == null)
+                    {
+                        placeObjectGizmo = Instantiate(placeObject);
+                    }
+
+                    placeObjectGizmo.SetActive(true);
+                    placeObjectGizmo.transform.position = hit.point;
+                    var angle = hit.normal;
+                    
+                    placeObjectGizmo.transform.rotation = Quaternion.LookRotation(angle);
+                    placeObjectGizmo.transform.Rotate(90, 0, 0);
+
+                }
                 else
                 {
+
+                    Destroy(placeObjectGizmo);
+                    placeObjectGizmo = null;
+
+
                     if (highlightObject != null)
                     {
                         //Debug.Log("충돌안했음");
@@ -223,6 +258,9 @@ public class EtaloController : AstronautController
             }
             else
             {
+
+                Destroy(placeObjectGizmo);
+                placeObjectGizmo = null;
                 if (highlightObject != null)
                 {
                     //Debug.Log("충돌안했음");
