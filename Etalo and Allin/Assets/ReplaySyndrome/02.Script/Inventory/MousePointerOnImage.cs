@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using ExitGames.Client.Photon.StructWrapping;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -102,6 +103,18 @@ public class MousePointerOnImage : MonoBehaviour , IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        print("눌림");
+        if (isAssigned)
+        {
+            var player = GameObject.FindGameObjectWithTag("Player");
+            var itemlist = player.GetComponent<Inventory>().itemList;
+            int pivot = itemlist.FindIndex(x => x.item.itemName == itemImage.sprite.name);
+            print(itemlist[pivot].item.itemName);
+            GameObject.FindGameObjectWithTag("ItemCollection").
+                GetComponent<ItemCollection>().MakePlayerItemPlaceState((itemlist[pivot].item.itemName));
+        }
+        else
+        {
+            print("할당되지 않았습니다.");
+        }
     }
 }

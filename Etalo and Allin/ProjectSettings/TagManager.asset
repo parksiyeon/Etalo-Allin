@@ -8,6 +8,7 @@ TagManager:
   - Monster
   - Ground
   - Canvas
+  - ItemCollection
   layers:
   - Default
   - TransparentFX

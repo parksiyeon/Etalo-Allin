@@ -51,9 +51,12 @@ public class EtaloController : AstronautController
     //Highlight Object
     GameObject highlightObject = null;
 
+    //Character State
+    #region
+    public bool itemAssembleState = false;
+    #endregion
 
 
-    
 
     EtaloController()
     {
@@ -136,9 +139,11 @@ public class EtaloController : AstronautController
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (placeObjectGizmo != null)
+            if (placeObjectGizmo != null && itemAssembleState)
             {
                 Instantiate(placeObjectGizmo);
+                itemAssembleState = false;
+                aimUI.SetActive(true);
             }
         }
     }
@@ -206,29 +211,31 @@ public class EtaloController : AstronautController
 
     void InteractableObjectIdentifier()
     {
+
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 0));
+        if (Physics.Raycast(ray, out hit))
         {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 0));
-            if (Physics.Raycast(ray, out hit))
+            if (hit.collider.gameObject.layer == 10)
             {
-                if (hit.collider.gameObject.layer == 10)
+                if (hit.collider.gameObject != highlightObject && highlightObject != null)
                 {
-                    if (hit.collider.gameObject != highlightObject && highlightObject != null)
-                    {
-                        //highlightObject.GetComponent<Renderer>().material.color = Color.gray;
-                        highlightObject.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
-                    }
-
-                    //Debug.Log("충돌했음");
-                    //hit.collider.gameObject.GetComponent<Renderer>().material.color = Color.yellow;
-                    hit.collider.gameObject.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
-                    highlightObject = hit.collider.gameObject;
-
-
+                    //highlightObject.GetComponent<Renderer>().material.color = Color.gray;
+                    highlightObject.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
                 }
-                else if(hit.collider.gameObject.layer == 11)
+
+                //Debug.Log("충돌했음");
+                //hit.collider.gameObject.GetComponent<Renderer>().material.color = Color.yellow;
+                hit.collider.gameObject.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
+                highlightObject = hit.collider.gameObject;
+
+
+            }
+            else if (hit.collider.gameObject.layer == 11)
+            {
+                if (itemAssembleState)
                 {
-                    if(placeObjectGizmo == null)
+                    if (placeObjectGizmo == null)
                     {
                         placeObjectGizmo = Instantiate(placeObject);
                     }
@@ -236,31 +243,20 @@ public class EtaloController : AstronautController
                     placeObjectGizmo.SetActive(true);
                     placeObjectGizmo.transform.position = hit.point;
                     var angle = hit.normal;
-                    
+
                     placeObjectGizmo.transform.rotation = Quaternion.LookRotation(angle);
                     placeObjectGizmo.transform.Rotate(90, 0, 0);
-
-                }
-                else
-                {
-
-                    Destroy(placeObjectGizmo);
-                    placeObjectGizmo = null;
-
-
-                    if (highlightObject != null)
-                    {
-                        //Debug.Log("충돌안했음");
-                        //highlightObject.GetComponent<Renderer>().material.color = Color.gray;
-                        highlightObject.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
-                    }
                 }
             }
             else
             {
+                if (placeObjectGizmo != null)
+                {
+                    Destroy(placeObjectGizmo);
+                    placeObjectGizmo = null;
+                }
 
-                Destroy(placeObjectGizmo);
-                placeObjectGizmo = null;
+
                 if (highlightObject != null)
                 {
                     //Debug.Log("충돌안했음");
@@ -269,6 +265,19 @@ public class EtaloController : AstronautController
                 }
             }
         }
+        else
+        {
+
+            Destroy(placeObjectGizmo);
+            placeObjectGizmo = null;
+            if (highlightObject != null)
+            {
+                //Debug.Log("충돌안했음");
+                //highlightObject.GetComponent<Renderer>().material.color = Color.gray;
+                highlightObject.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
+            }
+        }
+
     }
 
     void CameraSetting()
@@ -303,5 +312,19 @@ public class EtaloController : AstronautController
     public void SetComposeItemViewDisable()
     {
         composeUIIsActive = false;
+    }
+
+    public void UIReset()
+    {
+        inventoryUIIsActive = false;
+        composeUIIsActive = false;
+        aimUIIsActive = false;
+
+
+        inventoryUI.SetActive(false);
+        composeUI.SetActive(false);
+        aimUI.SetActive(false);
+
+        
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.ComTypes;
 using UnityEngine;
 
 public class ItemCollection : MonoBehaviour
@@ -38,6 +39,9 @@ public class ItemCollection : MonoBehaviour
 
     private Dictionary<string, Item> composedItemDict;
 
+
+    public GameObject bonefireObejct;
+
     private void Awake()
     {
         composedItemDict = new Dictionary<string, Item>();
@@ -75,5 +79,24 @@ public class ItemCollection : MonoBehaviour
         return null;
     }
 
+    public void MakePlayerItemPlaceState(string itemName)
+    {
+        var etalo = GameObject.FindGameObjectWithTag("Player").GetComponent<EtaloController>();
 
+        if(itemName == "tent" )
+        {
+            //etalo.UIReset();
+            //etalo.itemAssembleState = true;
+        }
+        else if (itemName == "bonfire")
+        {
+            etalo.UIReset();
+            etalo.itemAssembleState = true;
+            etalo.placeObject = bonefireObejct;
+        }
+        else
+        {
+
+        }
+    }
 }
