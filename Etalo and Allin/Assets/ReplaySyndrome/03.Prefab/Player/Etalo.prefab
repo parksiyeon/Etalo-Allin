@@ -1232,6 +1232,7 @@ MonoBehaviour:
   composeUI: {fileID: 0}
   aimUI: {fileID: 0}
   cameraArm: {fileID: 8428720073010108304}
+  fieldInteractableObjectItemName: {fileID: 0}
   placeObject: {fileID: 9109771053817946905, guid: 5e4ff4ae97744064aa2a34204645f5a2,
     type: 3}
   itemAssembleState: 0

@@ -160,6 +160,7 @@ public class EtaloController : AstronautController
                 var groundItem = hit.collider.gameObject.GetComponent<OnGroundItem>();
                 if(groundItem)
                 {
+                    
                     animator.SetTrigger(groundItem.animatorTrigger);
                     GetComponent<Inventory>().AddItem(groundItem.item);
                     animator.SetTrigger(groundItem.animatorTrigger);
@@ -221,7 +222,7 @@ public class EtaloController : AstronautController
                 if (hit.collider.gameObject != highlightObject && highlightObject != null)
                 {
                     //highlightObject.GetComponent<Renderer>().material.color = Color.gray;
-                    highlightObject.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
+                    //highlightObject.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
                     
                 }
 
@@ -231,7 +232,7 @@ public class EtaloController : AstronautController
                 fieldInteractableObjectItemName.GetComponent<Text>().text = hit.collider.GetComponent<OnGroundItem>().item.itemName;
                 //Debug.Log("충돌했음");
                 //hit.collider.gameObject.GetComponent<Renderer>().material.color = Color.yellow;
-                hit.collider.gameObject.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
+                //hit.collider.gameObject.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
                 highlightObject = hit.collider.gameObject;
 
 
