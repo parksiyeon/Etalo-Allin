@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(Animator))]
@@ -20,6 +20,7 @@ public class EtaloController : AstronautController
     public GameObject composeUI;
     public GameObject aimUI;
     public GameObject cameraArm;
+    public GameObject fieldInteractableObjectItemName;
 
     public GameObject placeObject;
     private GameObject placeObjectGizmo;
@@ -73,9 +74,6 @@ public class EtaloController : AstronautController
     protected override void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-
-
-
     }
 
     // Update is called once per frame
@@ -102,7 +100,7 @@ public class EtaloController : AstronautController
         Debug.DrawRay(transform.position, Vector3.down,Color.red);
         if (Physics.Raycast(transform.position, Vector3.down, 0.3f))
         {
-            print("땅에붙어있음");
+
             ySpeed = 0;
             if (Input.GetButtonDown("Jump"))
             {
@@ -115,7 +113,7 @@ public class EtaloController : AstronautController
         }
         else
         {
-            print("땅에안붙음");
+            
             animator.SetBool("IsGrounded", false);
         }
         
@@ -152,8 +150,6 @@ public class EtaloController : AstronautController
     }
     void InterAction()
     {
-
-
         InteractableObjectIdentifier();
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -166,6 +162,7 @@ public class EtaloController : AstronautController
                 {
                     animator.SetTrigger(groundItem.animatorTrigger);
                     GetComponent<Inventory>().AddItem(groundItem.item);
+                    animator.SetTrigger(groundItem.animatorTrigger);
 
                     print(groundItem.item.itemName);
                     Destroy(hit.collider.gameObject);
@@ -225,8 +222,13 @@ public class EtaloController : AstronautController
                 {
                     //highlightObject.GetComponent<Renderer>().material.color = Color.gray;
                     highlightObject.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
+                    
                 }
 
+                print("ㅊㅁㅊ");
+
+                fieldInteractableObjectItemName.SetActive(true);
+                fieldInteractableObjectItemName.GetComponent<Text>().text = hit.collider.GetComponent<OnGroundItem>().item.itemName;
                 //Debug.Log("충돌했음");
                 //hit.collider.gameObject.GetComponent<Renderer>().material.color = Color.yellow;
                 hit.collider.gameObject.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
@@ -257,9 +259,13 @@ public class EtaloController : AstronautController
                     //highlightObject.GetComponent<Renderer>().material.color = Color.gray;
                     highlightObject.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
                 }
+
+                fieldInteractableObjectItemName.SetActive(false);
             }
             else
             {
+
+                fieldInteractableObjectItemName.SetActive(false);
                 if (placeObjectGizmo != null)
                 {
                     Destroy(placeObjectGizmo);
@@ -295,6 +301,7 @@ public class EtaloController : AstronautController
         float mouseY = Input.GetAxis("Mouse Y");
         Vector3 camAngle = cameraArm.transform.rotation.eulerAngles;
 
+        
         float resultCamYAngle = camAngle.x - mouseY;
         if (resultCamYAngle < 180f)
         {

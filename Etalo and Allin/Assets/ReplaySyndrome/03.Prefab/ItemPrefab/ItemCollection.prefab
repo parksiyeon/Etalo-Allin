@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5944730059473915509}
   m_Layer: 0
   m_Name: ItemCollection
-  m_TagString: Untagged
+  m_TagString: ItemCollection
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,4 +81,6 @@ MonoBehaviour:
   thread: {fileID: 3230755897709633253, guid: b8dd40d94fec87149937cc8aa05a8fd2, type: 3}
   water: {fileID: 3230755897709633253, guid: 191bd5bc0a62d8b449b30620eeffac07, type: 3}
   waterbag: {fileID: 3230755897709633253, guid: 2c1e99ac1d090e54fb3a859ada30faa1,
+    type: 3}
+  bonefireObejct: {fileID: 1067747100698770037, guid: a6d92096a56378e4493fd0e5e1f9264b,
     type: 3}
