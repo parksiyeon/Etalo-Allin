@@ -2527,8 +2527,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySelectedCharacter: 0
   allCharacters:
-  - {fileID: 9044563518970086556, guid: 43ae95e9bda5fbb4bbed661616b8a866, type: 3}
-  - {fileID: 3501494958347935134, guid: 71e8821e83310ac47ac2fe0e1e43291c, type: 3}
+  - {fileID: 8663164188250492726, guid: 158010559915ed249b1e6bc24fac8f48, type: 3}
+  - {fileID: 8663164188250492726, guid: 158010559915ed249b1e6bc24fac8f48, type: 3}
 --- !u!4 &973599321
 Transform:
   m_ObjectHideFlags: 0

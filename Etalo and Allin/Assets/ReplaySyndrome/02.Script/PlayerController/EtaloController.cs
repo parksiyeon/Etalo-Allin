@@ -265,8 +265,13 @@ public class EtaloController : AstronautController
             }
             else
             {
+                if (fieldInteractableObjectItemName == null)
+                {
+                    return;
+                }
 
                 fieldInteractableObjectItemName.SetActive(false);
+                    
                 if (placeObjectGizmo != null)
                 {
                     Destroy(placeObjectGizmo);
@@ -280,6 +285,7 @@ public class EtaloController : AstronautController
                     //highlightObject.GetComponent<Renderer>().material.color = Color.gray;
                     highlightObject.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
                 }
+
             }
         }
         else

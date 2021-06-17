@@ -48,7 +48,8 @@ public class Inventory : MonoBehaviour
     {
         if(itemCollection == null)
         {
-            print("얼");
+            itemCollection = GameObject.FindGameObjectWithTag("ItemCollection").GetComponent<ItemCollection>();
+
         }
         for (int i = 0; i < 100; ++i)
         {
