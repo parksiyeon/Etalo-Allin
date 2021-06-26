@@ -240,8 +240,6 @@ public class EtaloController : AstronautController
                     
                 }
 
-                print("ㅊㅁㅊ");
-
                 fieldInteractableObjectItemName.SetActive(true);
                 fieldInteractableObjectItemName.GetComponent<Text>().text = hit.collider.GetComponent<OnGroundItem>().item.itemName;
                 //Debug.Log("충돌했음");
