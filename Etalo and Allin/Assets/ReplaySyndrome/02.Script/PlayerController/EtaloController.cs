@@ -240,8 +240,10 @@ public class EtaloController : AstronautController
                     
                 }
 
+               
                 fieldInteractableObjectItemName.SetActive(true);
                 fieldInteractableObjectItemName.GetComponent<Text>().text = hit.collider.GetComponent<OnGroundItem>().item.itemName;
+                Debug.Log(hit.collider.GetComponent<OnGroundItem>().item.itemName);
                 //Debug.Log("충돌했음");
                 //hit.collider.gameObject.GetComponent<Renderer>().material.color = Color.yellow;
                 //hit.collider.gameObject.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
@@ -277,10 +279,9 @@ public class EtaloController : AstronautController
             }
             else
             {
-                if (fieldInteractableObjectItemName != null)
-                {
-                    fieldInteractableObjectItemName.SetActive(false);
-                }
+               
+                fieldInteractableObjectItemName.SetActive(false);
+                
                 if (placeObjectGizmo != null)
                 {
                     Destroy(placeObjectGizmo);
