@@ -41,6 +41,16 @@ public class EtaloController : AstronautController
     private float ySpeed = 0f;
     private float gravity = 9.8f;
     private float isgrondedDistance = 0.1f;
+
+    public float maxHP = 100;
+    public float currHP;    
+    public float maxHungry = 100f;
+    public float currHungry;
+    public float maxThirst = 100;
+    public float currThirst;
+    public double optimalTemperature = 36.5;
+    public double currTemperature;
+    public double dangerTemperatureAmount = 3.5;
     #endregion
 
     //InputValus
@@ -61,7 +71,6 @@ public class EtaloController : AstronautController
 
     EtaloController()
     {
-        print("에탈로 생성");
     }
 
     protected override void Awake()
@@ -74,6 +83,11 @@ public class EtaloController : AstronautController
     protected override void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+
+        currHP = maxHP;
+        currTemperature = optimalTemperature;
+        currHungry = maxHungry;
+        currThirst = maxThirst;
     }
 
     // Update is called once per frame
@@ -84,7 +98,7 @@ public class EtaloController : AstronautController
         MouseInput();
         InterAction();
         CameraSetting();
-
+        CharacterInfoSetting();
        // print(cc.isGrounded);
     }
 
@@ -226,8 +240,6 @@ public class EtaloController : AstronautController
                     
                 }
 
-                print("ㅊㅁㅊ");
-
                 fieldInteractableObjectItemName.SetActive(true);
                 fieldInteractableObjectItemName.GetComponent<Text>().text = hit.collider.GetComponent<OnGroundItem>().item.itemName;
                 //Debug.Log("충돌했음");
@@ -320,6 +332,14 @@ public class EtaloController : AstronautController
         }
         cameraArm.transform.rotation = Quaternion.Euler(resultCamYAngle, camAngle.y, camAngle.z);
 
+    }
+
+    void CharacterInfoSetting()
+    {
+        currHP -= Time.deltaTime * 0.05f;
+        currTemperature -= Time.deltaTime * 0.005;
+        currHungry -= Time.deltaTime * 0.5f;
+        currThirst -= Time.deltaTime * 0.5f;
     }
 
 
