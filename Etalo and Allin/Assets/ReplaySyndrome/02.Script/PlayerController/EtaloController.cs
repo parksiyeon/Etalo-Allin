@@ -265,8 +265,10 @@ public class EtaloController : AstronautController
             }
             else
             {
-
-                fieldInteractableObjectItemName.SetActive(false);
+                if (fieldInteractableObjectItemName != null)
+                {
+                    fieldInteractableObjectItemName.SetActive(false);
+                }
                 if (placeObjectGizmo != null)
                 {
                     Destroy(placeObjectGizmo);
