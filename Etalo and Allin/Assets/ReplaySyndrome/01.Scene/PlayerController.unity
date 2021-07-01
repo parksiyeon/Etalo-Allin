@@ -1060,6 +1060,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2998511d61611849a156f8ea24910f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1308254749 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1640729005376790360, guid: 7a87134c844c86f4e931947b70c0df44,
+    type: 3}
+  m_PrefabInstance: {fileID: 2051964244}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1308254754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308254749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51ebdae3e8c165240965f0506d38e329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 3230755897709633253, guid: 88afe15e8f49ba54eb37ae73381a3a56, type: 3}
+  animatorTrigger: AxMotion
+  destroyTime: 2.85
 --- !u!1 &1313795030
 GameObject:
   m_ObjectHideFlags: 0
@@ -2511,6 +2532,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6322843531476697425, guid: 1b590e522d5b1a143b9fe06e583b07a4,
+        type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 3033400fe517d234b840b596f537229b, type: 3}
     - target: {fileID: 6322843531476697426, guid: 1b590e522d5b1a143b9fe06e583b07a4,
         type: 3}
       propertyPath: ContentScreen
