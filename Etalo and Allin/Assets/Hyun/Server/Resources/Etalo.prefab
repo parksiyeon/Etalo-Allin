@@ -1237,6 +1237,15 @@ MonoBehaviour:
   fieldInteractableObjectItemName: {fileID: 0}
   placeObject: {fileID: 9109771053817946905, guid: 5e4ff4ae97744064aa2a34204645f5a2,
     type: 3}
+  maxHP: 100
+  currHP: 0
+  maxHungry: 100
+  currHungry: 0
+  maxThirst: 100
+  currThirst: 0
+  optimalTemperature: 36.5
+  currTemperature: 0
+  dangerTemperatureAmount: 3.5
   itemAssembleState: 0
 --- !u!114 &8428720073652453340
 MonoBehaviour:
