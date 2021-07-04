@@ -12,6 +12,7 @@ public class EtaloController : AstronautController
     #region
     private CharacterController cc;
     private Animator animator;
+    private Inventory inventory;
     #endregion
 
     // GameObjects
@@ -74,11 +75,16 @@ public class EtaloController : AstronautController
 
     //Character State
     #region
+    [HideInInspector]
     public bool itemAssembleState = false;
     #endregion
 
     //AnimatorParamter
-    private string AxMotion = "AxMotion";
+    AnimatorStateInfo currAnimatorStateInfo;
+
+    private string axStateTag = "AxState";
+    private string idleTag = "Idle";
+    private string gunStateTag = "GunState";
 
     EtaloController()
     {
@@ -87,7 +93,8 @@ public class EtaloController : AstronautController
     protected override void Awake()
     {
         cc = GetComponent<CharacterController>();
-        animator = GetComponent<Animator>();  
+        animator = GetComponent<Animator>();
+        inventory = GetComponent<Inventory>();
     }
 
     // Start is called before the first frame update
@@ -104,13 +111,19 @@ public class EtaloController : AstronautController
     // Update is called once per frame
     void Update()
     {
+        AnimatorStateReset();
         CharacterMove();
         SetAnimatorParameter();
         MouseInput();
         InterAction();
         CameraSetting();
         CharacterInfoSetting();
-       // print(cc.isGrounded);
+       
+    }
+
+    void AnimatorStateReset()
+    {
+        currAnimatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
     }
 
     void CharacterMove()
@@ -120,7 +133,6 @@ public class EtaloController : AstronautController
 
         
         
-        RaycastHit hit;
 
         Debug.DrawRay(transform.position, Vector3.down,Color.red);
         if (Physics.Raycast(transform.position, Vector3.down, 0.1f))
@@ -128,8 +140,7 @@ public class EtaloController : AstronautController
 
             if(ySpeed < 0)
             {
-                isJump = false;
-               
+                isJump = false;               
                 ySpeed = 0;
             }
           
@@ -161,13 +172,18 @@ public class EtaloController : AstronautController
 
 
         float mouseX = Input.GetAxis("Mouse X");
-        transform.Rotate(Vector3.up * rotSpeed * mouseX);
-
-        cc.Move(transform.TransformDirection(new Vector3(XAxis, 0, ZAxis).normalized * Time.deltaTime * speed));
+       
+        if (!currAnimatorStateInfo.IsTag(axStateTag))
+        {
+            transform.Rotate(Vector3.up * rotSpeed * mouseX);
+            cc.Move(transform.TransformDirection(new Vector3(XAxis, 0, ZAxis).normalized * Time.deltaTime * speed));
+        }
         cc.Move(transform.TransformDirection(new Vector3(0, 1, 0).normalized * ySpeed * Time.deltaTime));
+
+
         if (!isJump)
         {
-            cc.Move(transform.TransformDirection(new Vector3(0f, 0.001f, 0f))); //바닥에 붙이기
+            cc.Move(transform.TransformDirection(new Vector3(0f, -0.001f, 0f))); //바닥에 붙이기
         }
 
 
@@ -182,15 +198,47 @@ public class EtaloController : AstronautController
 
     void MouseInput()
     {
-        if (Input.GetMouseButtonDown(0))
+        
+
+        if (currAnimatorStateInfo.IsTag(idleTag)) // Idle State
         {
-            if (placeObjectGizmo != null && itemAssembleState)
+            if (Input.GetMouseButtonDown(0))
             {
-                Instantiate(placeObjectGizmo);
-                itemAssembleState = false;
-                aimUI.SetActive(true);
-                Cursor.lockState = CursorLockMode.Locked;
+
+                if (placeObjectGizmo != null && itemAssembleState)
+                {
+                    Instantiate(placeObjectGizmo);
+                    itemAssembleState = false;
+                    aimUI.SetActive(true);
+                    Cursor.lockState = CursorLockMode.Locked;
+                }
             }
+
+            if (Input.GetMouseButton(1))
+            {
+                animator.SetBool("GunState", true);
+            }
+        }
+        else if (currAnimatorStateInfo.IsTag(gunStateTag))
+        {
+            if(Input.GetMouseButtonDown(0))
+            {
+                print("쏘자");
+                var bullet = inventory.itemList.Find(x => x.item.itemName == "bullet");
+                if (bullet.count > 0)
+                {
+                    inventory.MiusItem(bullet.item);
+                    animator.SetTrigger("Shoot");
+                }
+            }
+
+            if (!Input.GetMouseButton(1))
+            {
+                
+                
+                animator.SetBool("GunState", false);
+                
+            }            
         }
     }
     void InterAction()
@@ -346,21 +394,26 @@ public class EtaloController : AstronautController
 
     void CameraSetting()
     {
-        float mouseY = Input.GetAxis("Mouse Y");
-        Vector3 camAngle = cameraArm.transform.rotation.eulerAngles;
-
-        
-        float resultCamYAngle = camAngle.x - mouseY;
-        if (resultCamYAngle < 180f)
+        if (!currAnimatorStateInfo.IsTag(axStateTag))
         {
-            resultCamYAngle = Mathf.Clamp(resultCamYAngle, -1f, 45f);
-        }
-        else
-        {
-            resultCamYAngle = Mathf.Clamp(resultCamYAngle, 330f, 361f);
-        }
-        cameraArm.transform.rotation = Quaternion.Euler(resultCamYAngle, camAngle.y, camAngle.z);
+            float mouseY = Input.GetAxis("Mouse Y");
+            Vector3 camAngle = cameraArm.transform.rotation.eulerAngles;
 
+
+            float resultCamYAngle = camAngle.x - mouseY;
+            if (resultCamYAngle < 180f)
+            {
+                resultCamYAngle = Mathf.Clamp(resultCamYAngle, -1f, 70f);
+            }
+            else
+            {
+                resultCamYAngle = Mathf.Clamp(resultCamYAngle, 330, 361f);
+            }
+
+
+            cameraArm.transform.rotation = Quaternion.Euler(resultCamYAngle, camAngle.y, camAngle.z);
+        }
+    
     }
 
     void CharacterInfoSetting()
