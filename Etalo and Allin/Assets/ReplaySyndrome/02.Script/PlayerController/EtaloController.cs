@@ -17,6 +17,9 @@ public class EtaloController : MonoBehaviourPunCallbacks
     private Inventory inventory;
     #endregion
 
+    protected string animatorParameterXAxis = "XAxis";  //흠..
+    protected string animatorParameterZAxis = "ZAxis";
+
     // GameObjects
     #region
     public GameObject inventoryUI = null;
@@ -88,7 +91,9 @@ public class EtaloController : MonoBehaviourPunCallbacks
     private string idleTag = "Idle";
     private string gunStateTag = "GunState";
 
+    //Server
     PhotonView PV;
+
     EtaloController()
     {
     }
@@ -226,8 +231,8 @@ public class EtaloController : MonoBehaviourPunCallbacks
 
     void SetAnimatorParameter()
     {
-        //animator.SetFloat(animatorParameterXAxis, XAxis);
-        //animator.SetFloat(animatorParameterZAxis, ZAxis);
+        animator.SetFloat(animatorParameterXAxis, XAxis);
+        animator.SetFloat(animatorParameterZAxis, ZAxis);
     }
 
     void MouseInput()
