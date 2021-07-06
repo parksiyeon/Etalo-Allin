@@ -100,7 +100,7 @@ public class Launcher : MonoBehaviourPunCallbacks //포톤 pun 감지
 
     public void StartGame()
     {
-        PhotonNetwork.LoadLevel(1); // 모든 플레이어가 같은 씬
+        PhotonNetwork.LoadLevel("PlayerControllerHyun"); // 모든 플레이어가 같은 씬
     }
 
     public void LeaveRoom()

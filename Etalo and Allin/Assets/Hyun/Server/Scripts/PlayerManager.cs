@@ -44,11 +44,11 @@ public class PlayerManager : MonoBehaviour
         if (characterValue == 0)
         {
 			Debug.Log("Create");
-			myCharacter = PhotonNetwork.Instantiate("Etalo", pos, Quaternion.identity);
+			myCharacter = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs","Etalo1"), pos, Quaternion.identity);
 		}
         else
         {
-			myCharacter = PhotonNetwork.Instantiate("Etalo", pos, Quaternion.identity);
+			myCharacter = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Capsule"), pos, Quaternion.identity);
 		}
 
 

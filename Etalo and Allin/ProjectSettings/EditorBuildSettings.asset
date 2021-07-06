@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: Assets/Hyun/Scene/Ground.unity
     guid: 22c6ab08508e51e46b1538cd170d1c68
   - enabled: 1
-    path: Assets/ReplaySyndrome/01.Scene/PlayerController.unity
+    path: Assets/Hyun/Scene/PlayerControllerHyun.unity
     guid: f88040ca79ca76f4ca253e8ead39e728
   m_configObjects: {}

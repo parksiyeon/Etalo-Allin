@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(Animator))]
-public class EtaloController : AstronautController
+
+public class EtaloController : MonoBehaviourPunCallbacks
 {
+    PhotonView PV;
 
     // Compononts
     #region
@@ -73,15 +76,24 @@ public class EtaloController : AstronautController
     {
     }
 
-    protected override void Awake()
+    void Awake()
     {
+ 
         cc = GetComponent<CharacterController>();
-        animator = GetComponent<Animator>();  
+        animator = GetComponent<Animator>();
+        
     }
 
     // Start is called before the first frame update
-    protected override void Start()
+    void Start()
     {
+        if (!PV.IsMine)
+        {
+            Destroy(animator);
+            Destroy(GetComponentInChildren<Camera>().gameObject);
+        
+        }
+
         Cursor.lockState = CursorLockMode.Locked;
 
         currHP = maxHP;
@@ -93,6 +105,11 @@ public class EtaloController : AstronautController
     // Update is called once per frame
     void Update()
     {
+        if (!PV.IsMine)
+        {
+            return;
+        }
+
         CharacterMove();
         SetAnimatorParameter();
         MouseInput();
@@ -145,8 +162,8 @@ public class EtaloController : AstronautController
 
     void SetAnimatorParameter()
     {
-        animator.SetFloat(animatorParameterXAxis, XAxis);
-        animator.SetFloat(animatorParameterZAxis, ZAxis);
+        //animator.SetFloat(animatorParameterXAxis, XAxis);
+        //animator.SetFloat(animatorParameterZAxis, ZAxis);
     }
 
     void MouseInput()
