@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(Animator))]
-public class EtaloController : AstronautController
+public class EtaloController : MonoBehaviourPunCallbacks
 {
+
 
     // Compononts
     #region
@@ -86,17 +88,20 @@ public class EtaloController : AstronautController
     private string idleTag = "Idle";
     private string gunStateTag = "GunState";
 
+    PhotonView PV;
     EtaloController()
     {
     }
 
-    protected override void Awake()
+    void Awake()
     {
+        PV = GetComponent<PhotonView>();
         cc = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         inventory = GetComponent<Inventory>();
 
         Canvas mainCanvas = GameObject.FindObjectOfType<Canvas>();
+
         aimUI = mainCanvas.transform.Find("AimUI").gameObject;
         inventoryUI = mainCanvas.transform.Find("InventoryUI").gameObject;
         composeUI = mainCanvas.transform.Find("ComposeUI").gameObject;
@@ -105,8 +110,23 @@ public class EtaloController : AstronautController
     }
 
     // Start is called before the first frame update
-    protected override void Start()
+    void Start()
     {
+        if (PV.IsMine)
+
+        {
+            // EquipItem(0);
+        }
+
+        else
+        {
+            Destroy(GetComponentInChildren<Camera>().gameObject);
+            Destroy(animator);
+            Destroy(cc);
+            Destroy(inventory);
+          
+        }
+
         Cursor.lockState = CursorLockMode.Locked;
 
         currHP = maxHP;
@@ -118,6 +138,13 @@ public class EtaloController : AstronautController
     // Update is called once per frame
     void Update()
     {
+        if (!PV.IsMine)
+
+        {
+            return;
+        }
+
+
         AnimatorStateReset();
         CharacterMove();
         SetAnimatorParameter();
@@ -199,8 +226,8 @@ public class EtaloController : AstronautController
 
     void SetAnimatorParameter()
     {
-        animator.SetFloat(animatorParameterXAxis, XAxis);
-        animator.SetFloat(animatorParameterZAxis, ZAxis);
+        //animator.SetFloat(animatorParameterXAxis, XAxis);
+        //animator.SetFloat(animatorParameterZAxis, ZAxis);
     }
 
     void MouseInput()
