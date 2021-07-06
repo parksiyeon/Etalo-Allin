@@ -8,13 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Lobby.unity
     guid: 8ffbe48c8618ec842947dab2de2b2915
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: bac78229dfd32ad4ca8ea9d168ea2525
-  - enabled: 0
-    path: Assets/Hyun/Scene/Ground.unity
-    guid: 22c6ab08508e51e46b1538cd170d1c68
   - enabled: 1
-    path: Assets/Hyun/Scene/PlayerControllerHyun.unity
+    path: Assets/ReplaySyndrome/01.Scene/Inventory.unity
+    guid: db2c2d5943d000747a49f43e115a4e84
+  - enabled: 1
+    path: Assets/ReplaySyndrome/01.Scene/PlayerController.unity
     guid: f88040ca79ca76f4ca253e8ead39e728
   m_configObjects: {}

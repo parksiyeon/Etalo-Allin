@@ -2,26 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Photon.Pun;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(Animator))]
-
-public class EtaloController : MonoBehaviourPunCallbacks
+public class EtaloController : AstronautController
 {
-    PhotonView PV;
 
     // Compononts
     #region
     private CharacterController cc;
     private Animator animator;
+    private Inventory inventory;
     #endregion
 
     // GameObjects
     #region
-    public GameObject inventoryUI;
-    public GameObject composeUI;
-    public GameObject aimUI;
+    public GameObject inventoryUI = null;
+    public GameObject composeUI = null;
+    public GameObject aimUI = null;
     public GameObject cameraArm;
     public GameObject fieldInteractableObjectItemName;
 
@@ -44,15 +42,25 @@ public class EtaloController : MonoBehaviourPunCallbacks
     private float ySpeed = 0f;
     private float gravity = 9.8f;
     private float isgrondedDistance = 0.1f;
+    private bool isJump = false;
 
+    [HideInInspector]
     public float maxHP = 100;
-    public float currHP;    
+    [HideInInspector]
+    public float currHP;
+    [HideInInspector]
     public float maxHungry = 100f;
+    [HideInInspector]
     public float currHungry;
+    [HideInInspector]
     public float maxThirst = 100;
+    [HideInInspector]
     public float currThirst;
+    [HideInInspector]
     public double optimalTemperature = 36.5;
+    [HideInInspector]
     public double currTemperature;
+    [HideInInspector]
     public double dangerTemperatureAmount = 3.5;
     #endregion
 
@@ -67,33 +75,38 @@ public class EtaloController : MonoBehaviourPunCallbacks
 
     //Character State
     #region
+    [HideInInspector]
     public bool itemAssembleState = false;
     #endregion
 
+    //AnimatorParamter
+    AnimatorStateInfo currAnimatorStateInfo;
 
+    private string axStateTag = "AxState";
+    private string idleTag = "Idle";
+    private string gunStateTag = "GunState";
 
     EtaloController()
     {
     }
 
-    void Awake()
+    protected override void Awake()
     {
- 
         cc = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-        
+        inventory = GetComponent<Inventory>();
+
+        Canvas mainCanvas = GameObject.FindObjectOfType<Canvas>();
+        aimUI = mainCanvas.transform.Find("AimUI").gameObject;
+        inventoryUI = mainCanvas.transform.Find("InventoryUI").gameObject;
+        composeUI = mainCanvas.transform.Find("ComposeUI").gameObject;
+        fieldInteractableObjectItemName = mainCanvas.transform.Find("FieldInteractableItemName").gameObject; 
+
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        if (!PV.IsMine)
-        {
-            Destroy(animator);
-            Destroy(GetComponentInChildren<Camera>().gameObject);
-        
-        }
-
         Cursor.lockState = CursorLockMode.Locked;
 
         currHP = maxHP;
@@ -105,18 +118,19 @@ public class EtaloController : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-        if (!PV.IsMine)
-        {
-            return;
-        }
-
+        AnimatorStateReset();
         CharacterMove();
         SetAnimatorParameter();
         MouseInput();
         InterAction();
         CameraSetting();
         CharacterInfoSetting();
-       // print(cc.isGrounded);
+       
+    }
+
+    void AnimatorStateReset()
+    {
+        currAnimatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
     }
 
     void CharacterMove()
@@ -126,18 +140,32 @@ public class EtaloController : MonoBehaviourPunCallbacks
 
         
         
-        RaycastHit hit;
 
         Debug.DrawRay(transform.position, Vector3.down,Color.red);
-        if (Physics.Raycast(transform.position, Vector3.down, 0.3f))
+        if (Physics.Raycast(transform.position, Vector3.down, 0.1f))
         {
 
-            ySpeed = 0;
+            if(ySpeed < 0)
+            {
+                isJump = false;               
+                ySpeed = 0;
+            }
+          
+            
             if (Input.GetButtonDown("Jump"))
             {
-                
-                animator.SetTrigger("Jump");
-                ySpeed = 10;
+                print("바닥인식중");
+                if (Physics.Raycast(transform.position, Vector3.down, 0.3f ))
+                {
+                    
+                    if (!isJump)
+                    {
+                        Debug.Log("Jump");
+                        isJump = true;
+                        animator.SetTrigger("Jump");
+                        ySpeed = 10;
+                    }
+                }
             }
 
             animator.SetBool("IsGrounded", true);
@@ -151,10 +179,19 @@ public class EtaloController : MonoBehaviourPunCallbacks
 
 
         float mouseX = Input.GetAxis("Mouse X");
-        transform.Rotate(Vector3.up * rotSpeed * mouseX);
-
-        cc.Move(transform.TransformDirection(new Vector3(XAxis, 0, ZAxis).normalized * Time.deltaTime * speed));
+       
+        if (!currAnimatorStateInfo.IsTag(axStateTag))
+        {
+            transform.Rotate(Vector3.up * rotSpeed * mouseX);
+            cc.Move(transform.TransformDirection(new Vector3(XAxis, 0, ZAxis).normalized * Time.deltaTime * speed));
+        }
         cc.Move(transform.TransformDirection(new Vector3(0, 1, 0).normalized * ySpeed * Time.deltaTime));
+
+
+        if (!isJump)
+        {
+            cc.Move(transform.TransformDirection(new Vector3(0f, -0.001f, 0f))); //바닥에 붙이기
+        }
 
 
         ySpeed -= Time.deltaTime * gravity;
@@ -162,21 +199,53 @@ public class EtaloController : MonoBehaviourPunCallbacks
 
     void SetAnimatorParameter()
     {
-        //animator.SetFloat(animatorParameterXAxis, XAxis);
-        //animator.SetFloat(animatorParameterZAxis, ZAxis);
+        animator.SetFloat(animatorParameterXAxis, XAxis);
+        animator.SetFloat(animatorParameterZAxis, ZAxis);
     }
 
     void MouseInput()
     {
-        if (Input.GetMouseButtonDown(0))
+        
+
+        if (currAnimatorStateInfo.IsTag(idleTag)) // Idle State
         {
-            if (placeObjectGizmo != null && itemAssembleState)
+            if (Input.GetMouseButtonDown(0))
             {
-                Instantiate(placeObjectGizmo);
-                itemAssembleState = false;
-                aimUI.SetActive(true);
-                Cursor.lockState = CursorLockMode.Locked;
+
+                if (placeObjectGizmo != null && itemAssembleState)
+                {
+                    Instantiate(placeObjectGizmo);
+                    itemAssembleState = false;
+                    aimUI.SetActive(true);
+                    Cursor.lockState = CursorLockMode.Locked;
+                }
             }
+
+            if (Input.GetMouseButton(1))
+            {
+                animator.SetBool("GunState", true);
+            }
+        }
+        else if (currAnimatorStateInfo.IsTag(gunStateTag))
+        {
+            if(Input.GetMouseButtonDown(0))
+            {
+                print("쏘자");
+                var bullet = inventory.itemList.Find(x => x.item.itemName == "bullet");
+                if (bullet.count > 0)
+                {
+                    inventory.MiusItem(bullet.item);
+                    animator.SetTrigger("Shoot");
+                }
+            }
+
+            if (!Input.GetMouseButton(1))
+            {
+                
+                
+                animator.SetBool("GunState", false);
+                
+            }            
         }
     }
     void InterAction()
@@ -189,18 +258,19 @@ public class EtaloController : MonoBehaviourPunCallbacks
             if (Physics.Raycast(ray, out hit))
             {
                 var groundItem = hit.collider.gameObject.GetComponent<OnGroundItem>();
-                if(groundItem)
+                if(groundItem && Vector3.Distance(transform.position, hit.collider.gameObject.transform.position) < 4)
                 {
                     
                     animator.SetTrigger(groundItem.animatorTrigger);
                     GetComponent<Inventory>().AddItem(groundItem.item);
-                    animator.SetTrigger(groundItem.animatorTrigger);
 
                     print(groundItem.item.itemName);
-                    Destroy(hit.collider.gameObject);
+                    Destroy(hit.collider.gameObject, groundItem.destroyTime);
                 }
             }
         }
+
+      
 
         if (Input.GetKeyDown(KeyCode.I))
         {
@@ -248,7 +318,7 @@ public class EtaloController : MonoBehaviourPunCallbacks
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 0));
         if (Physics.Raycast(ray, out hit))
         {
-            if (hit.collider.gameObject.layer == 10)
+            if (hit.collider.gameObject.layer == 10 && Vector3.Distance(transform.position, hit.collider.gameObject.transform.position) < 4)
             {
                 if (hit.collider.gameObject != highlightObject && highlightObject != null)
                 {
@@ -259,8 +329,8 @@ public class EtaloController : MonoBehaviourPunCallbacks
 
                
                 fieldInteractableObjectItemName.SetActive(true);
-                
                 fieldInteractableObjectItemName.GetComponent<Text>().text = hit.collider.GetComponent<OnGroundItem>().item.itemName;
+                //Debug.Log(hit.collider.GetComponent<OnGroundItem>().item.itemName);
                 //Debug.Log("충돌했음");
                 //hit.collider.gameObject.GetComponent<Renderer>().material.color = Color.yellow;
                 //hit.collider.gameObject.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
@@ -292,20 +362,13 @@ public class EtaloController : MonoBehaviourPunCallbacks
                     highlightObject.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
                 }
 
-                if (fieldInteractableObjectItemName != null)
-                {
-                    fieldInteractableObjectItemName.SetActive(false);
-                }
+                fieldInteractableObjectItemName.SetActive(false);
             }
             else
             {
-                if (fieldInteractableObjectItemName == null)
-                {
-                    return;
-                }
-
+               
                 fieldInteractableObjectItemName.SetActive(false);
-                    
+                
                 if (placeObjectGizmo != null)
                 {
                     Destroy(placeObjectGizmo);
@@ -319,7 +382,6 @@ public class EtaloController : MonoBehaviourPunCallbacks
                     //highlightObject.GetComponent<Renderer>().material.color = Color.gray;
                     highlightObject.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
                 }
-
             }
         }
         else
@@ -339,21 +401,26 @@ public class EtaloController : MonoBehaviourPunCallbacks
 
     void CameraSetting()
     {
-        float mouseY = Input.GetAxis("Mouse Y");
-        Vector3 camAngle = cameraArm.transform.rotation.eulerAngles;
-
-        
-        float resultCamYAngle = camAngle.x - mouseY;
-        if (resultCamYAngle < 180f)
+        if (!currAnimatorStateInfo.IsTag(axStateTag))
         {
-            resultCamYAngle = Mathf.Clamp(resultCamYAngle, -1f, 45f);
-        }
-        else
-        {
-            resultCamYAngle = Mathf.Clamp(resultCamYAngle, 330f, 361f);
-        }
-        cameraArm.transform.rotation = Quaternion.Euler(resultCamYAngle, camAngle.y, camAngle.z);
+            float mouseY = Input.GetAxis("Mouse Y");
+            Vector3 camAngle = cameraArm.transform.rotation.eulerAngles;
 
+
+            float resultCamYAngle = camAngle.x - mouseY;
+            if (resultCamYAngle < 180f)
+            {
+                resultCamYAngle = Mathf.Clamp(resultCamYAngle, -1f, 70f);
+            }
+            else
+            {
+                resultCamYAngle = Mathf.Clamp(resultCamYAngle, 330, 361f);
+            }
+
+
+            cameraArm.transform.rotation = Quaternion.Euler(resultCamYAngle, camAngle.y, camAngle.z);
+        }
+    
     }
 
     void CharacterInfoSetting()
@@ -392,5 +459,10 @@ public class EtaloController : MonoBehaviourPunCallbacks
         aimUI.SetActive(false);
 
         
+    }
+
+    public void OnWieldAx()
+    {
+        Debug.Log("OnWieldAx");
     }
 }

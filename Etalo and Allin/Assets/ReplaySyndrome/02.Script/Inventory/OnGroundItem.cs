@@ -6,6 +6,7 @@ public class OnGroundItem : MonoBehaviour
 {
     public Item item;
     public string animatorTrigger;
+    public float destroyTime = 0f;
 
 
 

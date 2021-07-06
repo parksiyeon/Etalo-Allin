@@ -109,3 +109,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 3230755897709633253, guid: 593b173c41c29c8478bd1b8033682145, type: 3}
   animatorTrigger: PickUp
+  destroyTime: 0.5
