@@ -33,8 +33,8 @@ public class Inventory : MonoBehaviour
     
     public List<InventoryBox> itemList;
    // public Image inventoryBoxPrefab;
-    public GameObject ContentScreen;
-    [SerializeField]
+    private GameObject ContentScreen;
+    
     private ItemCollection itemCollection;
 
 
@@ -46,9 +46,13 @@ public class Inventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(itemCollection == null)
+      
+        itemCollection = GameObject.FindGameObjectWithTag("ItemCollection").GetComponent<ItemCollection>();
+        ContentScreen = GameObject.FindObjectOfType<Canvas>().transform.GetChild(0).GetChild(0).GetChild(0).gameObject;
+
+        if(ContentScreen == null)
         {
-            print("얼");
+            print("dsadasdsa");
         }
         for (int i = 0; i < 100; ++i)
         {

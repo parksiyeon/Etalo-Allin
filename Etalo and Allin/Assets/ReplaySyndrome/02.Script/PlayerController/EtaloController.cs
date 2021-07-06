@@ -17,9 +17,9 @@ public class EtaloController : AstronautController
 
     // GameObjects
     #region
-    public GameObject inventoryUI;
-    public GameObject composeUI;
-    public GameObject aimUI;
+    public GameObject inventoryUI = null;
+    public GameObject composeUI = null;
+    public GameObject aimUI = null;
     public GameObject cameraArm;
     public GameObject fieldInteractableObjectItemName;
 
@@ -95,6 +95,13 @@ public class EtaloController : AstronautController
         cc = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         inventory = GetComponent<Inventory>();
+
+        Canvas mainCanvas = GameObject.FindObjectOfType<Canvas>();
+        aimUI = mainCanvas.transform.Find("AimUI").gameObject;
+        inventoryUI = mainCanvas.transform.Find("InventoryUI").gameObject;
+        composeUI = mainCanvas.transform.Find("ComposeUI").gameObject;
+        fieldInteractableObjectItemName = mainCanvas.transform.Find("FieldInteractableItemName").gameObject; 
+
     }
 
     // Start is called before the first frame update
