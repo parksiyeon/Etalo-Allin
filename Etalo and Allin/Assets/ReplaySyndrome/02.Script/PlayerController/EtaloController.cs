@@ -126,8 +126,8 @@ public class EtaloController : MonoBehaviourPunCallbacks
         else
         {
             Destroy(GetComponentInChildren<Camera>().gameObject);
-            Destroy(animator);
-            Destroy(cc);
+            //Destroy(animator);
+            //Destroy(cc);
             Destroy(inventory);
           
         }
