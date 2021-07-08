@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using Photon.Realtime;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(Animator))]
+
 public class EtaloController : MonoBehaviourPunCallbacks
 {
 
@@ -280,8 +282,11 @@ public class EtaloController : MonoBehaviourPunCallbacks
             }            
         }
     }
+
+
     void InterAction()
     {
+        
         InteractableObjectIdentifier();
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -297,7 +302,11 @@ public class EtaloController : MonoBehaviourPunCallbacks
                     GetComponent<Inventory>().AddItem(groundItem.item);
 
                     print(groundItem.item.itemName);
-                    Destroy(hit.collider.gameObject, groundItem.destroyTime);
+                    print(hit.collider.gameObject);
+                    PhotonNetwork.Destroy(hit.collider.gameObject);
+                    //PV.RPC("DestroyRPC", RpcTarget.AllBuffered);
+                    //Destroy(hit.collider.gameObject, groundItem.destroyTime);
+                   
                 }
             }
         }
@@ -343,6 +352,7 @@ public class EtaloController : MonoBehaviourPunCallbacks
         }
     }
 
+ 
     void InteractableObjectIdentifier()
     {
 
@@ -497,4 +507,6 @@ public class EtaloController : MonoBehaviourPunCallbacks
     {
         Debug.Log("OnWieldAx");
     }
+
+
 }
