@@ -304,9 +304,11 @@ public class EtaloController : MonoBehaviourPunCallbacks
                     print(groundItem.item.itemName);
 
                     int obj_ID = hit.collider.gameObject.GetComponent<PhotonView>().ViewID;
+                    print(obj_ID);
                     PV.RPC("DestroyRPC", RpcTarget.AllBuffered, obj_ID);
                     //PhotonNetwork.Destroy(hit.collider.gameObject);
                     //PV.RPC("DestroyRPC", RpcTarget.AllBuffered,hit.collider);
+                    //PhotonNetwork.Destroy(hit.collider.gameObject);
                     //Destroy(hit.collider.gameObject, groundItem.destroyTime);
 
                 }
@@ -415,6 +417,7 @@ public class EtaloController : MonoBehaviourPunCallbacks
                 
                 if (placeObjectGizmo != null)
                 {
+                   
                     Destroy(placeObjectGizmo);
                     placeObjectGizmo = null;
                 }
@@ -430,7 +433,7 @@ public class EtaloController : MonoBehaviourPunCallbacks
         }
         else
         {
-
+           
             Destroy(placeObjectGizmo);
             placeObjectGizmo = null;
             if (highlightObject != null)
@@ -513,7 +516,8 @@ public class EtaloController : MonoBehaviourPunCallbacks
     [PunRPC]
     private void DestroyRPC(int obj_ID)
     {
-        PhotonNetwork.Destroy(PhotonView.Find(obj_ID));
+        // PhotonNetwork.Destroy(PhotonView.Find(obj_ID).gameObject);
+        Destroy(PhotonView.Find(obj_ID).gameObject);
     }
   
 
