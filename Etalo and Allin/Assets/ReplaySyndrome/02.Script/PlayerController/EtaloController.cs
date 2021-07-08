@@ -248,7 +248,11 @@ public class EtaloController : MonoBehaviourPunCallbacks
 
                 if (placeObjectGizmo != null && itemAssembleState)
                 {
+
+                    //선택 오브젝트 설치,근데 위치는 어떻게?
                     Instantiate(placeObjectGizmo);
+                    
+                    // 포지션은?
                     itemAssembleState = false;
                     aimUI.SetActive(true);
                     Cursor.lockState = CursorLockMode.Locked;
@@ -303,8 +307,7 @@ public class EtaloController : MonoBehaviourPunCallbacks
 
                     print(groundItem.item.itemName);
 
-                    int obj_ID = hit.collider.gameObject.GetComponent<PhotonView>().ViewID;
-                    print(obj_ID);
+                    int obj_ID = hit.collider.gameObject.GetComponent<PhotonView>().ViewID; //오브젝트 ID를 찾는다.
                     PV.RPC("DestroyRPC", RpcTarget.AllBuffered, obj_ID);
                     //PhotonNetwork.Destroy(hit.collider.gameObject);
                     //PV.RPC("DestroyRPC", RpcTarget.AllBuffered,hit.collider);
@@ -356,7 +359,16 @@ public class EtaloController : MonoBehaviourPunCallbacks
         }
     }
 
- 
+
+    [PunRPC]    //아이템 삭제하는 함수, 모든 클라이언트에게 삭제
+
+    private void DestroyRPC(int obj_ID)
+    {
+        // PhotonNetwork.Destroy(PhotonView.Find(obj_ID).gameObject);
+        print(obj_ID);
+        Destroy(PhotonView.Find(obj_ID).gameObject);
+    }
+
     void InteractableObjectIdentifier()
     {
 
@@ -390,7 +402,10 @@ public class EtaloController : MonoBehaviourPunCallbacks
                 {
                     if (placeObjectGizmo == null)
                     {
+                     
+                        Debug.Log("밑에");
                         placeObjectGizmo = Instantiate(placeObject);
+                        
                     }
 
                     placeObjectGizmo.SetActive(true);
@@ -513,12 +528,7 @@ public class EtaloController : MonoBehaviourPunCallbacks
         Debug.Log("OnWieldAx");
     }
 
-    [PunRPC]
-    private void DestroyRPC(int obj_ID)
-    {
-        // PhotonNetwork.Destroy(PhotonView.Find(obj_ID).gameObject);
-        Destroy(PhotonView.Find(obj_ID).gameObject);
-    }
+
   
 
 }
