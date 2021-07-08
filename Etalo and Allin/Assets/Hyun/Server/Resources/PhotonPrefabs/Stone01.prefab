@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4187662608982603506}
   - component: {fileID: 8844758153589605694}
   - component: {fileID: 5841316850721670319}
-  - component: {fileID: 4039687315651027448}
+  - component: {fileID: 4008943792941029707}
   m_Layer: 10
   m_Name: Stone01
   m_TagString: Untagged
@@ -111,7 +111,7 @@ MonoBehaviour:
   item: {fileID: 3230755897709633253, guid: 593b173c41c29c8478bd1b8033682145, type: 3}
   animatorTrigger: PickUp
   destroyTime: 0.5
---- !u!114 &4039687315651027448
+--- !u!114 &4008943792941029707
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

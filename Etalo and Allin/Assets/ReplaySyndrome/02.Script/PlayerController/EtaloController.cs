@@ -302,11 +302,11 @@ public class EtaloController : MonoBehaviourPunCallbacks
                     GetComponent<Inventory>().AddItem(groundItem.item);
 
                     print(groundItem.item.itemName);
-                    print(hit.collider.gameObject);
+
                     PhotonNetwork.Destroy(hit.collider.gameObject);
-                    //PV.RPC("DestroyRPC", RpcTarget.AllBuffered);
+                    //PV.RPC("DestroyRPC", RpcTarget.AllBuffered,hit.collider);
                     //Destroy(hit.collider.gameObject, groundItem.destroyTime);
-                   
+
                 }
             }
         }
@@ -508,5 +508,6 @@ public class EtaloController : MonoBehaviourPunCallbacks
         Debug.Log("OnWieldAx");
     }
 
+  
 
 }
