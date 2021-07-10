@@ -113,8 +113,8 @@ public class EtaloController : MonoBehaviourPunCallbacks
         aimUI = mainCanvas.transform.Find("AimUI").gameObject;
         inventoryUI = mainCanvas.transform.Find("InventoryUI").gameObject;
         composeUI = mainCanvas.transform.Find("ComposeUI").gameObject;
-        fieldInteractableObjectItemName = mainCanvas.transform.Find("FieldInteractableItemName").gameObject; 
-
+        fieldInteractableObjectItemName = mainCanvas.transform.Find("FieldInteractableItemName").gameObject;
+        fieldInteractableObjectItemName.gameObject.SetActive(false);
     }
 
     // Start is called before the first frame update
