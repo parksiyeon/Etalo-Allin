@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
+using System.IO;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(Animator))]
@@ -249,11 +250,12 @@ public class EtaloController : MonoBehaviourPunCallbacks
                 if (placeObjectGizmo != null && itemAssembleState)
                 {
 
-                    
-                    GameObject A = placeObjectGizmo;
-                    PhotonNetwork.Instantiate(A.name, A.gameObject.transform.position, A.gameObject.transform.rotation);
-                    
-                  
+
+                    //GameObject A = placeObjectGizmo;
+                    Instantiate(placeObjectGizmo);
+                    PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "BornFireObject"), placeObjectGizmo.transform.position, placeObjectGizmo.transform.rotation);
+
+
                     itemAssembleState = false;
                     aimUI.SetActive(true);
                     Cursor.lockState = CursorLockMode.Locked;
@@ -404,7 +406,7 @@ public class EtaloController : MonoBehaviourPunCallbacks
                     if (placeObjectGizmo == null)
                     {
                      
-                        Debug.Log("밑에");
+                        
                         placeObjectGizmo = Instantiate(placeObject);
                         
                     }
