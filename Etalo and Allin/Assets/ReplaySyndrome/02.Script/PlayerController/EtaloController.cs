@@ -249,10 +249,11 @@ public class EtaloController : MonoBehaviourPunCallbacks
                 if (placeObjectGizmo != null && itemAssembleState)
                 {
 
-                    //선택 오브젝트 설치,근데 위치는 어떻게?
-                    Instantiate(placeObjectGizmo);
                     
-                    // 포지션은?
+                    GameObject A = placeObjectGizmo;
+                    PhotonNetwork.Instantiate(A.name, A.gameObject.transform.position, A.gameObject.transform.rotation);
+                    
+                  
                     itemAssembleState = false;
                     aimUI.SetActive(true);
                     Cursor.lockState = CursorLockMode.Locked;
