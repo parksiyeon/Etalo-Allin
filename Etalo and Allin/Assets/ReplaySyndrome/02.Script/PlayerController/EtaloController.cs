@@ -388,7 +388,7 @@ public class EtaloController : MonoBehaviourPunCallbacks
                     
                 }
 
-               
+                
                 fieldInteractableObjectItemName.SetActive(true);
                 fieldInteractableObjectItemName.GetComponent<Text>().text = hit.collider.GetComponent<OnGroundItem>().item.itemName;
                 //Debug.Log(hit.collider.GetComponent<OnGroundItem>().item.itemName);
@@ -451,7 +451,7 @@ public class EtaloController : MonoBehaviourPunCallbacks
         }
         else
         {
-           
+            fieldInteractableObjectItemName.SetActive(false);
             Destroy(placeObjectGizmo);
             placeObjectGizmo = null;
             if (highlightObject != null)
