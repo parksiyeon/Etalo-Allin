@@ -217,9 +217,14 @@ public class EtaloController : MonoBehaviourPunCallbacks
        
         if (!currAnimatorStateInfo.IsTag(axStateTag))
         {
-            transform.Rotate(Vector3.up * rotSpeed * mouseX);
+            if (!inventoryUIIsActive && !composeUIIsActive)
+            {
+                transform.Rotate(Vector3.up * rotSpeed * mouseX);
+            }
+            
             cc.Move(transform.TransformDirection(new Vector3(XAxis, 0, ZAxis).normalized * Time.deltaTime * speed));
         }
+
         cc.Move(transform.TransformDirection(new Vector3(0, 1, 0).normalized * ySpeed * Time.deltaTime));
 
 
@@ -482,8 +487,11 @@ public class EtaloController : MonoBehaviourPunCallbacks
                 resultCamYAngle = Mathf.Clamp(resultCamYAngle, 330, 361f);
             }
 
-
-            cameraArm.transform.rotation = Quaternion.Euler(resultCamYAngle, camAngle.y, camAngle.z);
+            if(!inventoryUIIsActive&&!composeUIIsActive)
+            {
+                cameraArm.transform.rotation = Quaternion.Euler(resultCamYAngle, camAngle.y, camAngle.z);
+            }
+            
         }
     
     }
