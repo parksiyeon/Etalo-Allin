@@ -6,22 +6,54 @@ using UnityEngine.AI;
 
 public class PocketCreeper : Monster
 {
-    NavMeshAgent agent;
 
 
 
+    protected override void Awake()
+    {
+        speed = 5;
+    }
 
 
     // Start is called before the first frame update
-    protected virtual void Start()
+    protected override void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        hp = 300;
+        agent.speed = speed;
+        movePositions = new Vector3[positionNum];
+        animator = GetComponent<Animator>();
+        makePath();
+        player = GameObject.FindGameObjectsWithTag("Player");
+
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
+       
+        if(hp > 0)
+        {
+            MoveToPosition();
+        }
+
+     
         
+
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.cyan;
+        for (int i = 0; i < movePositions.Length; ++i)
+        {
+            Gizmos.DrawSphere(movePositions[i], 1);
+        }
+
+        Gizmos.color = Color.red;
+        Gizmos.color = new Color(1, 0, 0, 0.1f);
+        Gizmos.DrawSphere(transform.position, 30);
+    }
+
+    
+
 }
