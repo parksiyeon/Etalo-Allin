@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
+using Photon.Realtime;
+using System.IO;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(Animator))]
-public class EtaloController : AstronautController
+
+public class EtaloController : MonoBehaviourPunCallbacks
 {
+
 
     // Compononts
     #region
@@ -14,6 +19,9 @@ public class EtaloController : AstronautController
     private Animator animator;
     private Inventory inventory;
     #endregion
+
+    protected string animatorParameterXAxis = "XAxis";  //흠..
+    protected string animatorParameterZAxis = "ZAxis";
 
     // GameObjects
     #region
@@ -86,27 +94,47 @@ public class EtaloController : AstronautController
     private string idleTag = "Idle";
     private string gunStateTag = "GunState";
 
+    //Server
+    PhotonView PV;
+
     EtaloController()
     {
     }
 
-    protected override void Awake()
+    void Awake()
     {
+        PV = GetComponent<PhotonView>();
         cc = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         inventory = GetComponent<Inventory>();
 
         Canvas mainCanvas = GameObject.FindObjectOfType<Canvas>();
+
         aimUI = mainCanvas.transform.Find("AimUI").gameObject;
         inventoryUI = mainCanvas.transform.Find("InventoryUI").gameObject;
         composeUI = mainCanvas.transform.Find("ComposeUI").gameObject;
-        fieldInteractableObjectItemName = mainCanvas.transform.Find("FieldInteractableItemName").gameObject; 
-
+        fieldInteractableObjectItemName = mainCanvas.transform.Find("FieldInteractableItemName").gameObject;
+        fieldInteractableObjectItemName.gameObject.SetActive(false);
     }
 
     // Start is called before the first frame update
-    protected override void Start()
+    void Start()
     {
+        if (PV.IsMine)
+
+        {
+            // EquipItem(0);
+        }
+
+        else
+        {
+            Destroy(GetComponentInChildren<Camera>().gameObject);
+            //Destroy(animator);
+            //Destroy(cc);
+            Destroy(inventory);
+          
+        }
+
         Cursor.lockState = CursorLockMode.Locked;
 
         currHP = maxHP;
@@ -118,6 +146,13 @@ public class EtaloController : AstronautController
     // Update is called once per frame
     void Update()
     {
+        if (!PV.IsMine)
+
+        {
+            return;
+        }
+
+
         AnimatorStateReset();
         CharacterMove();
         SetAnimatorParameter();
@@ -182,9 +217,14 @@ public class EtaloController : AstronautController
        
         if (!currAnimatorStateInfo.IsTag(axStateTag))
         {
-            transform.Rotate(Vector3.up * rotSpeed * mouseX);
+            if (!inventoryUIIsActive && !composeUIIsActive)
+            {
+                transform.Rotate(Vector3.up * rotSpeed * mouseX);
+            }
+            
             cc.Move(transform.TransformDirection(new Vector3(XAxis, 0, ZAxis).normalized * Time.deltaTime * speed));
         }
+
         cc.Move(transform.TransformDirection(new Vector3(0, 1, 0).normalized * ySpeed * Time.deltaTime));
 
 
@@ -214,7 +254,13 @@ public class EtaloController : AstronautController
 
                 if (placeObjectGizmo != null && itemAssembleState)
                 {
+
+
+                    //GameObject A = placeObjectGizmo;
                     Instantiate(placeObjectGizmo);
+                    PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "BornFireObject"), placeObjectGizmo.transform.position, placeObjectGizmo.transform.rotation);
+
+
                     itemAssembleState = false;
                     aimUI.SetActive(true);
                     Cursor.lockState = CursorLockMode.Locked;
@@ -248,8 +294,11 @@ public class EtaloController : AstronautController
             }            
         }
     }
+
+
     void InterAction()
     {
+        
         InteractableObjectIdentifier();
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -265,7 +314,14 @@ public class EtaloController : AstronautController
                     GetComponent<Inventory>().AddItem(groundItem.item);
 
                     print(groundItem.item.itemName);
-                    Destroy(hit.collider.gameObject, groundItem.destroyTime);
+
+                    int obj_ID = hit.collider.gameObject.GetComponent<PhotonView>().ViewID; //오브젝트 ID를 찾는다.
+                    PV.RPC("DestroyRPC", RpcTarget.AllBuffered, obj_ID);
+                    //PhotonNetwork.Destroy(hit.collider.gameObject);
+                    //PV.RPC("DestroyRPC", RpcTarget.AllBuffered,hit.collider);
+                    //PhotonNetwork.Destroy(hit.collider.gameObject);
+                    //Destroy(hit.collider.gameObject, groundItem.destroyTime);
+
                 }
             }
         }
@@ -311,6 +367,16 @@ public class EtaloController : AstronautController
         }
     }
 
+
+    [PunRPC]    //아이템 삭제하는 함수, 모든 클라이언트에게 삭제
+
+    private void DestroyRPC(int obj_ID)
+    {
+        // PhotonNetwork.Destroy(PhotonView.Find(obj_ID).gameObject);
+        print(obj_ID);
+        Destroy(PhotonView.Find(obj_ID).gameObject);
+    }
+
     void InteractableObjectIdentifier()
     {
 
@@ -327,7 +393,7 @@ public class EtaloController : AstronautController
                     
                 }
 
-               
+                
                 fieldInteractableObjectItemName.SetActive(true);
                 fieldInteractableObjectItemName.GetComponent<Text>().text = hit.collider.GetComponent<OnGroundItem>().item.itemName;
                 //Debug.Log(hit.collider.GetComponent<OnGroundItem>().item.itemName);
@@ -344,7 +410,10 @@ public class EtaloController : AstronautController
                 {
                     if (placeObjectGizmo == null)
                     {
+                     
+                        
                         placeObjectGizmo = Instantiate(placeObject);
+                        
                     }
 
                     placeObjectGizmo.SetActive(true);
@@ -371,6 +440,7 @@ public class EtaloController : AstronautController
                 
                 if (placeObjectGizmo != null)
                 {
+                   
                     Destroy(placeObjectGizmo);
                     placeObjectGizmo = null;
                 }
@@ -386,7 +456,7 @@ public class EtaloController : AstronautController
         }
         else
         {
-
+            fieldInteractableObjectItemName.SetActive(false);
             Destroy(placeObjectGizmo);
             placeObjectGizmo = null;
             if (highlightObject != null)
@@ -417,8 +487,11 @@ public class EtaloController : AstronautController
                 resultCamYAngle = Mathf.Clamp(resultCamYAngle, 330, 361f);
             }
 
-
-            cameraArm.transform.rotation = Quaternion.Euler(resultCamYAngle, camAngle.y, camAngle.z);
+            if(!inventoryUIIsActive&&!composeUIIsActive)
+            {
+                cameraArm.transform.rotation = Quaternion.Euler(resultCamYAngle, camAngle.y, camAngle.z);
+            }
+            
         }
     
     }
@@ -465,4 +538,8 @@ public class EtaloController : AstronautController
     {
         Debug.Log("OnWieldAx");
     }
+
+
+  
+
 }
