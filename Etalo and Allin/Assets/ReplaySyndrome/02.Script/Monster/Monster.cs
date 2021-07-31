@@ -15,6 +15,7 @@ public class Monster : MonoBehaviour
     protected Animator animator;
     protected GameObject[] player;
     protected float attackTime = 0;
+    protected bool isDead = false;
 
 
     //Animator Parameter

@@ -35,6 +35,13 @@ public class PocketCreeper : Monster
         {
             MoveToPosition();
         }
+        else if(hp <= 0 && isDead == false)
+        {
+            isDead = true;
+            agent.speed = 0;
+            animator.SetTrigger(paraDie);
+            Destroy(gameObject,5.0f);
+        }
 
      
         
