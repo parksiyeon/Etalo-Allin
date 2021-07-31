@@ -27,19 +27,35 @@ public class Monster : MonoBehaviour
 
     protected virtual void Awake()
     {
-
+        speed = 5;
     }
 
     // Start is called before the first frame update
     protected virtual void Start()
     {
-       
+        agent = GetComponent<NavMeshAgent>();
+        agent.speed = speed;
+        movePositions = new Vector3[positionNum];
+        animator = GetComponent<Animator>();
+        makePath();
+        player = GameObject.FindGameObjectsWithTag("Player");
+
     }
 
     // Update is called once per frame
     protected virtual void Update()
     {
-        
+        if (hp > 0)
+        {
+            MoveToPosition();
+        }
+        else if (hp <= 0 && isDead == false)
+        {
+            isDead = true;
+            agent.speed = 0;
+            animator.SetTrigger(paraDie);
+            Destroy(gameObject, 5.0f);
+        }
     }
 
     protected Vector3 GetRandomPosOnNavmesh(Vector3 center, float distance)

@@ -7,43 +7,23 @@ using UnityEngine.AI;
 public class PocketCreeper : Monster
 {
 
-
-
     protected override void Awake()
     {
-        speed = 5;
+        
     }
 
 
     // Start is called before the first frame update
     protected override void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
-        agent.speed = speed;
-        movePositions = new Vector3[positionNum];
-        animator = GetComponent<Animator>();
-        makePath();
-        player = GameObject.FindGameObjectsWithTag("Player");
-
+        
     }
 
     // Update is called once per frame
     protected override void Update()
     {
        
-        if(hp > 0)
-        {
-            MoveToPosition();
-        }
-        else if(hp <= 0 && isDead == false)
-        {
-            isDead = true;
-            agent.speed = 0;
-            animator.SetTrigger(paraDie);
-            Destroy(gameObject,5.0f);
-        }
-
-     
+        
         
 
     }
