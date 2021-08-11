@@ -38,17 +38,17 @@ public class PlayerManager : MonoBehaviour
 			return;
         }
 		Debug.Log("RPC_CreateCharacter");
-		Vector3 pos = new Vector3(36, 1, 475);
+		Vector3 pos = new Vector3(81, 11, 0);
 		characterValue = Character;
 		
         if (characterValue == 0)
         {
 			Debug.Log("Create");
-			myCharacter = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs","Etalo1"), pos, Quaternion.identity);
+			myCharacter = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs","Etalo"), pos, Quaternion.identity);
 		}
         else
         {
-			myCharacter = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Capsule"), pos, Quaternion.identity);
+			myCharacter = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Allin"), pos, Quaternion.identity);
 		}
 
 

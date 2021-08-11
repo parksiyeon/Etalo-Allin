@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5944730059473915508}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 31.057749, y: 15.29578, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -83,5 +83,5 @@ MonoBehaviour:
   water: {fileID: 3230755897709633253, guid: 191bd5bc0a62d8b449b30620eeffac07, type: 3}
   waterbag: {fileID: 3230755897709633253, guid: 2c1e99ac1d090e54fb3a859ada30faa1,
     type: 3}
-  bonefireObejct: {fileID: 1067747100698770037, guid: a6d92096a56378e4493fd0e5e1f9264b,
+  bonefireObejct: {fileID: 472138246099777690, guid: aa797ff26bd500246879a9048814d5fc,
     type: 3}
