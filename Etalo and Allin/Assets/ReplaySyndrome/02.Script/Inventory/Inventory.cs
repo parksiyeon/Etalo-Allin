@@ -33,8 +33,8 @@ public class Inventory : MonoBehaviour
     
     public List<InventoryBox> itemList;
    // public Image inventoryBoxPrefab;
-    public GameObject ContentScreen;
-    [SerializeField]
+    private GameObject ContentScreen;
+    
     private ItemCollection itemCollection;
 
 
@@ -46,16 +46,20 @@ public class Inventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(itemCollection == null)
-        {
-            itemCollection = GameObject.FindGameObjectWithTag("ItemCollection").GetComponent<ItemCollection>();
+      
+        itemCollection = GameObject.FindGameObjectWithTag("ItemCollection").GetComponent<ItemCollection>();
+        ContentScreen = GameObject.FindObjectOfType<Canvas>().transform.GetChild(0).GetChild(0).GetChild(0).gameObject;
 
+        if(ContentScreen == null)
+        {
+            print("dsadasdsa");
         }
         for (int i = 0; i < 100; ++i)
         {
             AddItem(itemCollection.bone);
             AddItem(itemCollection.bonfire);
             AddItem(itemCollection.branch);
+            AddItem(itemCollection.bullet);
             AddItem(itemCollection.cactus);
             AddItem(itemCollection.cactusfruit);
             AddItem(itemCollection.candy);
@@ -113,7 +117,7 @@ public class Inventory : MonoBehaviour
 
     public void MiusItem(Item item)
     {
-
+        print(item.itemName);
         int findedindex = itemList.FindIndex(x => x.item.ItemName == item.ItemName);
 
         if (findedindex != -1) // 찾기 성공 --- 찾기 실패시 -1을 리턴합니다. 근데왜이렇게해야값이증가하지

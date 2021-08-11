@@ -8,6 +8,7 @@ public class ItemCollection : MonoBehaviour
     public Item bone;
     public Item bonfire;
     public Item branch;
+    public Item bullet;
     public Item cactus;
     public Item cactusfruit;
     public Item candy;
@@ -36,6 +37,7 @@ public class ItemCollection : MonoBehaviour
     public Item thread;
     public Item water;
     public Item waterbag;
+    
 
     private Dictionary<string, Item> composedItemDict;
 

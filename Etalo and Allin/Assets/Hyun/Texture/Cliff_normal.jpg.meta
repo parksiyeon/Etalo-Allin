@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Etalo and Allin/Assets/BZB/Modeling/monster/pocketCreeper.png.meta
-guid: 7cd817e20f6459b4882e13391fbc3897
-=======
-guid: b6f2e1e8c5938b746a799a9d3657212a
->>>>>>> Server:Etalo and Allin/Assets/Hyun/Texture/desert_height.png.meta
+guid: ab276f6efc519bf4498dea20b0b962b5
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -11,7 +7,7 @@ TextureImporter:
   mipmaps:
     mipMapMode: 0
     enableMipMap: 1
-    sRGBTexture: 1
+    sRGBTexture: 0
     linearTexture: 0
     fadeOut: 0
     borderMipMap: 0
@@ -55,7 +51,7 @@ TextureImporter:
   alphaUsage: 1
   alphaIsTransparency: 0
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 1
   textureShape: 1
   singleChannelComponent: 0
   maxTextureSizeSet: 0
