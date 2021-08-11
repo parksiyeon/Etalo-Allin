@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 4459864850019384750}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children:
   - {fileID: 4459864851508666808}
   m_Father: {fileID: 0}
@@ -167,7 +167,7 @@ MonoBehaviour:
   speedReduction: 0.5
   enableHeadBob: 1
   joint: {fileID: 4459864851508666808}
-  bobSpeed: 10
+  bobSpeed: 20
   bobAmount: {x: 0, y: 0.1, z: 0}
 --- !u!1 &4459864850190357393
 GameObject:
