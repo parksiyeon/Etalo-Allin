@@ -24,6 +24,7 @@ public class HPUI : MonoBehaviour
     {
         while (true)
         {
+            Debug.Log("HPUI:" + player.currHP.ToString());
             float percentage = player.currHP / player.maxHP;
             HPImage.fillAmount = percentage;
             yield return new WaitForSeconds(0.3f);

@@ -16,6 +16,9 @@ public class Monster : MonoBehaviour
     protected GameObject[] player;
     protected float attackTime = 0;
     protected bool isDead = false;
+    public int playerCount = 0;
+    protected float attactDistance = 7f;
+    protected int selectedPlayerIndex = 0;
 
 
     //Animator Parameter
@@ -23,6 +26,7 @@ public class Monster : MonoBehaviour
     protected string paraIdle = "Idle";
     protected string paraAttack = "Attack";
     protected string paraMove = "Move";
+    AnimatorStateInfo currAnimatorStateInfo;
 
 
     protected virtual void Awake()
@@ -39,22 +43,24 @@ public class Monster : MonoBehaviour
         animator = GetComponent<Animator>();
         makePath();
         player = GameObject.FindGameObjectsWithTag("Player");
-
+        hp = 300f;
+        playerCount = player.Length;
+        StartCoroutine("FindPlayerAndSetDest");
     }
 
     // Update is called once per frame
     protected virtual void Update()
     {
-        if (hp > 0)
-        {
-            MoveToPosition();
-        }
-        else if (hp <= 0 && isDead == false)
+
+        currAnimatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+        if (hp <= 0 && isDead == false)
         {
             isDead = true;
             agent.speed = 0;
             animator.SetTrigger(paraDie);
             Destroy(gameObject, 5.0f);
+            StopCoroutine("FindPlayerAndSetDest");
         }
     }
 
@@ -84,26 +90,50 @@ public class Monster : MonoBehaviour
 
     protected void MoveToPosition()
     {
-
-        for (int i = 0; i < player.Length; ++i)
+        if (player.Length > 0)
         {
+            for (int i = 0; i < player.Length; ++i)
+            {
+                if (Vector3.Distance(player[i].GetComponent<Transform>().position, transform.position) < attactDistance )
+                {
+                    agent.speed = 0;
+                }
 
-            if (Vector3.Distance(player[i].GetComponent<Transform>().position, transform.position) < 3
-                 && Time.time - attackTime > 3f)
-            {
-                animator.SetTrigger(paraAttack);
-                attackTime = Time.time;
-            }
-            else if (Vector3.Distance(player[i].GetComponent<Transform>().position, transform.position) < 30
-                )
-            {
-                agent.SetDestination(player[i].GetComponent<Transform>().position);
 
+
+                if (Vector3.Distance(player[i].GetComponent<Transform>().position, transform.position) < attactDistance)
+                {
+
+                    if ((currAnimatorStateInfo.IsName(paraMove)))
+                    {
+                        animator.SetTrigger(paraAttack);
+                        selectedPlayerIndex = i;
+                        attackTime = Time.time;
+                        agent.speed = 0;       
+                    }
+                    else
+                    {
+
+                        return;
+                    }
+                    
+                }
+                else if (Vector3.Distance(player[i].GetComponent<Transform>().position, transform.position) < 30)
+                {
+                    agent.SetDestination(player[i].GetComponent<Transform>().position);
+                    agent.speed = speed;
+                }
+                else
+                {
+                    agent.SetDestination(movePositions[currPositionPivot]);
+                    agent.speed = speed;
+                }
             }
-            else
-            {
-                agent.SetDestination(movePositions[currPositionPivot]);
-            }
+        }
+        else
+        {
+            agent.SetDestination(movePositions[currPositionPivot]);
+            agent.speed = speed;
         }
 
        
@@ -117,7 +147,7 @@ public class Monster : MonoBehaviour
             }
         }
 
-        AnimatorStateInfo currAnimatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        
         if(currAnimatorStateInfo.IsName(paraMove))
         {
             agent.speed = speed;
@@ -125,10 +155,51 @@ public class Monster : MonoBehaviour
         else
         {
             agent.speed = 0;
-            Debug.Log("Speed Is 0");
         }
     }
 
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.cyan;
+        for (int i = 0; i < movePositions.Length; ++i)
+        {
+            Gizmos.DrawSphere(movePositions[i], 1);
+        }
+
+        Gizmos.color = Color.red;
+        Gizmos.color = new Color(1, 0, 0, 0.1f);
+        Gizmos.DrawSphere(transform.position, 30);
+    }
+
+
+    IEnumerator FindPlayerAndSetDest()
+    {
+
+        while (true)
+        {
+
+            MoveToPosition();
+
+
+            player = GameObject.FindGameObjectsWithTag("Player");
+            playerCount = player.Length;
+
+            yield return new WaitForSeconds(0.1f);
+
+        }
+    }
+
+    void SetAnimatorIdle()
+    {
+        animator.SetTrigger(paraIdle);
+    }
+
+    void AttackPlayer()
+    {
+        player[selectedPlayerIndex].GetComponent<EtaloController>().DamagedFromMonster(20f);
+        print("AttackToPlayer");
+    }
 
 
 }

@@ -539,6 +539,11 @@ public class EtaloController : MonoBehaviourPunCallbacks
         Debug.Log("OnWieldAx");
     }
 
+    public void DamagedFromMonster(float damage)
+    {
+        currHP -= damage;
+        print(currHP);
+    }
 
   
 

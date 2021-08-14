@@ -28,18 +28,7 @@ public class PocketCreeper : Monster
 
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.cyan;
-        for (int i = 0; i < movePositions.Length; ++i)
-        {
-            Gizmos.DrawSphere(movePositions[i], 1);
-        }
 
-        Gizmos.color = Color.red;
-        Gizmos.color = new Color(1, 0, 0, 0.1f);
-        Gizmos.DrawSphere(transform.position, 30);
-    }
 
     
 
