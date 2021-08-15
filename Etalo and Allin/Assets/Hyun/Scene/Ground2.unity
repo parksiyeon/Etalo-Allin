@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -6194,25 +6194,35 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5614666713476639491, guid: b26e46058a9e2474fa3ff27742371e15,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6649369100644188265, guid: b26e46058a9e2474fa3ff27742371e15,
         type: 3}
       propertyPath: m_Name
       value: Tornado
       objectReference: {fileID: 0}
+    - target: {fileID: 6649369100644188265, guid: b26e46058a9e2474fa3ff27742371e15,
+        type: 3}
+      propertyPath: m_TagString
+      value: Tornado
+      objectReference: {fileID: 0}
     - target: {fileID: 8657280849914541944, guid: b26e46058a9e2474fa3ff27742371e15,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 147.09015
+      value: 31.6
       objectReference: {fileID: 0}
     - target: {fileID: 8657280849914541944, guid: b26e46058a9e2474fa3ff27742371e15,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 19
+      value: 8.5
       objectReference: {fileID: 0}
     - target: {fileID: 8657280849914541944, guid: b26e46058a9e2474fa3ff27742371e15,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 239.68103
+      value: 311.3
       objectReference: {fileID: 0}
     - target: {fileID: 8657280849914541944, guid: b26e46058a9e2474fa3ff27742371e15,
         type: 3}

@@ -10,6 +10,7 @@ TagManager:
   - Canvas
   - ItemCollection
   - ContentScreen
+  - Tornado
   layers:
   - Default
   - TransparentFX
