@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 3305413505148788880}
   - component: {fileID: 362574188412541402}
   - component: {fileID: 3759843150415084878}
+  - component: {fileID: 6169685801732597765}
+  - component: {fileID: 3495848993724176450}
+  - component: {fileID: 326635225849731340}
   m_Layer: 0
   m_Name: Tent
   m_TagString: Untagged
@@ -79,3 +82,43 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &6169685801732597765
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6010369741853701035}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 3.4853363, y: 23.88099, z: 3.4253268}
+  m_Center: {x: 29.85015, y: 10.612366, z: 0.5090359}
+--- !u!65 &3495848993724176450
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6010369741853701035}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 2.9749439, y: 23.88099, z: 3.297738}
+  m_Center: {x: -0.5178828, y: 10.612366, z: 0.57282877}
+--- !u!64 &326635225849731340
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6010369741853701035}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2432090755550338912, guid: 2a6694126ded9de46ad0e4d9ebfcccde, type: 3}

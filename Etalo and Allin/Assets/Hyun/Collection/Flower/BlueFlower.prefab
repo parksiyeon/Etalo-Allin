@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4379618985280292804}
   - component: {fileID: 1445839232342064782}
   - component: {fileID: 2681081305305799194}
+  - component: {fileID: 2124577520645488074}
   m_Layer: 0
   m_Name: BlueFlower
   m_TagString: Untagged
@@ -80,6 +81,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!136 &2124577520645488074
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4787791759993099519}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 5.659349
+  m_Height: 11.318698
+  m_Direction: 1
+  m_Center: {x: -1.2999684, y: 4.956871, z: 0.10338187}
 --- !u!1 &5909428533405647491
 GameObject:
   m_ObjectHideFlags: 0

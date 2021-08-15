@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6804299700526294260}
   - component: {fileID: 8555315208766660030}
   - component: {fileID: 5160896456003664170}
+  - component: {fileID: 6074621741578584435}
   m_Layer: 0
   m_Name: PalmTree
   m_TagString: Untagged
@@ -58,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5328a8957b2e11a4ba0662f28986278a, type: 2}
+  - {fileID: 2100000, guid: a4f37c66c71db2b4eb4192d129386137, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -79,3 +80,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &6074621741578584435
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2367650923761940431}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.9622915, y: 22.863237, z: 4.1894765}
+  m_Center: {x: -0.28127083, y: 11.109565, z: 0.97987086}
