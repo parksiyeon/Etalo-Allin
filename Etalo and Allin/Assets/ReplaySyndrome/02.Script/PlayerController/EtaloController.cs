@@ -115,6 +115,11 @@ public class EtaloController : MonoBehaviourPunCallbacks
 
         Canvas mainCanvas = GameObject.FindObjectOfType<Canvas>();
 
+        if(mainCanvas == null)
+        {
+            print("캔버스를 찾지 못함");
+        }
+
         aimUI = mainCanvas.transform.Find("AimUI").gameObject;
         inventoryUI = mainCanvas.transform.Find("InventoryUI").gameObject;
         composeUI = mainCanvas.transform.Find("ComposeUI").gameObject;
@@ -144,10 +149,10 @@ public class EtaloController : MonoBehaviourPunCallbacks
 
         else
         {
-            Destroy(GetComponentInChildren<Camera>().gameObject);
+            //Destroy(GetComponentInChildren<Camera>().gameObject);
             //Destroy(animator);
             //Destroy(cc);
-            Destroy(inventory);
+            //Destroy(inventory);
           
         }
 
@@ -165,7 +170,7 @@ public class EtaloController : MonoBehaviourPunCallbacks
         if (!PV.IsMine)
 
         {
-            return;
+            //return;
         }
 
 
@@ -183,17 +188,17 @@ public class EtaloController : MonoBehaviourPunCallbacks
     {
         if (XAxis > 0)
         {
-            armature.rotation = Quaternion.Euler(0, 90, 0);
+            //armature.rotation = Quaternion.Euler(0, 90, 0);
             print("90도회전");
         }
         else if (XAxis < 0)
         {
-            armature.rotation = Quaternion.Euler(0, -90, 0);
+           // armature.rotation = Quaternion.Euler(0, -90, 0);
             print("-90도회전");
         }
         else
         {
-            armature.rotation = Quaternion.Euler(0, 0, 0);
+            //armature.rotation = Quaternion.Euler(0, 0, 0);
             print("0도회전");
         }
     }
@@ -304,7 +309,8 @@ public class EtaloController : MonoBehaviourPunCallbacks
 
             if (Input.GetMouseButton(1))
             {
-                animator.SetBool("GunState", true);
+                animator.SetBool("GunReady", true);
+                print("Gun");
             }
         }
         else if (currAnimatorStateInfo.IsTag(gunStateTag))
@@ -324,7 +330,7 @@ public class EtaloController : MonoBehaviourPunCallbacks
             {
                 
                 
-                animator.SetBool("GunState", false);
+                animator.SetBool("GunReady", false);
                 
             }            
         }

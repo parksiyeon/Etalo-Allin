@@ -222,6 +222,12 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 0
     Name: GunReady
+  - Type: 9
+    SynchronizeType: 0
+    Name: Shoot
+  - Type: 9
+    SynchronizeType: 0
+    Name: Shovel
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
@@ -354,7 +360,7 @@ Transform:
   m_GameObject: {fileID: 345013813}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3196.013, y: 221.75093, z: 1321.8303}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -551,6 +557,11 @@ PrefabInstance:
       propertyPath: m_ApplyRootMotion
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8417361359673230750, guid: c5f29315b77a0cc49a584892615a8f56,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 64a783989e521d14cb1564064b0d2a3d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5f29315b77a0cc49a584892615a8f56, type: 3}
 --- !u!1001 &871872342
