@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 2681081305305799194}
   - component: {fileID: 2124577520645488074}
   - component: {fileID: 6299683198741162613}
-  m_Layer: 0
+  - component: {fileID: 4114682252935161071}
+  m_Layer: 10
   m_Name: BlueFlower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,6 +119,21 @@ MonoBehaviour:
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &4114682252935161071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4787791759993099519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51ebdae3e8c165240965f0506d38e329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 1234104985895222271, guid: aebddbcd1cb9c7141ac2641ae495ae55, type: 3}
+  animatorTrigger: PickUp
+  destroyTime: 0
 --- !u!1 &5909428533405647491
 GameObject:
   m_ObjectHideFlags: 0
