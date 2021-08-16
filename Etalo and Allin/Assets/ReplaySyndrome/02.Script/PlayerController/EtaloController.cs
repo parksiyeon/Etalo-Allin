@@ -40,7 +40,7 @@ public class EtaloController : MonoBehaviourPunCallbacks
     public GameObject footprint;
     public GameObject leftFootPos;
     public GameObject rightFootPos;
-    private GameObject placeObjectGizmo;
+    private GameObject placeObjectGizmo = null;
     private Transform armature;
     private Transform gunFirePos;
     #endregion
@@ -172,6 +172,7 @@ public class EtaloController : MonoBehaviourPunCallbacks
         currTemperature = optimalTemperature;
         currHungry = maxHungry;
         currThirst = maxThirst;
+        placeObjectGizmo = null;
     }
 
     // Update is called once per frame
@@ -287,15 +288,8 @@ public class EtaloController : MonoBehaviourPunCallbacks
         {
             if (Input.GetMouseButtonDown(0))
             {
-                print(itemAssembleState);
-
                 if (placeObjectGizmo != null && itemAssembleState)
                 {
-
-
-                    //GameObject A = placeObjectGizmo;
-
-                    
 
                     Instantiate(placeObjectGizmo);
                     PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "BornFireObject"), placeObjectGizmo.transform.position, placeObjectGizmo.transform.rotation);
@@ -450,14 +444,19 @@ public class EtaloController : MonoBehaviourPunCallbacks
             {
                 if (itemAssembleState)
                 {
-                    if (placeObjectGizmo == null)
+                    if (placeObjectGizmo != null)
                     {
-                     
-                        
-                        placeObjectGizmo = Instantiate(placeObject);
-                        
+                        print("기즈모널아님");
                     }
 
+
+                    if (placeObjectGizmo == null)
+                    {                       
+                        placeObjectGizmo = Instantiate(placeObject);
+                        print("기즈모 생성");
+                        
+                    }
+                    print("여기좀타라");
                     placeObjectGizmo.SetActive(true);
                     placeObjectGizmo.transform.position = hit.point;
                     var angle = hit.normal;
@@ -484,6 +483,7 @@ public class EtaloController : MonoBehaviourPunCallbacks
                 {
                    
                     Destroy(placeObjectGizmo);
+                    print("기즈모파괴");
                     placeObjectGizmo = null;
                 }
 
@@ -500,6 +500,7 @@ public class EtaloController : MonoBehaviourPunCallbacks
         {
             fieldInteractableObjectItemName.SetActive(false);
             Destroy(placeObjectGizmo);
+            print("기즈모파괴");
             placeObjectGizmo = null;
             if (highlightObject != null)
             {

@@ -95,6 +95,8 @@ public class ItemCollection : MonoBehaviour
             etalo.UIReset();
             etalo.itemAssembleState = true;
             etalo.placeObject = bonefireObejct;
+
+
             Cursor.lockState = CursorLockMode.Locked;
         }
         else

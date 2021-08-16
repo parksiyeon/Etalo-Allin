@@ -83,5 +83,5 @@ MonoBehaviour:
   water: {fileID: 3230755897709633253, guid: 191bd5bc0a62d8b449b30620eeffac07, type: 3}
   waterbag: {fileID: 3230755897709633253, guid: 2c1e99ac1d090e54fb3a859ada30faa1,
     type: 3}
-  bonefireObejct: {fileID: 472138246099777690, guid: aa797ff26bd500246879a9048814d5fc,
+  bonefireObejct: {fileID: 1067747100698770037, guid: 0818737a93b2eb544a088816f2a4659a,
     type: 3}

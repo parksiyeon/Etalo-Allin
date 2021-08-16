@@ -109,6 +109,9 @@ public class MousePointerOnImage : MonoBehaviour , IPointerClickHandler
             var itemlist = player.GetComponent<Inventory>().itemList;
             int pivot = itemlist.FindIndex(x => x.item.itemName == itemImage.sprite.name);
             print(itemlist[pivot].item.itemName);
+
+
+            
             GameObject.FindGameObjectWithTag("ItemCollection").
                 GetComponent<ItemCollection>().MakePlayerItemPlaceState((itemlist[pivot].item.itemName));
         }
