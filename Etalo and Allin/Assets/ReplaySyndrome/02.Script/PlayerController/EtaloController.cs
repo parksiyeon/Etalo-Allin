@@ -115,9 +115,9 @@ public class EtaloController : MonoBehaviourPunCallbacks
         cc = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         inventory = GetComponent<Inventory>();
-        gunLineRenderer = GetComponent<LineRenderer>();
-        gunLineRenderer.enabled = false;
-        gunFirePos = laserGun.transform.Find("FirePosition");
+        //gunLineRenderer = GetComponent<LineRenderer>();
+        //gunLineRenderer.enabled = false;
+        //gunFirePos = laserGun.transform.Find("FirePosition");
 
 
 
@@ -138,11 +138,11 @@ public class EtaloController : MonoBehaviourPunCallbacks
         fieldInteractableObjectItemName.gameObject.SetActive(false);
 
         myCamera = cameraArm.GetComponentInChildren<Camera>();
-        if(myCamera.GetComponent<ShakeCamera>() == null)
-        {
-            myCamera.gameObject.AddComponent<ShakeCamera>();
-            print("ShakeCamera붙임");
-        }
+        //if(myCamera.GetComponent<ShakeCamera>() == null)
+        //{
+        //    myCamera.gameObject.AddComponent<ShakeCamera>();
+        //    print("ShakeCamera붙임");
+        //}
 
     }
 
@@ -580,45 +580,45 @@ public class EtaloController : MonoBehaviourPunCallbacks
     }
 
 
-    private void OnTriggerEnter(Collider other)
-    {
-        //Camera.main.GetComponent<ShakeCamera>().StartShake();
-        myCamera.GetComponent<ShakeCamera>().StartShake();
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    //Camera.main.GetComponent<ShakeCamera>().StartShake();
+    //    myCamera.GetComponent<ShakeCamera>().StartShake();
+    //}
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.tag == "Tornado")
-        {
-            Vector3 tornadoCenter = other.gameObject.transform.position;
-            Vector3 playerCenter = transform.position;
-            Vector3 directionToTornado = tornadoCenter - playerCenter;
-
-
-            Vector3 tornadoCenterWithoutY = new Vector3(tornadoCenter.x, 0, tornadoCenter.z);
-            Vector3 playerCenterWithoutY = new Vector3(playerCenter.x, 0, playerCenter.z);
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if (other.tag == "Tornado")
+    //    {
+    //        Vector3 tornadoCenter = other.gameObject.transform.position;
+    //        Vector3 playerCenter = transform.position;
+    //        Vector3 directionToTornado = tornadoCenter - playerCenter;
 
 
+    //        Vector3 tornadoCenterWithoutY = new Vector3(tornadoCenter.x, 0, tornadoCenter.z);
+    //        Vector3 playerCenterWithoutY = new Vector3(playerCenter.x, 0, playerCenter.z);
 
 
 
 
-            float distanceFromTornado = Vector3.Distance(tornadoCenterWithoutY, playerCenterWithoutY);
-            cc.Move(directionToTornado.normalized * Time.deltaTime *
-                (speed * (1 - distanceFromTornado / other.gameObject.GetComponent<Tornado>().tornadoRadius) * 1.2f));
 
-            if ((1 - distanceFromTornado / other.gameObject.GetComponent<Tornado>().tornadoRadius) * 1.2f > 1)
-            {
-                myCamera.gameObject.SetActive(false);
-            }
-            print("빨려들어가는중");
-        }
-    }
 
-    private void OnTriggerExit(Collider other)
-    {
-        myCamera.GetComponent<ShakeCamera>().StopShake();
-    }
+    //        float distanceFromTornado = Vector3.Distance(tornadoCenterWithoutY, playerCenterWithoutY);
+    //        cc.Move(directionToTornado.normalized * Time.deltaTime *
+    //            (speed * (1 - distanceFromTornado / other.gameObject.GetComponent<Tornado>().tornadoRadius) * 1.2f));
+
+    //        if ((1 - distanceFromTornado / other.gameObject.GetComponent<Tornado>().tornadoRadius) * 1.2f > 1)
+    //        {
+    //            myCamera.gameObject.SetActive(false);
+    //        }
+    //        print("빨려들어가는중");
+    //    }
+    //}
+
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    myCamera.GetComponent<ShakeCamera>().StopShake();
+    //}
 
     private IEnumerator FireGun()
     {

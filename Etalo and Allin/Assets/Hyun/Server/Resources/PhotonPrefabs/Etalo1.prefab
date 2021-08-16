@@ -1239,6 +1239,8 @@ MonoBehaviour:
   fieldInteractableObjectItemName: {fileID: 0}
   placeObject: {fileID: 9109771053817946905, guid: 5e4ff4ae97744064aa2a34204645f5a2,
     type: 3}
+  myCamera: {fileID: 0}
+  laserGun: {fileID: 0}
   maxHP: 100
   currHP: 0
   maxHungry: 100
