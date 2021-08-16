@@ -131,7 +131,6 @@ public class Inventory : MonoBehaviour
 
     public void MiusItem(Item item)
     {
-        print(item.itemName);
         int findedindex = itemList.FindIndex(x => x.item.ItemName == item.ItemName);
 
         if (findedindex != -1) // 찾기 성공 --- 찾기 실패시 -1을 리턴합니다. 근데왜이렇게해야값이증가하지

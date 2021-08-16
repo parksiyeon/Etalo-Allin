@@ -30,7 +30,7 @@ public class Tornado : MonoBehaviour
     void Update()
     {
         Vector3 destDir = positions[currPosIndex] - transform.position;
-        //transform.Translate(destDir.normalized * Time.deltaTime * speed);
+        transform.Translate(destDir.normalized * Time.deltaTime * speed);
 
         if(Vector3.Distance(positions[currPosIndex], transform.position) < 100.0f)
         {

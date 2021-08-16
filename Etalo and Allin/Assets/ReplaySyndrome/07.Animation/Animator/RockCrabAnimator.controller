@@ -21,7 +21,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 9130067285013048475, guid: 6fefa924f1a41d34b9953795e491bbaf,
+  m_Motion: {fileID: 9130067285013048475, guid: 354d102229e05484495f51c12d3b1afa,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -48,7 +48,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 5866576275671282845, guid: 6fefa924f1a41d34b9953795e491bbaf,
+  m_Motion: {fileID: 5866576275671282845, guid: 354d102229e05484495f51c12d3b1afa,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -76,7 +76,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 4764306829308904052, guid: 6fefa924f1a41d34b9953795e491bbaf,
+  m_Motion: {fileID: 4764306829308904052, guid: 354d102229e05484495f51c12d3b1afa,
     type: 3}
   m_Tag: Idle
   m_SpeedParameter: 
@@ -122,25 +122,25 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Attack
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Move
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Die
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -302,7 +302,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 2845759425010373711, guid: 6fefa924f1a41d34b9953795e491bbaf,
+  m_Motion: {fileID: 2845759425010373711, guid: 354d102229e05484495f51c12d3b1afa,
     type: 3}
   m_Tag: Move
   m_SpeedParameter: 

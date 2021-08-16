@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class Monster : MonoBehaviour
 {
     protected NavMeshAgent agent;
-    protected float hp = 300f;
+    protected float hp = 100f;
     protected int positionNum = 10;
     protected Vector3[] movePositions;
     protected float moveDistance = 50;
@@ -201,5 +201,9 @@ public class Monster : MonoBehaviour
         print("AttackToPlayer");
     }
 
+    public void Damaged(float damage)
+    {
+        hp -= damage;
+    }
 
 }

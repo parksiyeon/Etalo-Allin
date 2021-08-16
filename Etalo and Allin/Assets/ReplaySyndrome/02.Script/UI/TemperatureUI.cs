@@ -7,13 +7,14 @@ public class TemperatureUI : MonoBehaviour
 {
     // Start is called before the first frame update
     Image temperatureImage;
-
+    Text temperatureText;
     EtaloController player;
 
     // Start is called before the first frame update
     void Start()
     {
         temperatureImage = GetComponent<Image>();
+        temperatureText = GetComponent<Text>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<EtaloController>();
         StartCoroutine("UpdateInfo");
     }
@@ -25,9 +26,12 @@ public class TemperatureUI : MonoBehaviour
     {
         while (true)
         {
-            double amount = (player.currTemperature - player.optimalTemperature) / player.dangerTemperatureAmount + 0.5;
+            //double amount = (player.currTemperature - player.optimalTemperature) / player.dangerTemperatureAmount + 0.5;
             
-            temperatureImage.fillAmount = Mathf.Clamp((float)amount,0.0f,1.0f);
+           // temperatureImage.fillAmount = Mathf.Clamp((float)amount,0.0f,1.0f);
+
+            temperatureText.text = System.Math.Round(player.currTemperature,1).ToString();
+            
 
             yield return new WaitForSeconds(0.3f);
         }

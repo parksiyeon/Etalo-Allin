@@ -37,6 +37,9 @@ public class EtaloController : MonoBehaviourPunCallbacks
 
 
     public GameObject laserGun;
+    public GameObject footprint;
+    public GameObject leftFootPos;
+    public GameObject rightFootPos;
     private GameObject placeObjectGizmo;
     private Transform armature;
     private Transform gunFirePos;
@@ -133,7 +136,6 @@ public class EtaloController : MonoBehaviourPunCallbacks
         composeUI = mainCanvas.transform.Find("ComposeUI").gameObject;
         armature = transform.Find("Armature");
 
-        print(armature.name);
         fieldInteractableObjectItemName = mainCanvas.transform.Find("FieldInteractableItemName").gameObject;
         fieldInteractableObjectItemName.gameObject.SetActive(false);
 
@@ -430,6 +432,8 @@ public class EtaloController : MonoBehaviourPunCallbacks
                 
                 fieldInteractableObjectItemName.SetActive(true);
                 fieldInteractableObjectItemName.GetComponent<Text>().text = hit.collider.GetComponent<OnGroundItem>().item.itemName;
+
+                print(hit.collider.GetComponent<OnGroundItem>().item.itemName);
                 //Debug.Log(hit.collider.GetComponent<OnGroundItem>().item.itemName);
                 //Debug.Log("충돌했음");
                 //hit.collider.gameObject.GetComponent<Renderer>().material.color = Color.yellow;
@@ -576,7 +580,6 @@ public class EtaloController : MonoBehaviourPunCallbacks
     public void DamagedFromMonster(float damage)
     {
         currHP -= damage;
-        print(currHP);
     }
 
 
@@ -634,10 +637,10 @@ public class EtaloController : MonoBehaviourPunCallbacks
             var monster = hit.collider.GetComponent<Monster>();
             if(monster != null)
             {
-
+                print("몬스터한테 데미지줌");
+                monster.Damaged(30.0f);
             }
             gunLineRenderer.SetPosition(0, gunFirePos.position);
-            print(gunFirePos.position);
             gunLineRenderer.SetPosition(1, hit.point);
 
             yield return new WaitForSeconds(0.2f);
@@ -645,5 +648,32 @@ public class EtaloController : MonoBehaviourPunCallbacks
 
         gunLineRenderer.enabled = false;
         enableShot = true;
+    }
+
+
+    void LeftFoot()
+    {
+        RaycastHit hit;
+        if(Physics.Raycast(rightFootPos.transform.position, Vector3.down, out hit, 10,11))
+        {
+            print("오른발이 땅에 닿음");
+
+            GameObject instantFootPrint = Instantiate(footprint, hit.point, Quaternion.Euler(hit.normal));
+            instantFootPrint.transform.Rotate(90f, 0f, 0f);
+        }
+    }
+
+    void RightFoot()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(leftFootPos.transform.position, Vector3.down, out hit, 10, 11))
+        {
+            print("왼발이 땅에 닿음");
+
+            Vector3 terrainNormal = hit.normal;
+            //terrainNormal.x += 90;
+            GameObject instantFootPrint = Instantiate(footprint, hit.point, Quaternion.Euler(terrainNormal));
+            instantFootPrint.transform.Rotate(90f, 0f, 0f);
+        }
     }
 }
