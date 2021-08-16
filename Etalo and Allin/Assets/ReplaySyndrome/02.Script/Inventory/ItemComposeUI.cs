@@ -23,7 +23,11 @@ public class ItemComposeUI : MonoBehaviour
     {
         composedItemView = composedView.GetComponentsInChildren<ComposedItemView>();
         inventoryItemList = inventoryView.GetComponentsInChildren<Button>();
-        //gameObject.SetActive(false);
+        itemCollection = GameObject.FindGameObjectWithTag("ItemCollection").GetComponent<ItemCollection>();
+        if(itemCollection == null)
+        {
+            print("널먀ㅕㄷㅈ려ㅗㅑㅁ");
+        }
     }
 
     // Start is called before the first frame update

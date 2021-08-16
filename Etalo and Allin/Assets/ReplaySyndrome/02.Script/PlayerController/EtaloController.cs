@@ -159,10 +159,10 @@ public class EtaloController : MonoBehaviourPunCallbacks
 
         else
         {
-            Destroy(GetComponentInChildren<Camera>().gameObject);
+            //Destroy(GetComponentInChildren<Camera>().gameObject);
             //Destroy(animator);
             //Destroy(cc);
-            Destroy(inventory);
+            //Destroy(inventory);
           
         }
 
@@ -180,7 +180,7 @@ public class EtaloController : MonoBehaviourPunCallbacks
         if (!PV.IsMine)
 
         {
-            return;
+            //return;
         }
 
 
@@ -287,12 +287,16 @@ public class EtaloController : MonoBehaviourPunCallbacks
         {
             if (Input.GetMouseButtonDown(0))
             {
+                print(itemAssembleState);
 
                 if (placeObjectGizmo != null && itemAssembleState)
                 {
 
 
                     //GameObject A = placeObjectGizmo;
+
+                    
+
                     Instantiate(placeObjectGizmo);
                     PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "BornFireObject"), placeObjectGizmo.transform.position, placeObjectGizmo.transform.rotation);
 

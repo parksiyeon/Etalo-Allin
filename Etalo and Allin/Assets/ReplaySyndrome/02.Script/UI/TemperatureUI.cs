@@ -30,7 +30,7 @@ public class TemperatureUI : MonoBehaviour
             
            // temperatureImage.fillAmount = Mathf.Clamp((float)amount,0.0f,1.0f);
 
-            temperatureText.text = System.Math.Round(player.currTemperature,1).ToString();
+            temperatureText.text = System.Math.Round( player.currTemperature).ToString();
             
 
             yield return new WaitForSeconds(0.3f);

@@ -51,23 +51,6 @@ public class Inventory : MonoBehaviour
         itemCollection = GameObject.FindGameObjectWithTag("ItemCollection").GetComponent<ItemCollection>();
         ContentScreen = GameObject.FindObjectOfType<Canvas>().transform.GetChild(0).GetChild(0).GetChild(0).gameObject;
 
-
-        if (itemCollection == null)
-        {
-            print("아이템 컬렉션이 없습니다.");
-            return;
-        }
-        if (itemList == null)
-        {
-            print("아이템 리스트가 없습니다.");
-            return;
-        }
-
-
-        if (ContentScreen == null)
-        {
-            print("dsadasdsa");
-        }
         for (int i = 0; i < 100; ++i)
         {
             AddItem(itemCollection.bone);
