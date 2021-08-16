@@ -91,7 +91,7 @@ public class EtaloController : MonoBehaviourPunCallbacks
         {
             Destroy(animator);
             Destroy(GetComponentInChildren<Camera>().gameObject);
-        
+
         }
 
         Cursor.lockState = CursorLockMode.Locked;

@@ -1155,8 +1155,8 @@ GameObject:
   - component: {fileID: 8428720073652453330}
   - component: {fileID: 8428720073652453328}
   - component: {fileID: 8428720073652453340}
-  - component: {fileID: 1011627857189375557}
   - component: {fileID: 1298738924095780976}
+  - component: {fileID: -4080421196814848457}
   m_Layer: 0
   m_Name: Etalo
   m_TagString: Player
@@ -1261,7 +1261,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ContentScreen: {fileID: 0}
   itemCollection: {fileID: 0}
---- !u!114 &1011627857189375557
+--- !u!114 &1298738924095780976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8663164188250492726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
+--- !u!114 &-4080421196814848457
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1279,27 +1295,10 @@ MonoBehaviour:
   observableSearch: 2
   Synchronization: 3
   OwnershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 1298738924095780976}
+  ObservedComponents: []
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &1298738924095780976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8663164188250492726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
-  m_UseLocal: 1
 --- !u!1 &8932214295480528054
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1824417269854114794}
   - component: {fileID: 2914985602948347774}
   - component: {fileID: 3368435652473873322}
+  - component: {fileID: -5158005051590537619}
   m_Layer: 0
   m_Name: WhiteFlower
   m_TagString: Untagged
@@ -95,6 +96,28 @@ CapsuleCollider:
   m_Height: 9.829283
   m_Direction: 1
   m_Center: {x: -1.2999685, y: 4.956871, z: 0.10338211}
+--- !u!114 &-5158005051590537619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5706238801605704091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &7410597366439028249
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2638182516455884548}
   - component: {fileID: 1565298994783773584}
   - component: {fileID: 5281261298481810452}
+  - component: {fileID: 4702091748399657355}
   m_Layer: 0
   m_Name: Cactus01
   m_TagString: Untagged
@@ -93,3 +94,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.755109, y: 10.783256, z: 3.5637589}
   m_Center: {x: 0.6957163, y: 5.401271, z: 0.3460415}
+--- !u!114 &4702091748399657355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8285978070134025589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
