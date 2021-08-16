@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51ebdae3e8c165240965f0506d38e329, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 1234104985895222271, guid: aebddbcd1cb9c7141ac2641ae495ae55, type: 3}
+  item: {fileID: 1234104985895222271, guid: 4153327195d4d0f4f996a1a62b83d2b6, type: 3}
   animatorTrigger: PickUp
   destroyTime: 0
 --- !u!1 &5909428533405647491

@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Photon.Pun;
+using Photon.Realtime;
 
 public class Monster : MonoBehaviour
 {
+    PhotonView PV;
     protected NavMeshAgent agent;
     protected float hp = 100f;
     protected int positionNum = 10;
@@ -31,6 +34,7 @@ public class Monster : MonoBehaviour
 
     protected virtual void Awake()
     {
+        PV = GetComponent<PhotonView>();
         speed = 5;
     }
 
@@ -59,7 +63,12 @@ public class Monster : MonoBehaviour
             isDead = true;
             agent.speed = 0;
             animator.SetTrigger(paraDie);
-            Destroy(gameObject, 5.0f);
+
+            int obj_ID = gameObject.GetComponent<PhotonView>().ViewID;
+            print(obj_ID);
+            
+            //Destroy(gameObject, 5.0f);
+            PV.RPC("DestroyRPC", RpcTarget.AllBuffered, obj_ID);
             StopCoroutine("FindPlayerAndSetDest");
         }
     }
@@ -206,4 +215,11 @@ public class Monster : MonoBehaviour
         hp -= damage;
     }
 
+    [PunRPC]
+    private void DestroyRPC(int obj_ID)
+    {
+        Destroy(PhotonView.Find(obj_ID).gameObject);
+        
+    }
+    
 }

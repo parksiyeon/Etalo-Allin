@@ -159,10 +159,10 @@ public class EtaloController : MonoBehaviourPunCallbacks
 
         else
         {
-            //Destroy(GetComponentInChildren<Camera>().gameObject);
+            Destroy(GetComponentInChildren<Camera>().gameObject);
             //Destroy(animator);
             //Destroy(cc);
-            //Destroy(inventory);
+            Destroy(inventory);
           
         }
 
@@ -181,7 +181,7 @@ public class EtaloController : MonoBehaviourPunCallbacks
         if (!PV.IsMine)
 
         {
-            //return;
+            return;
         }
 
 
