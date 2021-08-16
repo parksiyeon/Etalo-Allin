@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4003955707200270218}
   - component: {fileID: 4236706342037053168}
   - component: {fileID: 1556617951871300731}
+  - component: {fileID: 1652901144800883206}
   m_Layer: 0
   m_Name: Cactus05
   m_TagString: Untagged
@@ -116,3 +117,18 @@ MonoBehaviour:
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &1652901144800883206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5824370942038434159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51ebdae3e8c165240965f0506d38e329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 3230755897709633253, guid: d80e26668af6d86498d98612494a0d76, type: 3}
+  animatorTrigger: PickUp
+  destroyTime: 0
