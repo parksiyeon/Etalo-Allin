@@ -34,6 +34,7 @@ public class EtaloController : MonoBehaviourPunCallbacks
     public GameObject placeObject;
     public Camera myCamera;
     private GameObject placeObjectGizmo;
+    private Transform armature;
     #endregion
 
     //GameObject IsActive
@@ -109,11 +110,17 @@ public class EtaloController : MonoBehaviourPunCallbacks
         animator = GetComponent<Animator>();
         inventory = GetComponent<Inventory>();
 
+
+
+
         Canvas mainCanvas = GameObject.FindObjectOfType<Canvas>();
 
         aimUI = mainCanvas.transform.Find("AimUI").gameObject;
         inventoryUI = mainCanvas.transform.Find("InventoryUI").gameObject;
         composeUI = mainCanvas.transform.Find("ComposeUI").gameObject;
+        armature = transform.Find("Armature");
+
+        print(armature.name);
         fieldInteractableObjectItemName = mainCanvas.transform.Find("FieldInteractableItemName").gameObject;
         fieldInteractableObjectItemName.gameObject.SetActive(false);
 
@@ -172,6 +179,25 @@ public class EtaloController : MonoBehaviourPunCallbacks
        
     }
 
+    private void LateUpdate()
+    {
+        if (XAxis > 0)
+        {
+            armature.rotation = Quaternion.Euler(0, 90, 0);
+            print("90도회전");
+        }
+        else if (XAxis < 0)
+        {
+            armature.rotation = Quaternion.Euler(0, -90, 0);
+            print("-90도회전");
+        }
+        else
+        {
+            armature.rotation = Quaternion.Euler(0, 0, 0);
+            print("0도회전");
+        }
+    }
+
     void AnimatorStateReset()
     {
         currAnimatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
@@ -182,7 +208,7 @@ public class EtaloController : MonoBehaviourPunCallbacks
         XAxis = Input.GetAxis("Horizontal");
         ZAxis = Input.GetAxis("Vertical");
 
-        
+      
         
 
         Debug.DrawRay(transform.position, Vector3.down,Color.red);

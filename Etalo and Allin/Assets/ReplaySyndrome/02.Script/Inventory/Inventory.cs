@@ -57,6 +57,11 @@ public class Inventory : MonoBehaviour
             print("아이템 컬렉션이 없습니다.");
             return;
         }
+        if (itemList == null)
+        {
+            print("아이템 리스트가 없습니다.");
+            return;
+        }
 
 
         if (ContentScreen == null)
