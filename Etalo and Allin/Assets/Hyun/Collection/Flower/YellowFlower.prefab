@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 7480721775768651798}
   - component: {fileID: 123090089625261136}
   - component: {fileID: -7691554995875171655}
-  m_Layer: 0
+  - component: {fileID: 1619671453766621597}
+  m_Layer: 10
   m_Name: YellowFlower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,6 +119,21 @@ MonoBehaviour:
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &1619671453766621597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41771344998123251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51ebdae3e8c165240965f0506d38e329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 7051027940106756377, guid: 14f3c9813f2b334439f14d8f67fa6b96, type: 3}
+  animatorTrigger: PickUp
+  destroyTime: 0
 --- !u!1 &342255537273944525
 GameObject:
   m_ObjectHideFlags: 0

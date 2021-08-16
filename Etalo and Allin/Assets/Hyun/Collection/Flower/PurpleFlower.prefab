@@ -105,7 +105,8 @@ GameObject:
   - component: {fileID: 5297209455386353557}
   - component: {fileID: 1625918360035053915}
   - component: {fileID: -9022817002043543106}
-  m_Layer: 0
+  - component: {fileID: 877375681277376346}
+  m_Layer: 10
   m_Name: PurpleFlower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,3 +211,18 @@ MonoBehaviour:
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &877375681277376346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3370889260570497392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51ebdae3e8c165240965f0506d38e329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 4030061971719404259, guid: 67fae65cc51e4a14d83d507d30c9d92b, type: 3}
+  animatorTrigger: PickUp
+  destroyTime: 0

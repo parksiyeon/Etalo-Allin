@@ -373,7 +373,7 @@ public class EtaloController : MonoBehaviourPunCallbacks
                 Cursor.lockState = CursorLockMode.Locked;
                 inventoryUIIsActive = false;
             }
-            else if(!composeUIIsActive)
+            else if(!inventoryUIIsActive)
             {
                 inventoryUI.SetActive(true);
                 aimUI.SetActive(false);
@@ -392,7 +392,7 @@ public class EtaloController : MonoBehaviourPunCallbacks
                 Cursor.lockState = CursorLockMode.Locked;
                 composeUIIsActive = false;
             }
-            else if(!inventoryUIIsActive)
+            else if(!composeUIIsActive)
             {
                
                 composeUI.SetActive(true);
