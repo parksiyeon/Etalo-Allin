@@ -18,6 +18,7 @@ public class EtaloController : MonoBehaviourPunCallbacks
     private CharacterController cc;
     private Animator animator;
     private Inventory inventory;
+    private LineRenderer gunLineRenderer;
     #endregion
 
     protected string animatorParameterXAxis = "XAxis";  //흠..
@@ -32,7 +33,13 @@ public class EtaloController : MonoBehaviourPunCallbacks
     public GameObject fieldInteractableObjectItemName;
 
     public GameObject placeObject;
+    public Camera myCamera;
+
+
+    public GameObject laserGun;
     private GameObject placeObjectGizmo;
+    private Transform armature;
+    private Transform gunFirePos;
     #endregion
 
     //GameObject IsActive
@@ -51,6 +58,7 @@ public class EtaloController : MonoBehaviourPunCallbacks
     private float gravity = 9.8f;
     private float isgrondedDistance = 0.1f;
     private bool isJump = false;
+    private bool enableShot = true;
 
     [HideInInspector]
     public float maxHP = 100;
@@ -107,14 +115,35 @@ public class EtaloController : MonoBehaviourPunCallbacks
         cc = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         inventory = GetComponent<Inventory>();
+        gunLineRenderer = GetComponent<LineRenderer>();
+        gunLineRenderer.enabled = false;
+        gunFirePos = laserGun.transform.Find("FirePosition");
+
+
 
         Canvas mainCanvas = GameObject.FindObjectOfType<Canvas>();
+
+        if(mainCanvas == null)
+        {
+            print("캔버스를 찾지 못함");
+        }
 
         aimUI = mainCanvas.transform.Find("AimUI").gameObject;
         inventoryUI = mainCanvas.transform.Find("InventoryUI").gameObject;
         composeUI = mainCanvas.transform.Find("ComposeUI").gameObject;
+        armature = transform.Find("Armature");
+
+        print(armature.name);
         fieldInteractableObjectItemName = mainCanvas.transform.Find("FieldInteractableItemName").gameObject;
         fieldInteractableObjectItemName.gameObject.SetActive(false);
+
+        myCamera = cameraArm.GetComponentInChildren<Camera>();
+        if(myCamera.GetComponent<ShakeCamera>() == null)
+        {
+            myCamera.gameObject.AddComponent<ShakeCamera>();
+            print("ShakeCamera붙임");
+        }
+
     }
 
     // Start is called before the first frame update
@@ -136,7 +165,7 @@ public class EtaloController : MonoBehaviourPunCallbacks
         }
 
         Cursor.lockState = CursorLockMode.Locked;
-
+        laserGun.SetActive(false);
         currHP = maxHP;
         currTemperature = optimalTemperature;
         currHungry = maxHungry;
@@ -163,6 +192,11 @@ public class EtaloController : MonoBehaviourPunCallbacks
        
     }
 
+    private void LateUpdate()
+    {
+
+    }
+
     void AnimatorStateReset()
     {
         currAnimatorStateInfo = animator.GetCurrentAnimatorStateInfo(0);
@@ -173,7 +207,7 @@ public class EtaloController : MonoBehaviourPunCallbacks
         XAxis = Input.GetAxis("Horizontal");
         ZAxis = Input.GetAxis("Vertical");
 
-        
+      
         
 
         Debug.DrawRay(transform.position, Vector3.down,Color.red);
@@ -269,28 +303,28 @@ public class EtaloController : MonoBehaviourPunCallbacks
 
             if (Input.GetMouseButton(1))
             {
-                animator.SetBool("GunState", true);
+                animator.SetBool("GunReady", true);
+                laserGun.SetActive(true);
             }
         }
         else if (currAnimatorStateInfo.IsTag(gunStateTag))
         {
             if(Input.GetMouseButtonDown(0))
             {
-                print("쏘자");
                 var bullet = inventory.itemList.Find(x => x.item.itemName == "bullet");
-                if (bullet.count > 0)
+                if (bullet.count > 0 && enableShot)
                 {
                     inventory.MiusItem(bullet.item);
+                    StartCoroutine("FireGun");
                     animator.SetTrigger("Shoot");
                 }
             }
 
             if (!Input.GetMouseButton(1))
             {
-                
-                
-                animator.SetBool("GunState", false);
-                
+
+                laserGun.SetActive(false);
+                animator.SetBool("GunReady", false);             
             }            
         }
     }
@@ -539,7 +573,77 @@ public class EtaloController : MonoBehaviourPunCallbacks
         Debug.Log("OnWieldAx");
     }
 
+    public void DamagedFromMonster(float damage)
+    {
+        currHP -= damage;
+        print(currHP);
+    }
 
-  
 
+    private void OnTriggerEnter(Collider other)
+    {
+        //Camera.main.GetComponent<ShakeCamera>().StartShake();
+        myCamera.GetComponent<ShakeCamera>().StartShake();
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Tornado")
+        {
+            Vector3 tornadoCenter = other.gameObject.transform.position;
+            Vector3 playerCenter = transform.position;
+            Vector3 directionToTornado = tornadoCenter - playerCenter;
+
+
+            Vector3 tornadoCenterWithoutY = new Vector3(tornadoCenter.x, 0, tornadoCenter.z);
+            Vector3 playerCenterWithoutY = new Vector3(playerCenter.x, 0, playerCenter.z);
+
+
+
+
+
+
+            float distanceFromTornado = Vector3.Distance(tornadoCenterWithoutY, playerCenterWithoutY);
+            cc.Move(directionToTornado.normalized * Time.deltaTime *
+                (speed * (1 - distanceFromTornado / other.gameObject.GetComponent<Tornado>().tornadoRadius) * 1.2f));
+
+            if ((1 - distanceFromTornado / other.gameObject.GetComponent<Tornado>().tornadoRadius) * 1.2f > 1)
+            {
+                myCamera.gameObject.SetActive(false);
+            }
+            print("빨려들어가는중");
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        myCamera.GetComponent<ShakeCamera>().StopShake();
+    }
+
+    private IEnumerator FireGun()
+    {
+        gunLineRenderer.enabled = true;
+        enableShot = false;
+        
+        
+
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 0));
+        if (Physics.Raycast(ray, out hit))
+        {
+            var monster = hit.collider.GetComponent<Monster>();
+            if(monster != null)
+            {
+
+            }
+            gunLineRenderer.SetPosition(0, gunFirePos.position);
+            print(gunFirePos.position);
+            gunLineRenderer.SetPosition(1, hit.point);
+
+            yield return new WaitForSeconds(0.2f);
+        }
+
+        gunLineRenderer.enabled = false;
+        enableShot = true;
+    }
 }

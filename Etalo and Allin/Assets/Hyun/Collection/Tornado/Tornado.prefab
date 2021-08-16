@@ -246,6 +246,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8657280849914541944}
+  - component: {fileID: 1886483252062497109}
+  - component: {fileID: 5614666713476639491}
   m_Layer: 0
   m_Name: Tornado
   m_TagString: Untagged
@@ -270,3 +272,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1886483252062497109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6649369100644188265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98f6f55ed77cb054f9c424ef58e9cb4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &5614666713476639491
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6649369100644188265}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 80, y: 130, z: 80}
+  m_Center: {x: 0, y: 65, z: 0}

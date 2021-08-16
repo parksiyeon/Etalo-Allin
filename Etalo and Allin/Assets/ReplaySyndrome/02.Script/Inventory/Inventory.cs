@@ -47,15 +47,24 @@ public class Inventory : MonoBehaviour
     void Start()
     {
         
-        if(itemCollection == null)
-        {
-            return;
-        }
-
+        
         itemCollection = GameObject.FindGameObjectWithTag("ItemCollection").GetComponent<ItemCollection>();
         ContentScreen = GameObject.FindObjectOfType<Canvas>().transform.GetChild(0).GetChild(0).GetChild(0).gameObject;
 
-        if(ContentScreen == null)
+
+        if (itemCollection == null)
+        {
+            print("아이템 컬렉션이 없습니다.");
+            return;
+        }
+        if (itemList == null)
+        {
+            print("아이템 리스트가 없습니다.");
+            return;
+        }
+
+
+        if (ContentScreen == null)
         {
             print("dsadasdsa");
         }
