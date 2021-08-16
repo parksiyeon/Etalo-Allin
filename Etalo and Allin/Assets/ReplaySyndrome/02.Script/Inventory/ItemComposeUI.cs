@@ -29,7 +29,7 @@ public class ItemComposeUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        itemCollection = GameObject.FindGameObjectWithTag("ItemCollection").GetComponent<ItemCollection>();
 
     }
 
