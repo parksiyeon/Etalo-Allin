@@ -175,7 +175,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6719771699611647601}
   m_Layer: 0
-  m_Name: BornFireObejct 1
+  m_Name: BornFireObject 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

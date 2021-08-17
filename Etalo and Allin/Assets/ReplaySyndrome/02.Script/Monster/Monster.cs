@@ -9,7 +9,7 @@ public class Monster : MonoBehaviour
 {
     PhotonView PV;
     protected NavMeshAgent agent;
-    protected float hp = 100f;
+    protected float hp = 50f;
     protected int positionNum = 10;
     protected Vector3[] movePositions;
     protected float moveDistance = 50;
@@ -213,6 +213,7 @@ public class Monster : MonoBehaviour
     public void Damaged(float damage)
     {
         hp -= damage;
+        print("몬스터 데미지" + damage.ToString());
     }
 
     [PunRPC]

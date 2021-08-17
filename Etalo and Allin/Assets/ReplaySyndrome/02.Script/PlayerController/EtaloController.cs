@@ -292,12 +292,13 @@ public class EtaloController : MonoBehaviourPunCallbacks
                 {
 
                     Instantiate(placeObjectGizmo);
-                    PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "BornFireObject"), placeObjectGizmo.transform.position, placeObjectGizmo.transform.rotation);
+                    PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "BornFireObject 1"), placeObjectGizmo.transform.position, placeObjectGizmo.transform.rotation);
 
 
                     itemAssembleState = false;
                     aimUI.SetActive(true);
                     Cursor.lockState = CursorLockMode.Locked;
+                    placeObjectGizmo = null;
                 }
             }
 
@@ -451,10 +452,10 @@ public class EtaloController : MonoBehaviourPunCallbacks
 
 
                     if (placeObjectGizmo == null)
-                    {                       
+                    {
                         placeObjectGizmo = Instantiate(placeObject);
                         print("기즈모 생성");
-                        
+
                     }
                     print("여기좀타라");
                     placeObjectGizmo.SetActive(true);
