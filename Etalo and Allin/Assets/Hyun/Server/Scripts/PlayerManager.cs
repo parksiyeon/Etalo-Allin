@@ -48,7 +48,7 @@ public class PlayerManager : MonoBehaviour
 		}
         else
         {
-			myCharacter = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Allin"), pos, Quaternion.identity);
+			myCharacter = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Allin0816"), pos, Quaternion.identity);
 		}
 
 
