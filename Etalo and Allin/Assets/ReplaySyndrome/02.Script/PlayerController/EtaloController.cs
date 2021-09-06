@@ -165,8 +165,13 @@ public class EtaloController : MonoBehaviourPunCallbacks
             Destroy(inventory);
           
         }
+       
 
-        Cursor.lockState = CursorLockMode.Locked;
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            transform.Translate(1268, 8, -320);
+        }
+            Cursor.lockState = CursorLockMode.Locked;
         laserGun.SetActive(false);
         currHP = maxHP;
         currTemperature = optimalTemperature;
